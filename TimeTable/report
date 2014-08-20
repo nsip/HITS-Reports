@@ -1,0 +1,153 @@
+#!/usr/bin/perl
+use perl5i::2;
+use YAML;
+use DBI;
+use Data::Dumper;
+
+# XXX CODE CHANGES
+# 	- Common code here
+# 		. Config
+# 		. Database connection
+# 		. DB to template
+#	- Common code also in create_entry.pl
+
+my $config = YAML::LoadFile($ENV{HOME} . "/.nsip_sif_data");
+my $dbh = DBI->connect(
+	$config->{mysql_dsn_hits}, 
+	$config->{mysql_user}, 
+	$config->{mysql_password},
+	{RaiseError => 1, AutoCommit => 1}
+);
+
+# NOTE: This should be app_login.id (currently doesn't exist)
+my ($app_template_id) = @ARGV;
+
+my $report = {
+	# Details about the application
+	application => {
+	},
+	tests => [],
+};
+
+# ----------------------------------------------------------------------
+# Common code - move to library
+# ----------------------------------------------------------------------
+
+my $sth = $dbh->prepare(q{
+	SELECT 
+		app.name app_name, app.title app_title,				-- Application
+		app.sis_id, sis.sis_type, sis.sis_ref,				-- SIS
+		vendor.id vendor_id, vendor.name vendor_name		-- Vendor
+	FROM 
+		app_login, app, vendor, sis
+	WHERE 
+		app_login.app_template_id = ?
+		AND app.id = app_login.app_id
+		AND vendor.id = app.vendor_id
+		AND sis.id = app.sis_id
+});
+$sth->execute($app_template_id);
+my $app = $sth->fetchrow_hashref;
+
+if (!$app) {
+	die "No valid match for app_template_id - $app_template_id\n";
+}
+
+$report->{application} = $app;
+
+# ----------------------------------------------------------------------
+# Specific
+# ----------------------------------------------------------------------
+my $dsn = $config->{mysql_dsn_template};
+my $db = $app->{sis_ref};
+$dsn =~ s/TEMPLATE/$db/;
+my $dbh_sis = DBI->connect(
+		$dsn,
+		$config->{mysql_user}, 
+		$config->{mysql_password},
+		{RaiseError => 1, AutoCommit => 1}
+);
+
+# ----------------------------------------------------------------------
+# TEST 1 - TeachingGroups
+# ----------------------------------------------------------------------
+$sth = $dbh_sis->prepare(q{
+	SELECT
+		tg.RefId, tg.ShortName,
+		count(tgs.StudentPersonal_RefId) as count_student,
+		count(tgt.StaffPersonal_RefId) as count_teacher
+	FROM
+		TeachingGroup tg, TeachingGroup_Student tgs, TeachingGroup_Teacher tgt
+		-- TODO consider joining to StudentPersonal and StaffPersonal to check refs
+	WHERE
+		tgs.TeachingGroup_RefId = tg.RefId
+		AND tgt.TeachingGroup_RefId = tg.RefId
+	GROUP BY
+		tg.RefId, tg.ShortName
+});
+$sth->execute();
+
+my $test = {
+	id => 'TeachingGroups',
+	title => 'TeachingGroups Filled',
+	description => 'Details on how this test is done',
+	rawdata => $sth->fetchall_arrayref({}),
+	result => '',
+	weight => 1,	# Weight for score calculation
+	score => 0,		# Score (0-100)
+};
+
+# XXX Analyse etc - e.g. how many we get etc?
+push @{$report->{tests}}, $test;
+
+
+# ----------------------------------------------------------------------
+# TEST 2 - TimeTableCell
+# ----------------------------------------------------------------------
+$sth = $dbh_sis->prepare(q{
+	SELECT
+		ttc.RefId,
+		tt.RefId as TimeTable_RefId,		-- Join each for checking
+		tg.RefId as TeachingGroup_RefId,	
+		ri.RefId as RoomInfo_RefId
+	FROM
+		TimeTableCell ttc,
+		TimeTable tt,
+		TeachingGroup tg,
+		RoomInfo ri
+	WHERE
+		tt.RefId = ttc.TimeTable_RefId
+		AND tg.RefId = ttc.TeachingGroup_RefId
+		AND ri.RefId = ttc.RoomInfo_RefId
+});
+$sth->execute();
+
+$test = {
+	id => 'TimeTableCell',
+	title => 'TimeTableCell Filled',
+	description => 'Details on how this test is done',
+	rawdata => $sth->fetchall_arrayref({}),
+	result => '',
+	weight => 1,	# Weight for score calculation
+	score => 0,		# Score (0-100)
+};
+
+# XXX Analyse etc - e.g. how many we get etc?
+push @{$report->{tests}}, $test;
+
+
+# ----------------------------------------------------------------------
+# Calculations
+# ----------------------------------------------------------------------
+my $total = 0;
+my $score = 0;
+foreach my $t ( @{$report->{tests}}) {
+	$total += 100 * $t->{weight};
+	$score += $t->{score} * $t->{weight};
+}
+$report->{score} = {
+	score => $score,
+	total => $total,
+};
+
+print Dumper($report);
