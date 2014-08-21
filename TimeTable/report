@@ -10,6 +10,10 @@ use Data::Dumper;
 # 		. Database connection
 # 		. DB to template
 #	- Common code also in create_entry.pl
+#
+# Longer Term Problems
+# 	- How to support restrictions. For TimeTable we can assume the entire
+# 	database
 
 my $config = YAML::LoadFile($ENV{HOME} . "/.nsip_sif_data");
 my $dbh = DBI->connect(
@@ -32,7 +36,6 @@ my $report = {
 # ----------------------------------------------------------------------
 # Common code - move to library
 # ----------------------------------------------------------------------
-
 my $sth = $dbh->prepare(q{
 	SELECT 
 		app.name app_name, app.title app_title,				-- Application
@@ -56,7 +59,7 @@ if (!$app) {
 $report->{application} = $app;
 
 # ----------------------------------------------------------------------
-# Specific
+# Student Information System DATABASE
 # ----------------------------------------------------------------------
 my $dsn = $config->{mysql_dsn_template};
 my $db = $app->{sis_ref};
@@ -69,71 +72,175 @@ my $dbh_sis = DBI->connect(
 );
 
 # ----------------------------------------------------------------------
+# LOAD LOOKUPS
+# ----------------------------------------------------------------------
+my $lookupref = {};
+foreach my $t (qw/
+	StaffPersonal 
+	TeachingGroup
+    SchoolInfo
+    TimeTableSubject
+    TimeTableCell
+    ScheduledActivity
+    StudentPersonal
+    RoomInfo
+    TimeTable
+/) {
+	$lookupref->{$t} = {};
+	my $lsth = $dbh_sis->prepare("SELECT RefId FROM $t");
+	$lsth->execute;
+	while (my $ref = $lsth->fetchrow_hashref) {
+		$lookupref->{$t}{$ref->{RefId}} = 1;
+	}
+}
+
+# ----------------------------------------------------------------------
 # TEST 1 - TeachingGroups
 # ----------------------------------------------------------------------
-$sth = $dbh_sis->prepare(q{
-	SELECT
-		tg.RefId, tg.ShortName,
-		count(tgs.StudentPersonal_RefId) as count_student,
-		count(tgt.StaffPersonal_RefId) as count_teacher
-	FROM
-		TeachingGroup tg, TeachingGroup_Student tgs, TeachingGroup_Teacher tgt
-		-- TODO consider joining to StudentPersonal and StaffPersonal to check refs
-	WHERE
-		tgs.TeachingGroup_RefId = tg.RefId
-		AND tgt.TeachingGroup_RefId = tg.RefId
-	GROUP BY
-		tg.RefId, tg.ShortName
-});
-$sth->execute();
 
-my $test = {
-	id => 'TeachingGroups',
-	title => 'TeachingGroups Filled',
-	description => 'Details on how this test is done',
-	rawdata => $sth->fetchall_arrayref({}),
-	result => '',
-	weight => 1,	# Weight for score calculation
-	score => 0,		# Score (0-100)
-};
+# Method 1 - Do the join expect failure based on missing data
+#	GOOD: Easy to write the queries
+# 	BAD: Can't report then the problems to the users
+# Method 2 - Do individual queries
+#	GOOD: Can report individual problems (e.g. X RefId does not exist)
+#	BAD: Harder to write the code, slower to execute
 
-# XXX Analyse etc - e.g. how many we get etc?
-push @{$report->{tests}}, $test;
+{
+	my @errors = ();
+
+	# GET COUNTS (XXX this only works if at least ONE teacher and ONE student - FIX !!!)
+	$sth = $dbh_sis->prepare(q{
+		SELECT
+			tg.RefId, tg.ShortName,
+			count(tgs.StudentPersonal_RefId) as count_student,
+			count(tgt.StaffPersonal_RefId) as count_teacher
+		FROM
+			TeachingGroup tg, TeachingGroup_Student tgs, TeachingGroup_Teacher tgt
+			-- TODO consider joining to StudentPersonal and StaffPersonal to check refs
+		WHERE
+			tgs.TeachingGroup_RefId = tg.RefId
+			AND tgt.TeachingGroup_RefId = tg.RefId
+		GROUP BY
+			tg.RefId, tg.ShortName
+	});
+	$sth->execute();
+	my $counts = {};
+	while (my $ref = $sth->fetchrow_hashref) {
+		$counts->{$ref->{RefId}} = { %$ref };
+	}
+
+	# Raw Data
+	$sth = $dbh_sis->prepare(q{SELECT * FROM TeachingGroup});
+	$sth->execute();
+	my @rawdata = ();
+	while (my $ref = $sth->fetchrow_hashref) {
+		my $local = { %$ref };	# Copy local object (ref reused)
+		$local->{count_student} = $counts->{$ref->{RefId}}{count_student};
+		$local->{count_teacher} = $counts->{$ref->{RefId}}{count_teacher};
+
+		# TEST 1.1 - SchoolInfo valid
+		if ( ! $lookupref->{SchoolInfo}{$ref->{SchoolInfo_RefId}} ) {
+			push @errors, {
+				subtest => 1,
+				details => "TeachingGroup/$ref->{RefId} invalid SchoolInfoRefId or doesn't exist (SchoolInfo/$ref->{SchoolInfo_RefId})",
+			};
+		}
+
+		# TEST 1.2 - Students exist
+		if (! $local->{count_student}) {
+			push @errors, {
+				subtest => 2,
+				details => "TeachingGroup/$ref->{RefId} has no students",
+			};
+		}
+
+		# TEST 1.3 - Teachers Exist
+		if (! $local->{count_teacher}) {
+			push @errors, {
+				subtest => 3,
+				details => "TeachingGroup/$ref->{RefId} has no teachers",
+			};
+		}
+
+		# TEST 1.4 - KLA
+		if (! $local->{KLA} ) {
+			push @errors, {
+				subtest => 4,
+				details => "TeachingGroup/$ref->{RefId} KLA is missing",
+			};
+		}
+		
+		push @rawdata, $local;
+	}
+
+	my $score = 100 - scalar(@errors);
+	if ($score < 1) { $score = 0 };
+
+	# Subtests - count errors
+	my $subtests = [
+		{id => 1, title => 'Validate SchoolInfoRefId exists in local system'},
+		{id => 2, title => 'Check number of students'},
+		{id => 3, title => 'Check number of teachers'},
+		{id => 4, title => 'Invalid KLA'},
+	];
+	foreach my $st (@{$subtests}) {
+		my $count = 0;
+		foreach my $e (@errors) {
+			if ($e->{subtest} == $st->{id}) {
+				$count++;
+			}
+		}
+		$st->{errors} = $count;
+	}
+
+	push @{$report->{tests}}, {
+		id => 1,
+		title => 'TeachingGroups Filled',
+		description => 'Details on how this test is done',
+		subtests => $subtests,
+		rawdata => \@rawdata,
+		result => '',
+		weight => 1,	# Weight for score calculation
+		score => $score,		# Score (0-100)
+		errors => \@errors,
+	};
+}
 
 
 # ----------------------------------------------------------------------
 # TEST 2 - TimeTableCell
 # ----------------------------------------------------------------------
-$sth = $dbh_sis->prepare(q{
-	SELECT
-		ttc.RefId,
-		tt.RefId as TimeTable_RefId,		-- Join each for checking
-		tg.RefId as TeachingGroup_RefId,	
-		ri.RefId as RoomInfo_RefId
-	FROM
-		TimeTableCell ttc,
-		TimeTable tt,
-		TeachingGroup tg,
-		RoomInfo ri
-	WHERE
-		tt.RefId = ttc.TimeTable_RefId
-		AND tg.RefId = ttc.TeachingGroup_RefId
-		AND ri.RefId = ttc.RoomInfo_RefId
-});
-$sth->execute();
+{
+	$sth = $dbh_sis->prepare(q{
+		SELECT
+			ttc.RefId,
+			tt.RefId as TimeTable_RefId,		-- Join each for checking
+			tg.RefId as TeachingGroup_RefId,	
+			ri.RefId as RoomInfo_RefId
+		FROM
+			TimeTableCell ttc,
+			TimeTable tt,
+			TeachingGroup tg,
+			RoomInfo ri
+		WHERE
+			tt.RefId = ttc.TimeTable_RefId
+			AND tg.RefId = ttc.TeachingGroup_RefId
+			AND ri.RefId = ttc.RoomInfo_RefId
+	});
+	$sth->execute();
 
-$test = {
-	id => 'TimeTableCell',
-	title => 'TimeTableCell Filled',
-	description => 'Details on how this test is done',
-	rawdata => $sth->fetchall_arrayref({}),
-	result => '',
-	weight => 1,	# Weight for score calculation
-	score => 0,		# Score (0-100)
-};
-
-# XXX Analyse etc - e.g. how many we get etc?
-push @{$report->{tests}}, $test;
+	my $summary = {};
+	push @{$report->{tests}}, {
+		id => 2,
+		title => 'TimeTableCell Filled',
+		description => 'Details on how this test is done',
+		rawdata => $sth->fetchall_arrayref({}),
+		result => '',
+		weight => 1,	# Weight for score calculation
+		score => 0,		# Score (0-100)
+		summary => $summary,
+	};
+}
 
 
 # ----------------------------------------------------------------------
