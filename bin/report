@@ -3,13 +3,18 @@ use perl5i::2;
 use YAML;
 use DBI;
 use Data::Dumper;
+use HITS::Report::Rules;
 
 # ----------------------------------------------------------------------
 # What rules and template
-my ($app_template_id, $rules) = @ARGV;
+my ($app_template_id, $rulefile) = @ARGV;
 
 # ----------------------------------------------------------------------
-# READ Rules
+# READ Rules (XXX JSON)
+my $rules = do $rulefile;
+if ($@) {
+	die "Can't load rules - $@";
+}
 
 # ----------------------------------------------------------------------
 # READ Local configuraiton (database etc)
@@ -68,177 +73,48 @@ my $dbh_sis = DBI->connect(
 		{RaiseError => 1, AutoCommit => 1}
 );
 
-# ----------------------------------------------------------------------
-# LOAD LOOKUPS
-# ----------------------------------------------------------------------
-my $lookupref = {};
-foreach my $t (qw/
-	StaffPersonal 
-	TeachingGroup
-    SchoolInfo
-    TimeTableSubject
-    TimeTableCell
-    ScheduledActivity
-    StudentPersonal
-    RoomInfo
-    TimeTable
-/) {
-	$lookupref->{$t} = {};
-	my $lsth = $dbh_sis->prepare("SELECT RefId FROM $t");
-	$lsth->execute;
-	while (my $ref = $lsth->fetchrow_hashref) {
-		$lookupref->{$t}{$ref->{RefId}} = 1;
-	}
-}
+my $re = HITS::Report::Rules->new($dbh_sis);
+
 
 # ----------------------------------------------------------------------
-# TEST 1 - TeachingGroups
+# TESTS
 # ----------------------------------------------------------------------
-
-# Method 1 - Do the join expect failure based on missing data
-#	GOOD: Easy to write the queries
-# 	BAD: Can't report then the problems to the users
-# Method 2 - Do individual queries
-#	GOOD: Can report individual problems (e.g. X RefId does not exist)
-#	BAD: Harder to write the code, slower to execute
-
-{
-	my @errors = ();
-
-	# GET COUNTS (XXX this only works if at least ONE teacher and ONE student - FIX !!!)
-	$sth = $dbh_sis->prepare(q{
-		SELECT
-			tg.RefId, tg.ShortName,
-			count(tgs.StudentPersonal_RefId) as count_student,
-			count(tgt.StaffPersonal_RefId) as count_teacher
-		FROM
-			TeachingGroup tg, TeachingGroup_Student tgs, TeachingGroup_Teacher tgt
-			-- TODO consider joining to StudentPersonal and StaffPersonal to check refs
-		WHERE
-			tgs.TeachingGroup_RefId = tg.RefId
-			AND tgt.TeachingGroup_RefId = tg.RefId
-		GROUP BY
-			tg.RefId, tg.ShortName
-	});
+my $count = 0;
+foreach my $test (@$rules) {
+	# TODO - how to do restrictions for School etc !
+	my $sth = $dbh_sis->prepare($test->{query});
 	$sth->execute();
-	my $counts = {};
-	while (my $ref = $sth->fetchrow_hashref) {
-		$counts->{$ref->{RefId}} = { %$ref };
-	}
 
-	# Raw Data
-	$sth = $dbh_sis->prepare(q{SELECT * FROM TeachingGroup});
-	$sth->execute();
-	my @rawdata = ();
-	while (my $ref = $sth->fetchrow_hashref) {
-		my $local = { %$ref };	# Copy local object (ref reused)
-		$local->{count_student} = $counts->{$ref->{RefId}}{count_student};
-		$local->{count_teacher} = $counts->{$ref->{RefId}}{count_teacher};
+	my $entry = {
+		id => $test->{id},
+		title => $test->{title},
+		description => $test->{description},
+		subtests => [],
+		rawdata => [],
+		result => '',
+		weight => $test->{weight},
+		score => 0,
+		errors => [],
+	};
 
-		# TEST 1.1 - SchoolInfo valid
-		if ( ! $lookupref->{SchoolInfo}{$ref->{SchoolInfo_RefId}} ) {
-			push @errors, {
-				subtest => 1,
-				details => "TeachingGroup/$ref->{RefId} invalid SchoolInfoRefId or doesn't exist (SchoolInfo/$ref->{SchoolInfo_RefId})",
+	while (my $row = $sth->fetchrow_hashref) {
+		foreach my $st ( @{$test->{subtests}} ) {
+			my ($sub, $data) = split(/:/, $st->{rule}, 2);
+			eval {
+				$re->$sub($row, $data);
 			};
-		}
-
-		# TEST 1.2 - Students exist
-		if (! $local->{count_student}) {
-			push @errors, {
-				subtest => 2,
-				details => "TeachingGroup/$ref->{RefId} has no students",
-			};
-		}
-
-		# TEST 1.3 - Teachers Exist
-		if (! $local->{count_teacher}) {
-			push @errors, {
-				subtest => 3,
-				details => "TeachingGroup/$ref->{RefId} has no teachers",
-			};
-		}
-
-		# TEST 1.4 - KLA
-		if (! $local->{KLA} ) {
-			push @errors, {
-				subtest => 4,
-				details => "TeachingGroup/$ref->{RefId} KLA is missing",
-			};
-		}
-		
-		push @rawdata, $local;
-	}
-
-	my $score = 100 - scalar(@errors);
-	if ($score < 1) { $score = 0 };
-
-	# Subtests - count errors
-	my $subtests = [
-		{id => 1, title => 'Validate SchoolInfoRefId exists in local system'},
-		{id => 2, title => 'Check number of students'},
-		{id => 3, title => 'Check number of teachers'},
-		{id => 4, title => 'Invalid KLA'},
-	];
-	foreach my $st (@{$subtests}) {
-		my $count = 0;
-		foreach my $e (@errors) {
-			if ($e->{subtest} == $st->{id}) {
-				$count++;
+			if ($@) {
+				push @{$entry->{errors}}, {
+					subtest => $st->{id},
+					data => $row,
+					details => $@ . "",
+				};
 			}
 		}
-		$st->{errors} = $count;
 	}
 
-	push @{$report->{tests}}, {
-		id => 1,
-		title => 'TeachingGroups Filled',
-		description => 'Details on how this test is done',
-		subtests => $subtests,
-		rawdata => \@rawdata,
-		result => '',
-		weight => 1,	# Weight for score calculation
-		score => $score,		# Score (0-100)
-		errors => \@errors,
-	};
+	push @{$report->{tests}}, $entry;
 }
-
-
-# ----------------------------------------------------------------------
-# TEST 2 - TimeTableCell
-# ----------------------------------------------------------------------
-{
-	$sth = $dbh_sis->prepare(q{
-		SELECT
-			ttc.RefId,
-			tt.RefId as TimeTable_RefId,		-- Join each for checking
-			tg.RefId as TeachingGroup_RefId,	
-			ri.RefId as RoomInfo_RefId
-		FROM
-			TimeTableCell ttc,
-			TimeTable tt,
-			TeachingGroup tg,
-			RoomInfo ri
-		WHERE
-			tt.RefId = ttc.TimeTable_RefId
-			AND tg.RefId = ttc.TeachingGroup_RefId
-			AND ri.RefId = ttc.RoomInfo_RefId
-	});
-	$sth->execute();
-
-	my $summary = {};
-	push @{$report->{tests}}, {
-		id => 2,
-		title => 'TimeTableCell Filled',
-		description => 'Details on how this test is done',
-		rawdata => $sth->fetchall_arrayref({}),
-		result => '',
-		weight => 1,	# Weight for score calculation
-		score => 0,		# Score (0-100)
-		summary => $summary,
-	};
-}
-
 
 # ----------------------------------------------------------------------
 # Calculations
@@ -255,7 +131,6 @@ $report->{score} = {
 };
 
 print Dumper($report);
-
 
 __END__
 

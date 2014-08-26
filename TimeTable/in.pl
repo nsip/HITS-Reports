@@ -8,7 +8,7 @@
 			SELECT
 				*
 			FROM
-				TeachinGroup
+				TeachingGroup
 		},
 		subtests => [
 			{
@@ -19,27 +19,18 @@
 			{
 				id => 2, 
 				title => 'Check number of students', 
-				rule=>'custom'
+				rule=>'subquerycount:RefId=TeachingGroup_Student/TeachingGroup_RefId'
 			},
 			{
 				id => 3, 
 				title => 'Check number of teachers', 
-				rule=>'custom',
+				rule=>'subquerycount:RefId=TeachingGroup_Teacher/TeachingGroup_RefId'
 			},
 			{
 				id => 4, 
 				title => 'Invalid KLA', 
 				rule => 'notblank:KLA',
 			},
-		],
-		weight => 1,
-	},
-
-	{
-		id => 2,
-		title => 'TimeTableCell Filled',
-		description => 'Details on how this test is done',
-		subtests => [
 		],
 		weight => 1,
 	},
