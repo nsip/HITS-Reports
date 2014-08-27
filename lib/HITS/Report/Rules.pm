@@ -49,6 +49,7 @@ sub lookup {
 sub notblank {
 	my ($self, $row, $rule) = @_;
 	if ( !exists($row->{$rule}) || !defined($row->{$rule}) || $row->{$rule} eq '') {
+		$row->{$rule} //= '';
 		die "Input ($rule = $row->{$rule}) must not be blank\n";
 	}
 	return 1;

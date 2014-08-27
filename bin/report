@@ -97,7 +97,11 @@ foreach my $test (@$rules) {
 		errors => [],
 	};
 
+	# Top level rule implemented here
+
+	my $count = 0;
 	while (my $row = $sth->fetchrow_hashref) {
+		$count++;
 		foreach my $st ( @{$test->{subtests}} ) {
 			my ($sub, $data) = split(/:/, $st->{rule}, 2);
 			eval {
@@ -113,6 +117,37 @@ foreach my $test (@$rules) {
 		}
 	}
 
+	# XXX Move these to class?
+	if (! exists $test->{rule}) {
+		# Do nothing
+	}
+	elsif ( $test->{rule} eq 'zero' ) {
+		print "ZERO $count\n";
+		if ($count) {
+			push @{$entry->{errors}}, {
+				subtest => '0',
+				details => "Should be no rows, currently $count",
+			};
+		}
+	}
+	elsif ( $test->{rule} =~ /^morethan:(\d+)$/) {
+		my $exp = $1;
+		if ($count <= $exp) {
+			push @{$entry->{errors}}, {
+				subtest => '0',
+				details => "Should be more than $exp rows, currently $count",
+			};
+		}
+	}
+	else {
+		die "Invalid rule = $test->{rule}\n";
+	}
+
+	# Rough score calculation
+	my $score = 100 - scalar(@{$entry->{errors}});
+	if ($score < 1) { $score = 0 };
+	$entry->{score} = $score;
+
 	push @{$report->{tests}}, $entry;
 }
 
@@ -126,99 +161,11 @@ foreach my $t ( @{$report->{tests}}) {
 	$score += $t->{score} * $t->{weight};
 }
 $report->{score} = {
-	score => $score,
-	total => $total,
+	score => int($score),
+	total => int($total),
+	percent => int($score / $total * 100),
 };
 
+# XXX JSON output
 print Dumper($report);
-
-__END__
-
-Test 1 - Teaching Groups
-	The payload contains n TeachingGroup? objects (n>0)
-
-Test 2 - TimeTableCell
-	The payload contains n TimeTableCell? objects (n>0)
-
-Test 3 - Scheduled Activity
-	The payload contains n ScheduledActivity? objects (n>0)
-
-Test 4 - TimeTable
-	The payload contains n TimeTable? objects (n>0)
-
-COMMON
-	There are n SchoolInfo? links in the payload (n>=1)
-	All SchoolInfo? links in the payload are to Objects provided by HITS to the client
-	There are n StudentPersonal? links in the payload (n>=1)
-	All StudentPersonal? links in the payload are to Objects provided by HITS to the client
-	There are n StaffPersonal? links in the payload (n>=1)
-	All StaffPersonal? links in the payload are to Objects provided by HITS to the client
-	There are n RoomInfo? links in the payload (n>=1)
-	All RoomInfo? links in the payload are to Objects provided by HITS to the client
-	There are n TimeTableSubject? links in the payload (n>=1)
-	All TimeTableSubject? links in the payload are to Objects provided by HITS to the client
-
-Note: We do not expect every instance of SchoolInfo?, StudentPersonal?, StaffPersonal?, RoomInfo?, TimeTableSubject? provided by HITS to be referenced by the returned objects. We are not testing for the completeness of timetabling software running over provisioned data, but only for the validity of the SIF payload they generate
-
-Each instance of TimeTable? links to a School (Warning if it does not)
-
-For each instance of TimeTable? linked to a School, TimeTable/SchoolLocalId? matches SchoolInfo/LocalId?, and TimeTable/SchoolName? matches SchoolInfo/SchoolName?, for that school (if provided)
-
-Each instance of TeachingGroup? links to a School (Warning if it does not)
-
-For each instance of TeachingGroup? linked to a School, TeachingGroup/SchoolLocalId? matches SchoolInfo/LocalId? (if provided)
-
-Each instance of TeachingGroup? links to a TimeTable? Subject (warning if it does not)
-
-For each instance of TeachingGroup? linked to a TimeTable? Subject, TeachingGroup/TimeTableSubjectLocalId? matches TimeTableSubject/LocalId? (if provided)
-
-Each instance of TeachingGroup? links to n Students
-
-For each instance of TeachingGroup? linked to a Student, TeachingGroup/StudentList/TeachingGroupStudent/StudentLocalId? matches StudentPersonal/LocalId?, and TeachingGroup/StudentList/TeachingGroupStudent/PersonInfo/Name? matches StudentPersonal/Name?
-
-Each instance of TeachingGroup? links to n Staff (Warning if it does not)
-
-For each instance of TeachingGroup? linked to a Staff, TeachingGroup/TeacherList/TeachingGroupTeacher/StaffLocalId? matches StaffPersonal/LocalId?, and TeachingGroup/TeacherList/TeachingGroupTeacher/PersonInfo/Name? matches StudentPersonal/Name?
-
-Each instance of TeachingGroup? links to n Rooms (Warning if it does not)
-
-For each instance of TeachingGroup? linked to a Room, TeachingGroup/TeachingGroupPeriodList/TeachingGroupPeriod/RoomNumber? matches RoomInfo/RoomNumber? (if provided)
-
-Each instance of TimeTable? Cell links to a Timetable
-
-Each instance of TimeTable? Cell links to a Timetable Subject
-
-For each instance of TimeTable? Cell linked to a Timetable Subject, TimeTableCell/SubjectLocalId? matches TimeTableSubject/LocalId? (if provided)
-
-Each instance of TimeTable? Cell links to a Teaching Group
-
-For each instance of TimeTable? Cell linked to a TeachingGroup?, TimeTableCell/TeachingGroupLocalId? matches TeachingGroup/LocalId? (if provided)
-
-Each instance of TimeTable? Cell links to a Room
-
-For each instance of TimeTable? Cell linked to a Room, TimeTableCell/RoomNumber? matches RoomInfo/RoomNumber? (if provided)
-
-Each instance of TimeTable? Cell may link to a Staff (Warning if it does not)
-
-For each instance of TimeTable? Cell linked to a Staff, TimeTableCell/StaffLocalId? matches StaffPersonal/LocalId? (if provided)
-
-Each instance of TimeTable? Cell may link to a School (Warning if it does not)
-
-For each instance of TimeTable? Cell linked to a School, TimeTableCell/SchoolLocalId? matches SchoolInfo/LocalId? (if provided)
-
-Each ScheduledActivity? provided is a dated instance of a TimeTableCell? object
-
-[rule: ScheduledActivity/DayId? = TimeTableCell/DayId?
-
-ScheduledActivity/PeriodId? = TimeTableCell/PeriodId?
-
-ScheduledActivity/TimeTableRefId? = TimeTableCell/TimeTableRefId?
-
-ScheduledActivity/Rooms/RoomInfoRefId? = TimeTableCell/RoomInfoRefId?
-
-ScheduledActivity/TimeTableSubjectRefId? = TimeTableCell/TimeTableSubectRefId?
-
-ScheduledActivity/TeachingGroup/TeachingGroupRefId? = TimeTableCell/TeachingGroupRefId?
-
-ScheduledActivity/Teachers/TeacherCover/StaffPersonalRefId? = TimeTableCell/StaffPersonalRefId?]
 
