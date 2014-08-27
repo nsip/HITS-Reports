@@ -29,6 +29,8 @@ my $dbh = DBI->connect(
 # ----------------------------------------------------------------------
 # Local output report
 my $report = {
+	title => $rules->{title},
+	description => $rules->{description},
 	# Details about the application
 	application => {
 	},
@@ -80,7 +82,7 @@ my $re = HITS::Report::Rules->new($dbh_sis);
 # TESTS
 # ----------------------------------------------------------------------
 my $count = 0;
-foreach my $test (@$rules) {
+foreach my $test (@{$rules->{tests}}) {
 	# TODO - how to do restrictions for School etc !
 	my $sth = $dbh_sis->prepare($test->{query});
 	$sth->execute();
@@ -89,7 +91,7 @@ foreach my $test (@$rules) {
 		id => $test->{id},
 		title => $test->{title},
 		description => $test->{description},
-		subtests => [],
+		subtests => $test->{subtests},
 		rawdata => [],
 		result => '',
 		weight => $test->{weight},
