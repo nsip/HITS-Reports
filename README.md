@@ -30,7 +30,6 @@ Each method gets the row from the database as a hash and a rule as follows:
 
 Report Config File
 ==================
-`
 	title: '',
 	description: '',
 	tests: [
@@ -49,12 +48,36 @@ Report Config File
 			]
 		}
 	],
-`
 
 Output
 ======
 
-
+  {
+    "tests": [
+        {
+			"id": 1,
+            "title": "TeachingGroups Filled",
+            "errors": [
+                {
+                    "subtest": 4,
+                    "data": {
+                        "RefId": "9c614156-e19a-4107-9b14-279d11eb2df5",
+                        "LocalId": "Room 506",
+                        "ShortName": "BIO",
+                        "SchoolInfo_RefId": "0E59D1D8-C43F-11E3-9050-E0F4DBD909AB",
+                        "LongName": "Biology",
+                        "SchoolYear": "7",
+                        "KLA": ""
+                    },
+                    "details": "Input (KLA = ) must not be blank\n"
+                },
+            ],
+            "score": 98,
+            "weight": "0.5"
+        },
+	],
+  }
 
 Presentation
 ============
+
