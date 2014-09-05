@@ -35,10 +35,13 @@ sub _lookups {
 
 
 # lookup:field=Table/field
+# ignores /field value. Used only to verify existence of RefIds
+# treats field as optional
 sub lookup {
 	my ($self, $row, $rule) = @_;
 	my ($field, $table) = split(/=/, $rule, 2);
 	$table =~ s|/.+$||;
+	return 1 unless $row->{$field};
 	if ( $self->{lookup}{$table}{$row->{$field}} ) {
 		return 1;
 	}
@@ -67,7 +70,7 @@ sub enum {
 	die "Input ($field = $row->{$field}) does not match any enums ($enums)\n";
 }
 
-# subquerycount:field=Table/field
+# subquerycount:field=Table/joinfield
 sub subquerycount {
 	my ($self, $row, $rule) = @_;
 	my ($field, $part) = split(/=/, $rule, 2);
@@ -82,6 +85,76 @@ sub subquerycount {
 			$joinfield = ?
 	});
 	$sth->execute($row->{$field});
+	my $ref = $sth->fetchrow_hashref;
+
+	if ($ref->{count} > 0) {
+		return 1;
+	}
+	die "No matching count for $table against $field/$joinfield\n";
+}
+
+# subquerymatch: field=Table/matchfield;myrefIdField=Table/joinrefIdfield
+# e.g. schoolLocalId=SchoolInfo/LocalId;schoolRefId=SchoolInfo/RefId
+# do not run query if local field is absent
+sub subquerymatch {
+	my ($self, $row, $rule) = @_;
+	my ($rule1, $rule2) = split(/;/, $rule, 2);
+	my ($field, $part) = split(/=/, $rule1, 2);
+	my ($table, $joinfield) = split(m|/|, $part, 2);
+	my ($myrefIdField, $joinrefIdField) = split(/=/, $rule2, 2);
+	$joinrefIdField =~ s#^.*/##;
+
+	return 1 unless $row->{$field};
+	my $sth = $self->{dbh}->prepare(qq{
+		SELECT
+			count(*) as count
+		FROM
+			$table
+		WHERE
+			$joinfield = ?
+		AND
+			$joinrefIdField = ?
+	});
+	$sth->execute($row->{$field}, $row->{$myrefIdField});
+	my $ref = $sth->fetchrow_hashref;
+
+	if ($ref->{count} > 0) {
+		return 1;
+	}
+	die "No matching count for $table against $field/$joinfield\n";
+}
+
+# subquerymatch: field=Table/matchfield;myrefIdField=Table/joinrefIdfield;Table1/Field1=Table2/Field2
+# use where we have to traverse two tables to get to match
+# e.g. RoomInfo_RefId=TimeTableCell/RoomInfo_RefId;ScheduledActivity_RefId=ScheduledActivty/RefId;ScheduledActivity/TimeTableCell_RefId=TimeTableCell/RefId
+# do not run query if local field is absent
+sub subquerymatch_twotables {
+	my ($self, $row, $rule) = @_;
+	my ($rule1, $rule2, $rule3) = split(/;/, $rule, 2);
+	my ($field, $part) = split(/=/, $rule1, 2);
+	my ($table, $joinfield) = split(m|/|, $part, 2);
+	my ($myrefIdField, $joinrefIdField) = split(/=/, $rule2, 2);
+	my ($table0, $joinfield0) = split(m|/|, $part, 2);
+	my ($part1, $part2) = split(/=/, $rule3, 2);
+	my ($table1, $joinfield1) = split(m|/|, $part1, 2);
+	my ($table2, $joinfield2) = split(m|/|, $part2, 2);
+	my $tfield = ($table1 eq $table) ? $joinfield1 : $joinfield2;
+	my $t0field = ($table2 eq $table) ? $joinfield1 : $joinfield2;
+
+	return 1 unless $row->{$field};
+	my $sth = $self->{dbh}->prepare(qq{
+		SELECT
+			count(*) as count
+		FROM
+			$table t, $table0 t0
+		WHERE
+			t.$joinfield = ?
+		AND
+			t0.$joinrefIdField = ?
+		AND
+			t.$tfield = t0.$t0field
+	});
+	$sth->execute($row->{$field}, $row->{$myrefIdField});
 	my $ref = $sth->fetchrow_hashref;
 
 	if ($ref->{count} > 0) {
