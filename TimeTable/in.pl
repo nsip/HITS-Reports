@@ -33,25 +33,25 @@
 					title => 'Check number of teachers (warning)', 
 					rule =>'subquerycount:RefId=TeachingGroup_Teacher/TeachingGroup_RefId'
 				},
-=pod=
-				{
-					id => 18,
-					title => 'Validate SchoolInfoLocalId exists in local system', 
-					rule => 'subquerymatch:SchoolInfo_LocalId=SchoolInfo/LocalId;SchoolInfo_RefId=SchoolInfo/RefId'
-				},
-=cut
+#=pod=
+#				{
+#					id => 18,
+#					title => 'Validate SchoolInfoLocalId exists in local system', 
+#					rule => 'subquerymatch:SchoolInfo_LocalId=SchoolInfo/LocalId;SchoolInfo_RefId=SchoolInfo/RefId'
+#				},
+#=cut
 				{
 					id => 19,
 					title => 'Validate TimeTableSubjectRefId exists in local system (warning)', 
 					rule => 'lookup:TimeTableSubject_RefId=TimeTableSubject/RefId'
 				},
-=pod=
-				{
-					id => 20,
-					title => 'Validate TimeTableSubjectLocalId exists in local system', 
-					rule => 'subquerymatch:TimeTableSubject_LocalId=TimeTableSubject/LocalId;TimeTableSubject_RefId=TimeTableSubject/RefId'
-				},
-=cut
+#=pod=
+#				{
+#					id => 20,
+#					title => 'Validate TimeTableSubjectLocalId exists in local system', 
+#					rule => 'subquerymatch:TimeTableSubject_LocalId=TimeTableSubject/LocalId;TimeTableSubject_RefId=TimeTableSubject/RefId'
+#				},
+#=cut
 			],
 			weight => 0.5,
 		},
@@ -69,18 +69,18 @@
 			},
 			rule => 'morethan:0',
 			subtests => [
-=pod=
-				{
-					id => '22a', 
-					title => 'Validate StudentLocalId exists in local system', 
-					rule => 'subquerymatch:StudentPersonal_LocalId=StudentPersonal/LocalId;StudentPersonal_RefId=StudentPersonal/RefId'
-				},
-				{
-					id => '22b', 
-					title => 'Validate GivenName exists in local system', 
-					rule => 'subquerymatch:StudentPersonal_GivenName=StudentPersonal/GivenName;StudentPersonal_RefId=StudentPersonal/RefId'
-				},
-=cut
+#=pod=
+#				{
+#					id => '22a', 
+#					title => 'Validate StudentLocalId exists in local system', 
+#					rule => 'subquerymatch:StudentPersonal_LocalId=StudentPersonal/LocalId;StudentPersonal_RefId=StudentPersonal/RefId'
+#				},
+#				{
+#					id => '22b', 
+#					title => 'Validate GivenName exists in local system', 
+#					rule => 'subquerymatch:StudentPersonal_GivenName=StudentPersonal/GivenName;StudentPersonal_RefId=StudentPersonal/RefId'
+#				},
+#=cut
 				{
 					id => '22c', 
 					title => 'Validate PreferredGivenName exists in local system', 
@@ -113,18 +113,18 @@
 			},
 			rule => 'morethan:0',
 			subtests => [
-=pod=
-				{
-					id => '24a', 
-					title => 'Validate StaffPersonal_LocalId exists in local system', 
-					rule => 'subquerymatch:StaffPersonal_LocalId=StaffPersonal/LocalId;StaffPersonal_RefId=StaffPersonal/RefId'
-				},
-				{
-					id => '24b', 
-					title => 'Validate GivenName exists in local system', 
-					rule => 'subquerymatch:StaffPersonal_GivenName=StaffPersonal/GivenName;StaffPersonal_RefId=StaffPersonal/RefId'
-				},
-=cut
+#=pod=
+#				{
+#					id => '24a', 
+#					title => 'Validate StaffPersonal_LocalId exists in local system', 
+#					rule => 'subquerymatch:StaffPersonal_LocalId=StaffPersonal/LocalId;StaffPersonal_RefId=StaffPersonal/RefId'
+#				},
+#				{
+#					id => '24b', 
+#					title => 'Validate GivenName exists in local system', 
+#					rule => 'subquerymatch:StaffPersonal_GivenName=StaffPersonal/GivenName;StaffPersonal_RefId=StaffPersonal/RefId'
+#				},
+#=cut
 				{
 					id => '24c', 
 					title => 'Validate PreferredGivenName exists in local system', 
@@ -166,13 +166,13 @@
 					title => 'Validate SchoolInfoRefId exists in local system', 
 					rule => 'lookup:SchoolInfo_RefId=SchoolInfo/RefId'
 				},
-=pod=
-				{
-					id => '37', 
-					title => 'Validate SchoolInfoLocalId exists in local system', 
-					rule => 'subquerymatch:SchoolInfo_LocalId=SchoolInfo/LocalId;SchoolInfo_RefId=SchoolInfo/RefId'
-				},
-=cut
+#=pod=
+#				{
+#					id => '37', 
+#					title => 'Validate SchoolInfoLocalId exists in local system', 
+#					rule => 'subquerymatch:SchoolInfo_LocalId=SchoolInfo/LocalId;SchoolInfo_RefId=SchoolInfo/RefId'
+#				},
+#=cut
 				{
 					id => '27a', 
 					title => 'Validate TimeTableRefId exists in local system', 
@@ -193,13 +193,13 @@
 					title => 'Validate TimeTableSubjectRefId exists in local system', 
 					rule => 'lookup:TimeTableSubject_RefId=TimeTableSubject/RefId'
 				},
-=pod=
-				{
-					id => '29', 
-					title => 'Validate TimeTableSubjectLocalId exists in local system', 
-					rule => 'subquerymatch:TimeTableSubject_LocalId=TimeTableSubject/LocalId;TimeTableSubject_RefId=TimeTableSubject/RefId'
-				},
-=cut
+#=pod=
+#				{
+#					id => '29', 
+#					title => 'Validate TimeTableSubjectLocalId exists in local system', 
+#					rule => 'subquerymatch:TimeTableSubject_LocalId=TimeTableSubject/LocalId;TimeTableSubject_RefId=TimeTableSubject/RefId'
+#				},
+#=cut
 				{
 					id => '30a', 
 					title => 'Validate TeachingGroupRefId exists in local system', 
@@ -210,13 +210,13 @@
 					title => 'Validate TeachingGroupRefId exists in local system', 
 					rule => 'lookup:TeachingGroup_RefId=TeachingGroup/RefId'
 				},
-=pod=
-				{
-					id => '31', 
-					title => 'Validate TeachingGroupLocalId exists in local system', 
-					rule => 'subquerymatch:TeachingGroup_LocalId=TeachingGroup/LocalId;TeachingGroup_RefId=TeachingGroup/RefId'
-				},
-=cut
+#=pod=
+#				{
+#					id => '31', 
+#					title => 'Validate TeachingGroupLocalId exists in local system', 
+#					rule => 'subquerymatch:TeachingGroup_LocalId=TeachingGroup/LocalId;TeachingGroup_RefId=TeachingGroup/RefId'
+#				},
+#=cut
 				{
 					id => '32a', 
 					title => 'Validate RoomInfoRefId exists in local system', 
@@ -227,13 +227,13 @@
 					title => 'Validate RoomInfoRefId exists in local system', 
 					rule => 'lookup:RoomInfo_RefId=RoomInfo/RefId'
 				},
-=pod=
-				{
-					id => '33', 
-					title => 'Validate RoomNumber exists in local system', 
-					rule => 'subquerymatch:RoomInfo_RoomNumber=RoomInfo/RoomNumber;RoomNumber_RefId=RoomInfo/RefId'
-				},
-=cut
+#=pod=
+#				{
+#					id => '33', 
+#					title => 'Validate RoomNumber exists in local system', 
+#					rule => 'subquerymatch:RoomInfo_RoomNumber=RoomInfo/RoomNumber;RoomNumber_RefId=RoomInfo/RefId'
+#				},
+#=cut
 				{
 					id => '34a', 
 					title => 'Validate StaffPersonalRefId exists in local system (warning)', 
@@ -244,13 +244,13 @@
 					title => 'Validate StaffPersonalRefId exists in local system', 
 					rule => 'lookup:StaffPersonal_RefId=StaffPersonal/RefId'
 				},
-=pod
-				{
-					id => '35', 
-					title => 'Validate StaffLocalId exists in local system', 
-					rule => 'subquerymatch:StaffPersonal_LocalId=StaffPersonal/LocalId;StaffPersonal_RefId=StaffPersonal/RefId'
-				},
-=cut
+#=pod
+#				{
+#					id => '35', 
+#					title => 'Validate StaffLocalId exists in local system', 
+#					rule => 'subquerymatch:StaffPersonal_LocalId=StaffPersonal/LocalId;StaffPersonal_RefId=StaffPersonal/RefId'
+#				},
+#=cut
 			],
 			weight => 1,
 		},
@@ -276,43 +276,43 @@
 					title => 'The provided ScheduleActivity objects are dated instances of TimeTableCell', 
 					rule => 'notblank:Date'
 				},
-=pod
-				{
-					id => 39, 
-					title => 'Validate DayId exists in TimeTableCell', 
-					rule => 'subquerymatch:DayId=TimeTableCell/DayId;TimeTableCell_RefId=TimeTableCell/RefId'
-				},
-				{
-					id => 40, 
-					title => 'Validate PeriodId exists in TimeTableCell', 
-					rule => 'subquerymatch:PeriodId=TimeTableCell/PeriodId;TimeTableCell_RefId=TimeTableCell/RefId'
-				},
-				{
-					id => 41, 
-					title => 'Validate TimeTableRefId exists in TimeTableCell', 
-					rule => 'subquerymatch:TimeTable_RefId=TimeTableCell/TimeTable_RefId;TimeTableCell_RefId=TimeTableCell/RefId'
-				},
-				{
-					id => 43, 
-					title => 'Validate TimeTableSubjectRefId exists in TimeTableCell', 
-					rule => 'subquerymatch:TimeTableSubject_RefId=TimeTableCell/TimeTableSubject_RefId;TimeTableCell_RefId=TimeTableCell/RefId'
-				},
-				{
-					id => '42a', 
-					title => 'Check number of rooms', 
-					rule =>'subquerycount:RefId=ScheduledActivity_Room/ScheduledActivity_RefId'
-				},
-				{
-					id => '44a', 
-					title => 'Check number of teaching groups', 
-					rule =>'subquerycount:RefId=ScheduledActivity_TeachingGroup/ScheduledActivity_RefId'
-				},
-				{
-					id => '45a', 
-					title => 'Check number of teachers', 
-					rule =>'subquerycount:RefId=ScheduledActivity_Teacher/ScheduledActivity_RefId'
-				},
-=cut
+#=pod
+#				{
+#					id => 39, 
+#					title => 'Validate DayId exists in TimeTableCell', 
+#					rule => 'subquerymatch:DayId=TimeTableCell/DayId;TimeTableCell_RefId=TimeTableCell/RefId'
+#				},
+#				{
+#					id => 40, 
+#					title => 'Validate PeriodId exists in TimeTableCell', 
+#					rule => 'subquerymatch:PeriodId=TimeTableCell/PeriodId;TimeTableCell_RefId=TimeTableCell/RefId'
+#				},
+#				{
+#					id => 41, 
+#					title => 'Validate TimeTableRefId exists in TimeTableCell', 
+#					rule => 'subquerymatch:TimeTable_RefId=TimeTableCell/TimeTable_RefId;TimeTableCell_RefId=TimeTableCell/RefId'
+#				},
+#				{
+#					id => 43, 
+#					title => 'Validate TimeTableSubjectRefId exists in TimeTableCell', 
+#					rule => 'subquerymatch:TimeTableSubject_RefId=TimeTableCell/TimeTableSubject_RefId;TimeTableCell_RefId=TimeTableCell/RefId'
+#				},
+#				{
+#					id => '42a', 
+#					title => 'Check number of rooms', 
+#					rule =>'subquerycount:RefId=ScheduledActivity_Room/ScheduledActivity_RefId'
+#				},
+#				{
+#					id => '44a', 
+#					title => 'Check number of teaching groups', 
+#					rule =>'subquerycount:RefId=ScheduledActivity_TeachingGroup/ScheduledActivity_RefId'
+#				},
+#				{
+#					id => '45a', 
+#					title => 'Check number of teachers', 
+#					rule =>'subquerycount:RefId=ScheduledActivity_Teacher/ScheduledActivity_RefId'
+#				},
+#=cut
 			],
 			weight => 0.5,
 		},
@@ -329,12 +329,12 @@
 			rule => 'morethan:0',
 			subtests => [
 				{
-=pod
+#=pod
 					id => '42c', 
 					title => 'Validate RoomInfoId exists in TimeTableCell', 
 					rule => 'subquerymatch_twotables:RoomInfo_RefId=TimeTableCell/RoomInfo_RefId;ScheduledActivity_RefId=ScheduledActivty/RefId;ScheduledActivity/TimeTableCell_RefId=TimeTableCell/RefId'
 				},
-=cut
+#=cut
 			],
 			weight => 0.5,
 		},
@@ -350,13 +350,13 @@
 			},
 			rule => 'morethan:0',
 			subtests => [
-=pod
-				{
-					id => '44c', 
-					title => 'Validate TeachingGroupRefId exists in TimeTableCell', 
-					rule => 'subquerymatch_twotables:TeachingGroup_RefId=TimeTableCell/TeachingGroup_RefId;ScheduledActivity_RefId=ScheduledActivty/RefId;ScheduledActivity/TimeTableCell_RefId=TimeTableCell/RefId'
-				},
-=cut
+#=pod
+#				{
+#					id => '44c', 
+#					title => 'Validate TeachingGroupRefId exists in TimeTableCell', 
+#					rule => 'subquerymatch_twotables:TeachingGroup_RefId=TimeTableCell/TeachingGroup_RefId;ScheduledActivity_RefId=ScheduledActivty/RefId;ScheduledActivity/TimeTableCell_RefId=TimeTableCell/RefId'
+#				},
+#=cut
 			],
 			weight => 0.5,
 		},
@@ -372,13 +372,13 @@
 			},
 			rule => 'morethan:0',
 			subtests => [
-=pod
-				{
-					id => '45c', 
-					title => 'Validate StaffPersonalRefId exists in TimeTableCell', 
-					rule => 'subquerymatch_twotables:StaffPersonal_RefId=TimeTableCell/StaffPersonal_RefId;ScheduledActivity_RefId=ScheduledActivty/RefId;ScheduledActivity/TimeTableCell_RefId=TimeTableCell/RefId'
-				},
-=cut
+#=pod
+#				{
+#					id => '45c', 
+#					title => 'Validate StaffPersonalRefId exists in TimeTableCell', 
+#					rule => 'subquerymatch_twotables:StaffPersonal_RefId=TimeTableCell/StaffPersonal_RefId;ScheduledActivity_RefId=ScheduledActivty/RefId;ScheduledActivity/TimeTableCell_RefId=TimeTableCell/RefId'
+#				},
+#=cut
 			],
 			weight => 0.5,
 		},
@@ -399,18 +399,18 @@
 					title => 'Validate SchoolInfoRefId exists in local system (warning)', 
 					rule => 'lookup:SchoolInfo_RefId=SchoolInfo/RefId'
 				},
-=pod=
-				{
-					id => '16a', 
-					title => 'Validate SchoolInfoLocalId exists in local system', 
-					rule => 'subquerymatch:SchoolInfo_LocalId=SchoolInfo/LocalId;SchoolInfo_RefId=SchoolInfo/RefId'
-				},
-				{
-					id => '16b', 
-					title => 'Validate SchoolInfoSchoolName exists in local system', 
-					rule => 'subquerymatch:SchoolInfo_SchoolName=SchoolInfo/SchoolName;SchoolInfo_RefId=SchoolInfo/RefId'
-				},
-=cut=
+#=pod=
+#				{
+#					id => '16a', 
+#					title => 'Validate SchoolInfoLocalId exists in local system', 
+#					rule => 'subquerymatch:SchoolInfo_LocalId=SchoolInfo/LocalId;SchoolInfo_RefId=SchoolInfo/RefId'
+##				},
+#				{
+#					id => '16b', 
+#					title => 'Validate SchoolInfoSchoolName exists in local system', 
+#					rule => 'subquerymatch:SchoolInfo_SchoolName=SchoolInfo/SchoolName;SchoolInfo_RefId=SchoolInfo/RefId'
+#				},
+#=cut=
 			],
 			weight => 0.5,
 		},
