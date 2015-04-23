@@ -24,6 +24,13 @@ sub _lookups {
 		StudentPersonal
 		RoomInfo
 		TimeTable
+		CalendarDate
+		SessionInfo
+		StaffAssignment
+		StudentAttendanceSummary
+		StudentDailyAttendance
+		StudentPeriodAttendance
+		StudentSchoolEnrollment
 	/) {
 		$self->{lookup}->{$t} = {};
 		my $lsth = $self->{dbh}->prepare("SELECT RefId FROM $t");

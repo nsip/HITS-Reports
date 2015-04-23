@@ -52,6 +52,21 @@
 #					rule => 'subquerymatch:TimeTableSubject_LocalId=TimeTableSubject/LocalId;TimeTableSubject_RefId=TimeTableSubject/RefId'
 #				},
 #=cut
+				{
+					id => 'M1',
+					title => 'Mandatory RefId',
+					rule => 'notblank:RefId'
+				},
+				{
+					id => 'M2',
+					title => 'Mandatory SchoolYear',
+					rule => 'notblank:SchoolYear'
+				},
+				{
+					id => 'M3',
+					title => 'Mandatory LocalId',
+					rule => 'notblank:LocalId'
+				},
 			],
 			weight => 0.5,
 		},
@@ -80,21 +95,26 @@
 #					title => 'Validate GivenName exists in local system', 
 #					rule => 'subquerymatch:StudentPersonal_GivenName=StudentPersonal/GivenName;StudentPersonal_RefId=StudentPersonal/RefId'
 #				},
-#=cut
+#				{
+#					id => '22c', 
+#					title => 'Validate PreferredGivenName exists in local system', 
+#					rule => 'subquerymatch:StudentPersonal_PreferredGivenName=StudentPersonal/PreferredGivenName;StudentPersonal_RefId=StudentPersonal/RefId'
+#				},
+#				{
+#					id => '22d', 
+#					title => 'Validate MiddleName exists in local system', 
+#					rule => 'subquerymatch:StudentPersonal_MiddleName=StudentPersonal/MiddleName;StudentPersonal_RefId=StudentPersonal/RefId'
+#				},
+#				{
+#					id => '22e', 
+#					title => 'Validate MiddleName exists in local system', 
+#					rule => 'subquerymatch:StudentPersonal_FamilyName=StudentPersonal/FamilyName;StudentPersonal_RefId=StudentPersonal/RefId'
+#				},
+#=cut=
 				{
-					id => '22c', 
-					title => 'Validate PreferredGivenName exists in local system', 
-					rule => 'subquerymatch:StudentPersonal_PreferredGivenName=StudentPersonal/PreferredGivenName;StudentPersonal_RefId=StudentPersonal/RefId'
-				},
-				{
-					id => '22d', 
-					title => 'Validate MiddleName exists in local system', 
-					rule => 'subquerymatch:StudentPersonal_MiddleName=StudentPersonal/MiddleName;StudentPersonal_RefId=StudentPersonal/RefId'
-				},
-				{
-					id => '22e', 
-					title => 'Validate MiddleName exists in local system', 
-					rule => 'subquerymatch:StudentPersonal_FamilyName=StudentPersonal/FamilyName;StudentPersonal_RefId=StudentPersonal/RefId'
+					id => M10,
+					title => 'Validate StudentPersonalRefId exists in local system',
+					rule => 'lookup:StudentPersonal_RefId=StudentPersonal/RefId'
 				},
 			],
 			weight => 0.5,
@@ -124,21 +144,25 @@
 #					title => 'Validate GivenName exists in local system', 
 #					rule => 'subquerymatch:StaffPersonal_GivenName=StaffPersonal/GivenName;StaffPersonal_RefId=StaffPersonal/RefId'
 #				},
-#=cut
+#				{
+#					id => '24c', 
+#					title => 'Validate PreferredGivenName exists in local system', 
+#					rule => 'subquerymatch:StaffPersonal_PreferredGivenName=StaffPersonal/PreferredGivenName;StaffPersonal_RefId=StaffPersonal/RefId'
+#				},
+#				{
+#					id => '24d', 
+#					title => 'Validate MiddleName exists in local system', 
+#					rule => 'subquerymatch:StaffPersonal_MiddleName=StaffPersonal/MiddleName;StaffPersonal_RefId=StaffPersonal/RefId'
+#				},
+#				{
+#					id => '24e', 
+#					title => 'Validate MiddleName exists in local system', 
+#					rule => 'subquerymatch:StaffPersonal_FamilyName=StaffPersonal/FamilyName;StaffPersonal_RefId=StaffPersonal/RefId'
+#				},
 				{
-					id => '24c', 
-					title => 'Validate PreferredGivenName exists in local system', 
-					rule => 'subquerymatch:StaffPersonal_PreferredGivenName=StaffPersonal/PreferredGivenName;StaffPersonal_RefId=StaffPersonal/RefId'
-				},
-				{
-					id => '24d', 
-					title => 'Validate MiddleName exists in local system', 
-					rule => 'subquerymatch:StaffPersonal_MiddleName=StaffPersonal/MiddleName;StaffPersonal_RefId=StaffPersonal/RefId'
-				},
-				{
-					id => '24e', 
-					title => 'Validate MiddleName exists in local system', 
-					rule => 'subquerymatch:StaffPersonal_FamilyName=StaffPersonal/FamilyName;StaffPersonal_RefId=StaffPersonal/RefId'
+					id => M11,
+					title => 'Validate StaffPersonalRefId exists in local system',
+					rule => 'lookup:StaffPersonal_RefId=StaffPersonal/RefId'
 				},
 			],
 			weight => 0.5,
@@ -251,6 +275,26 @@
 #					rule => 'subquerymatch:StaffPersonal_LocalId=StaffPersonal/LocalId;StaffPersonal_RefId=StaffPersonal/RefId'
 #				},
 #=cut
+				{
+					id => 'M4', 
+					title => 'DayId is mandatory', 
+					rule => 'notblank:DayId'
+				},
+				{
+					id => 'M5', 
+					title => 'PeriodId is mandatory', 
+					rule => 'notblank:PeriodId'
+				},
+				{
+					id => 'M6', 
+					title => 'CellType is mandatory', 
+					rule => 'notblank:CellType'
+				},
+				{
+					id => 'M7', 
+					title => 'RefId is mandatory', 
+					rule => 'notblank:RefId'
+				},
 			],
 			weight => 1,
 		},
@@ -275,6 +319,16 @@
 					id => '38b', 
 					title => 'The provided ScheduleActivity objects are dated instances of TimeTableCell', 
 					rule => 'notblank:Date'
+				},
+				{
+					id => '38c', 
+					title => 'The provided ScheduleActivity objects are dated instances of TimeTableCell', 
+					rule => 'notblank:StartTime'
+				},
+				{
+					id => '38d', 
+					title => 'The provided ScheduleActivity objects are dated instances of TimeTableCell', 
+					rule => 'notblank:FinishTime'
 				},
 #=pod
 #				{
@@ -313,6 +367,21 @@
 #					rule =>'subquerycount:RefId=ScheduledActivity_Teacher/ScheduledActivity_RefId'
 #				},
 #=cut
+				{
+					id => 'M8', 
+					title => 'RefId is mandatory', 
+					rule =>'notblank:RefId'
+				},
+				{
+					id => 'M11', 
+					title => 'SchoolInfo_RefId is mandatory', 
+					rule =>'notblank:SchoolInfo_RefId'
+				},
+				{
+					id => 'M11a', 
+					title => 'SchoolInfo_RefId exists', 
+					rule =>'lookup:SchoolInfo_RefId=SchoolInfo/RefId'
+				},
 			],
 			weight => 0.5,
 		},
@@ -330,11 +399,21 @@
 			subtests => [
 				{
 #=pod
-					id => '42c', 
-					title => 'Validate RoomInfoId exists in TimeTableCell', 
-					rule => 'subquerymatch_twotables:RoomInfo_RefId=TimeTableCell/RoomInfo_RefId;ScheduledActivity_RefId=ScheduledActivty/RefId;ScheduledActivity/TimeTableCell_RefId=TimeTableCell/RefId'
-				},
+#					id => '42c', 
+#					title => 'Validate RoomInfoId exists in TimeTableCell', 
+#					rule => 'subquerymatch_twotables:RoomInfo_RefId=TimeTableCell/RoomInfo_RefId;ScheduledActivity_RefId=ScheduledActivty/RefId;ScheduledActivity/TimeTableCell_RefId=TimeTableCell/RefId'
+#				},
 #=cut
+				{
+					id => 'M9', 
+					title => 'RoomInfoRefId is mandatory', 
+					rule =>'notblank:RoomInfo_RefId'
+				},
+				{
+					id => 'M9a', 
+					title => 'RoomInfoRefId exists', 
+					rule =>'lookup:RoomInfo_RefId=RoomInfo/RefId'
+				},
 			],
 			weight => 0.5,
 		},
@@ -357,6 +436,16 @@
 #					rule => 'subquerymatch_twotables:TeachingGroup_RefId=TimeTableCell/TeachingGroup_RefId;ScheduledActivity_RefId=ScheduledActivty/RefId;ScheduledActivity/TimeTableCell_RefId=TimeTableCell/RefId'
 #				},
 #=cut
+				{
+					id => 'M12', 
+					title => 'TeachingGroupRefId is mandatory', 
+					rule =>'notblank:TeachingGroup_RefId'
+				},
+				{
+					id => 'M12a', 
+					title => 'TeachingGroupRefId exists', 
+					rule =>'lookup:TeachingGroup_RefId=TeachingGroup/RefId'
+				},
 			],
 			weight => 0.5,
 		},
@@ -379,13 +468,48 @@
 #					rule => 'subquerymatch_twotables:StaffPersonal_RefId=TimeTableCell/StaffPersonal_RefId;ScheduledActivity_RefId=ScheduledActivty/RefId;ScheduledActivity/TimeTableCell_RefId=TimeTableCell/RefId'
 #				},
 #=cut
+				{
+					id => 'M13', 
+					title => 'StaffPersonalRefId is mandatory', 
+					rule =>'notblank:StaffPersonal_RefId'
+				},
+				{
+					id => 'M13a', 
+					title => 'StaffPersonalRefId exists', 
+					rule =>'lookup:StaffPersonal_RefId=StaffPersonal/RefId'
+				},
+			],
+			weight => 0.5,
+		},
+		{
+			id => '46b',
+			title => 'ScheduledActivity_Student Filled',
+			description => 'This test validates that the students in the ScheduledActivity submitted to the database are valid',
+			query => q{
+				SELECT
+					*
+				FROM
+					ScheduledActivity_Student
+			},
+			#rule => 'morethan:0',
+			subtests => [
+				{
+					id => 'M14', 
+					title => 'StudentPersonalRefId is mandatory', 
+					rule =>'notblank:StudentPersonal_RefId'
+				},
+				{
+					id => 'M14a', 
+					title => 'StudentPersonalRefId exists', 
+					rule =>'lookup:StudentPersonal_RefId=StudentPersonal/RefId'
+				},
 			],
 			weight => 0.5,
 		},
 		{
 			id => 4,
 			title => 'The payload contains a TimeTable',
-			description => 'TODO',
+			description => 'This test validates that the timetables submitted to the database are valid',
 			query => q{
 				SELECT
 					*
@@ -411,10 +535,58 @@
 #					rule => 'subquerymatch:SchoolInfo_SchoolName=SchoolInfo/SchoolName;SchoolInfo_RefId=SchoolInfo/RefId'
 #				},
 #=cut=
+				{
+					id => 'M15', 
+					title => 'RefId is mandatory', 
+					rule =>'notblank:RefId'
+				},
+				{
+					id => 'M16', 
+					title => 'SchoolYear is mandatory', 
+					rule =>'notblank:SchoolYear'
+				},
+				{
+					id => 'M17', 
+					title => 'Title is mandatory', 
+					rule =>'notblank:Title'
+				},
+				{
+					id => 'M18', 
+					title => 'DaysPersCycle is mandatory', 
+					rule =>'notblank:DaysPersCycle'
+				},
+				{
+					id => 'M19', 
+					title => 'PeriodsPerDay is mandatory', 
+					rule =>'notblank:PeriodsPerDay'
+				},
 			],
 			weight => 0.5,
 		},
-
+		{
+			id => '47b',
+			title => 'TimeTable/TimeTableDayList Filled',
+			description => 'This test validates that the TimeTableDayList/TimeTablePeriodList in the TimeTable submitted to the database is valid',
+			query => q{
+				SELECT
+					*
+				FROM
+					TimeTable_Period
+			},
+			#rule => 'morethan:0',
+			subtests => [
+				{
+					id => 'M21', 
+					title => 'PeriodId is mandatory', 
+					rule =>'notblank:PeriodId'
+				},
+				{
+					id => 'M21a', 
+					title => 'PeriodTitle exists', 
+					rule =>'notblank:PeriodTitle'
+				},
+			],
+		},
 	]
 };
 
@@ -607,3 +779,12 @@ ScheduledActivity/TeachingGroup/TeachingGroupRefId? = TimeTableCell/TeachingGrou
 
 ScheduledActivity/Teachers/TeacherCover/StaffPersonalRefId? = TimeTableCell/StaffPersonalRefId?]
 
+
+NOTE:
+Not validating presence of TeachingGroup/StudentList/TeachingGroupStudent/StudentLocalId
+Not validating presence of TeachingGroup/StudentList/TeachingGroupStudent/Name
+Requiring that TeachingGroup/StudentList/TeachingGroupStudent/StudentPersonalRefId
+Not validating presence of TeachingGroup/TeacherList/TeachingGroupTeacher/StaffLocalId
+Not validating presence of TeachingGroup/TeacherList/TeachingGroupTeacher/Name
+Not validating presence of TeachingGroup/TeacherList/TeachingGroupTeacher/StaffPersonalRefId
+Not validating presence of TeachingGroup/TeacherList/TeachingGroupTeacher/Association

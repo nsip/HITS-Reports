@@ -21,9 +21,14 @@ Report Rules
 ============
 The rules are defined in lib/HITS/Report/Rules.pm
 
-Each rule defines an SQL query (typically, retrieve all rows of a table), and a set of methods to run over the results
+Each rule defines an SQL query ("query", typically, retrieve all rows of a table), 
+a cardinality ("rule", either "zero" or "morethan:n" for an integer n)
+and a set of subtests to run over the results ("subtests")
 
-Each method gets a result row from the database as a hash, and a rule, as follows:
+Each subtest has an ID, a title, and a rule which is applied to every row in the query results.
+The rule is of format: RULE_NAME:RULE_BODY
+Each rule name corresponds to a method in Rules.pm
+Each rule method gets a result row from the database as a hash, and a rule body, as follows:
 
  * lookup:field=Table/field 
    * confirm that, for field1=Table/field2, the RefId in field1 is a RefId of Table
@@ -102,7 +107,13 @@ Maintenance
 ===========
 If you add a new report:
 
-1. Edit lib/HITS/Report/Rules.pm _lookups(), to add any new database tables containing RefIds that need to be tested
+1. Edit lib/HITS/Report/Rules.pm _lookups(), to add any new database tables containing RefIds that need to be tested against
+2. If you need any new rules, you will need to edit Edit lib/HITS/Report/Rules.pm to add a new sub, patterned after the existing rules
+3. Add a new directory for the report
+4. Add a file in.pl to the directory, patterned after the existing report scripts
+5. Add tests to the tests => [] array. Each test validates the results of a single database query (typically a query for all instances of an object)
+6. Add subtests to each test.
+   * Ensure that mandatory elements and enum types are included in subtest validation
 
 
 Presentation
