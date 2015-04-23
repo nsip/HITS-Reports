@@ -11,6 +11,7 @@ sub new {
 	return $self;
 }
 
+# Store RefIds of all objects in the database in a hash table
 sub _lookups {
 	my ($self) = @_;
 	foreach my $t (qw/
@@ -33,10 +34,15 @@ sub _lookups {
 	}
 }
 
+# All rules are of format Rule_name:Rule_content
+# All routines here have the name Rule_name
+# All routines have the parameters $row = database row processed by the rule, $rule = Rule_content
 
 # lookup:field=Table/field
 # ignores /field value. Used only to verify existence of RefIds
 # treats field as optional
+# i.e. this will confirm that, for field1=Table/field2, the RefId in field1 is a RefId of Table; it
+# will not confirm that the RefId is registered under field2 in Table (because it assumes one RefId per Table)
 sub lookup {
 	my ($self, $row, $rule) = @_;
 	my ($field, $table) = split(/=/, $rule, 2);
@@ -124,7 +130,7 @@ sub subquerymatch {
 	die "No matching count for $table against $field/$joinfield\n";
 }
 
-# subquerymatch: field=Table/matchfield;myrefIdField=Table/joinrefIdfield;Table1/Field1=Table2/Field2
+# subquerymatch: field=Table2/matchfield;myrefIdField=Table11/joinrefIdfield;Table1/Field1=Table2/Field2
 # use where we have to traverse two tables to get to match
 # e.g. RoomInfo_RefId=TimeTableCell/RoomInfo_RefId;ScheduledActivity_RefId=ScheduledActivty/RefId;ScheduledActivity/TimeTableCell_RefId=TimeTableCell/RefId
 # do not run query if local field is absent

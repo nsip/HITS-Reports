@@ -19,14 +19,34 @@ perl bin/report {TemplateId} {ConfigFile}
 
 Report Rules
 ============
-The rules are define in lib/HITS/Report/Rules.pm
+The rules are defined in lib/HITS/Report/Rules.pm
 
-Each method gets the row from the database as a hash and a rule as follows:
+Each rule defines an SQL query (typically, retrieve all rows of a table), and a set of methods to run over the results
 
- * lookup:field=Table/field
+Each method gets a result row from the database as a hash, and a rule, as follows:
+
+ * lookup:field=Table/field 
+   * confirm that, for field1=Table/field2, the RefId in field1 is a RefId of Table
  * notblank:field
+   * confirm that field is not empty (non null)
  * enums:field=a,b,c
- * subquerycount:field=Table/field
+   * confirm that the value of field is restricted to one of the following enum values
+ * subquerycount:field=Table/joinfield
+   * confirm that at least one instance of Table/joinfield corresponds to field
+   * used for SQL tables representing lists in SIF objects, to ensure those lists are not empty
+ * subquerymatch: field=Table/matchfield;myrefIdField=Table/joinrefIdfield
+   * used to match a field in the current object with a field in another object (other than RefId), via a join
+   * confirm that at least one instance of Table/joinrefIdField corresponds to myrefIdField
+   * AND that in the same instance, Table/matchfield matches field
+   * e.g. schoolLocalId=SchoolInfo/LocalId;schoolRefId=SchoolInfo/RefId :
+      * confirm that schoolRefId points to a school refId in the database
+      * and that schoolLocalId points to the local school Id for the same school
+ * subquerymatch_twotables: field=Table2/matchfield;myrefIdField=Table1/joinrefIdfield;Table1/Field1=Table2/Field2
+   * used to match a field in the current object with a field in another object (other than RefId), via a join of two tables
+   * confirm that at least one instance of Table1/joinrefIdField corresponds to myrefIdField (join)
+   * AND that in the same instance, Table1/Field1 matches Table2/Field2 (join)
+   * AND that Table2/matchfield matches field
+   * e.g. RoomInfo_RefId=TimeTableCell/RoomInfo_RefId;ScheduledActivity_RefId=ScheduledActivty/RefId;ScheduledActivity/TimeTableCell_RefId=TimeTableCell/RefId
 
 Report Config File
 ==================
@@ -77,6 +97,13 @@ Output
 			},
 		],
 	}
+
+Maintenance
+===========
+If you add a new report:
+
+1. Edit lib/HITS/Report/Rules.pm _lookups(), to add any new database tables containing RefIds that need to be tested
+
 
 Presentation
 ============
