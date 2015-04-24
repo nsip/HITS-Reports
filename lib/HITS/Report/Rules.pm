@@ -33,10 +33,14 @@ sub _lookups {
 		StudentSchoolEnrollment
 	/) {
 		$self->{lookup}->{$t} = {};
+		my $tabletest = $self->{dbh}->prepare("SHOW TABLES LIKE '$t'");
+		$tabletest->execute;
+		if($tabletest->fetchrow_hashref) {
 		my $lsth = $self->{dbh}->prepare("SELECT RefId FROM $t");
 		$lsth->execute;
 		while (my $ref = $lsth->fetchrow_hashref) {
 			$self->{lookup}->{$t}{$ref->{RefId}} = 1;
+		}
 		}
 	}
 }

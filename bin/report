@@ -83,6 +83,16 @@ my $re = HITS::Report::Rules->new($dbh_sis);
 # ----------------------------------------------------------------------
 my $count = 0;
 foreach my $test (@{$rules->{tests}}) {
+	# confirm that all the tables exist
+	my $tablesexist = 1;
+	foreach my $t (@{$test->{tables}}) {
+                my $tabletest = $dbh_sis->prepare("SHOW TABLES LIKE '$t'");
+                $tabletest->execute;
+                $tablesexist=0 unless ($tabletest->fetchrow_hashref);
+	}
+	next unless $tablesexist;
+
+
 	# TODO - how to do restrictions for School etc !
 	my $sth = $dbh_sis->prepare($test->{query});
 	$sth->execute();
@@ -165,7 +175,7 @@ foreach my $t ( @{$report->{tests}}) {
 $report->{score} = {
 	score => int($score),
 	total => int($total),
-	percent => int($score / $total * 100),
+	percent => $total == 0 ? 0 : int($score / $total * 100),
 };
 
 # XXX JSON output

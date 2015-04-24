@@ -16,6 +16,7 @@
 				FROM
 					TeachingGroup
 			},
+			tables => ['TeachingGroup'],
 			rule => 'morethan:0', 
 			subtests => [
 				{
@@ -82,6 +83,7 @@
 				FROM
 					TeachingGroup_Student
 			},
+			tables => ['TeachingGroup_Student'],
 			rule => 'morethan:0',
 			subtests => [
 #=pod=
@@ -131,6 +133,7 @@
 				FROM
 					TeachingGroup_Teacher
 			},
+			tables => ['TeachingGroup_Teacher'],
 			rule => 'morethan:0',
 			subtests => [
 #=pod=
@@ -178,6 +181,7 @@
 				FROM
 					TimeTableCell
 			},
+			tables => ['TimeTableCell'],
 			rule => 'morethan:0',
 			subtests => [
 				{
@@ -308,6 +312,7 @@
 				FROM
 					ScheduledActivity
 			},
+			tables => ['ScheduledActivity'],
 			rule => 'morethan:0',
 			subtests => [
 				{
@@ -395,9 +400,10 @@
 				FROM
 					ScheduledActivity_Room
 			},
+			tables => ['ScheduledActivity_Room'],
 			rule => 'morethan:0',
 			subtests => [
-				{
+#				{
 #=pod
 #					id => '42c', 
 #					title => 'Validate RoomInfoId exists in TimeTableCell', 
@@ -427,6 +433,7 @@
 				FROM
 					ScheduledActivity_TeachingGroup
 			},
+			tables => ['ScheduledActivity_TeachingGroup'],
 			rule => 'morethan:0',
 			subtests => [
 #=pod
@@ -459,6 +466,7 @@
 				FROM
 					ScheduledActivity_Teacher
 			},
+			tables => ['ScheduledActivity_Teacher'],
 			rule => 'morethan:0',
 			subtests => [
 #=pod
@@ -491,6 +499,7 @@
 				FROM
 					ScheduledActivity_Student
 			},
+			tables => ['ScheduledActivity_Student'],
 			#rule => 'morethan:0',
 			subtests => [
 				{
@@ -516,6 +525,7 @@
 				FROM
 					TimeTable
 			},
+			tables => ['TimeTable'],
 			rule => 'morethan:0',
 			subtests => [
 				{
@@ -564,8 +574,34 @@
 			weight => 0.5,
 		},
 		{
-			id => '47b',
+			id => '47c',
 			title => 'TimeTable/TimeTableDayList Filled',
+			description => 'This test validates that the TimeTableDayList in the TimeTable submitted to the database is valid',
+			query => q{
+				SELECT
+					*
+				FROM
+					TimeTable_Day
+			},
+			tables => ['TimeTable_Day'],
+			#rule => 'morethan:0',
+			subtests => [
+				{
+					id => 'M22', 
+					title => 'DayId is mandatory', 
+					rule =>'notblank:DayId'
+				},
+				{
+					id => 'M22a', 
+					title => 'DayTitle exists', 
+					rule =>'notblank:DayTitle'
+				},
+			],
+			weight => 0.5,
+		},
+		{
+			id => '47b',
+			title => 'TimeTable/TimeTableDayList/TimeTablePeriodList Filled',
 			description => 'This test validates that the TimeTableDayList/TimeTablePeriodList in the TimeTable submitted to the database is valid',
 			query => q{
 				SELECT
@@ -573,6 +609,7 @@
 				FROM
 					TimeTable_Period
 			},
+			tables => ['TimeTable_Period'],
 			#rule => 'morethan:0',
 			subtests => [
 				{
@@ -586,6 +623,7 @@
 					rule =>'notblank:PeriodTitle'
 				},
 			],
+			weight => 0.5,
 		},
 	]
 };

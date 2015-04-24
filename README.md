@@ -23,7 +23,11 @@ The rules are defined in lib/HITS/Report/Rules.pm
 
 Each rule defines an SQL query ("query", typically, retrieve all rows of a table), 
 a cardinality ("rule", either "zero" or "morethan:n" for an integer n)
-and a set of subtests to run over the results ("subtests")
+and a set of subtests to run over the results ("subtests").
+
+Different databases may have different tables implemented; to confirm that the required table is in the database,
+the tables queried are also listed, as an array. ("tables") If any of the tables is not in the database, the test 
+is ignored.
 
 Each subtest has an ID, a title, and a rule which is applied to every row in the query results.
 The rule is of format: RULE_NAME:RULE_BODY
