@@ -186,11 +186,6 @@
 			subtests => [
 				{
 					id => '36b', 
-					title => 'Validate SchoolInfoRefId exists in local system (warning)', 
-					rule => 'notblank:SchoolInfo_RefId'
-				},
-				{
-					id => '36b', 
 					title => 'Validate SchoolInfoRefId exists in local system', 
 					rule => 'lookup:SchoolInfo_RefId=SchoolInfo/RefId'
 				},
