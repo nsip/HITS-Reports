@@ -83,6 +83,110 @@
 		},
 
 		{
+			id => 'R4',
+			title => 'StudentAttendanceTimeList Filled',
+			description => 'This test validates the student attendance time list records submitted to the database',
+			query => q{
+				SELECT
+					*
+				FROM
+					StudentAttendanceTimeList
+			},
+			tables => ['StudentAttendanceTimeList'],
+			rule => 'morethan:0', 
+			subtests => [
+				{
+					id => 35, 
+					title => 'RefId is mandatory', 
+					rule => 'notblank:RefId'
+				},
+				{
+					id => 36, 
+					title => 'StudentPersonalRefId is mandatory', 
+					rule => 'notblank:StudentPersonal_RefId'
+				},
+				{
+					id => 37, 
+					title => 'StudentPersonalRefId points to existing student', 
+					rule => 'lookup:StudentPersonal_RefId=StudentPersonal/RefId'
+				},
+				{
+					id => 38, 
+					title => 'SchoolInfoRefId is mandatory', 
+					rule => 'notblank:SchoolInfo_RefId'
+				},
+				{
+					id => 39, 
+					title => 'SchoolInfoRefId points to existing school', 
+					rule => 'lookup:SchoolInfo_RefId=SchoolInfo/RefId'
+				},
+				{
+					id => 40, 
+					title => 'CalendarDate is mandatory', 
+					rule =>'notblank:CalendarDate'
+				},
+				{
+					id => 41, 
+					title => 'SchoolYear is mandatory', 
+					rule =>'notblank:SchoolYear'
+				},
+				{
+					id => 42, 
+					title => 'Check number of times', 
+					rule =>'subquerycount:RefId=StudentAttendanceTimeList_AttendanceTime/StudentAttendanceTimeListRefId'
+				},
+			],
+			weight => 0.1,
+		},
+		
+				{
+			id => 'R5',
+			title => 'StudentAttendanceTimeList AttendanceTimes Filled',
+			description => 'This test validates the attendance times list in the student attendance time list records submitted to the database',
+			query => q{
+				SELECT
+					*
+				FROM
+					StudentAttendanceTimeList_AttendanceTime
+			},
+			tables => ['StudentAttendanceTimeList_AttendanceTime'],
+			rule => 'morethan:0', 
+			subtests => [
+				{
+					id => 43, 
+					title => 'AttendanceCode is mandatory', 
+					rule => 'notblank:AttendanceCode'
+				},
+				{
+					id => 44, 
+					title => 'AttendanceStatus is mandatory', 
+					rule => 'notblank:AttendanceStatus'
+				},
+				{
+					id => 45, 
+					title => 'StartTime is mandatory', 
+					rule => 'notblank:StartTime'
+				},
+				{
+					id => 46, 
+					title => 'EndTime is mandatory', 
+					rule => 'notblank:EndTime'
+				},
+				{
+					id => 47, 
+					title => 'Attendance code uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsAttendanceCodeType ', 
+					rule =>'enums:AttendanceCode=0,100,101,111,112,113,114,116,117,118,119,200,201,202,203,204,205,206,207,208,209,210,211,300,400,401,500,600,601,602,603,604,605,606,607,608,609,610,611,612,700,701,702,800,801,802,803,804,805,900,901,902,903,904,999'
+				},
+				{
+					id => 48, 
+					title => 'Attendance status uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsAttendanceStatusType',
+					rule =>'enums:AttendanceStatus=01,02,99,NA'
+				},				
+			],
+			weight => 0.1,
+		},
+		
+		{
 			id => 'R2',
 			title => 'StudentAttendanceSummary Filled',
 			description => 'This test validates the student attendance summary records submitted to the database',
