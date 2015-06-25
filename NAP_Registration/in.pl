@@ -1,6 +1,6 @@
 {
-	title => 'NAPLAN Registration Report',
-	description => 'NAPLAN Registration data has been created correctly',
+	title => 'NAPLAN Registration Report (standalone)',
+	description => 'NAPLAN Registration data has been created correctly. Intended for individual schools, which are submitting only StudentPersonal records',
 
 	tests => [
 		{
@@ -23,58 +23,210 @@
 				},
 				{
 					id => 2, 
-					title => 'StudentPersonalRefId is mandatory', 
-					rule => 'notblank:StudentPersonal_RefId'
+					title => 'LocalId is mandatory', 
+					rule => 'notblank:LocalId'
 				},
 				{
 					id => 3, 
-					title => 'StudentPersonalRefId points to existing student', 
-					rule => 'lookup:StudentPersonal_RefId=StudentPersonal/RefId'
+					title => 'FamilyName is mandatory',
+					rule => 'notblank:FamilyName'
 				},
 				{
 					id => 4, 
-					title => 'SchoolInfoRefId is mandatory', 
-					rule => 'notblank:SchoolInfo_RefId'
+					title => 'GivenName is mandatory', 
+					rule => 'notblank:GivenName'
 				},
 				{
 					id => 5, 
-					title => 'SchoolInfoRefId points to existing school', 
-					rule => 'lookup:SchoolInfo_RefId=SchoolInfo/RefId'
+					title => 'BirthDate is mandatory', 
+					rule => 'notblank:BirthDate'
 				},
 				{
 					id => 6, 
-					title => 'CalendarDate is mandatory', 
-					rule =>'notblank:CalendarDate'
+					title => 'Sex is mandatory', 
+					rule =>'notblank:Sex'
 				},
 				{
 					id => 7, 
-					title => 'SchoolYear is mandatory', 
-					rule =>'notblank:SchoolYear'
+					title => 'Sex uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsSexCodeType ', 
+					rule =>'enums:Sex=1,2,3,9'
 				},
 				{
 					id => 8, 
-					title => 'Day value uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsDayValueCodeType ', 
-					rule =>'enums:DayValue=AM,Full,N/A,Partial,PM'
+					title => 'YearLevel is mandatory',
+					rule =>'notblank:YearLevel'
 				},
 				{
 					id => 9, 
-					title => 'AttendanceCode is mandatory', 
-					rule =>'notblank:AttendanceCode'
+					title => 'YearLevel uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsYearLevelCodeType ',
+					rule =>'enums:YearLevel=1,2,3,4,5,6,7,8,9,10,11,12,13,CC,K,K3,K4,P,PS,UG'
 				},
 				{
 					id => 10, 
-					title => 'Attendance code uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsAttendanceCodeType ', 
-					rule =>'enums:AttendanceCode=0,100,101,111,112,113,114,116,117,118,119,200,201,202,203,204,205,206,207,208,209,210,211,300,400,401,500,600,601,602,603,604,605,606,607,608,609,610,611,612,700,701,702,800,801,802,803,804,805,900,901,902,903,904,999'
+					title => 'IndigenousStatus is mandatory',
+					rule =>'notblank:IndigenousStatus'
 				},
 				{
 					id => 11, 
-					title => 'AttendanceStatus is mandatory', 
-					rule =>'notblank:AttendanceStatus'
+					title => 'IndigenousStatus uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsIndigenousStatusType ',
+					rule =>'enums:IndigenousStatus=1,2,3,4,9'
 				},
 				{
 					id => 12, 
-					title => 'Attendance status uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsAttendanceStatusType',
-					rule =>'enums:AttendanceStatus=01,02,99,NA'
+					title => 'LBOTE is mandatory,
+					rule =>'notblank:LBOTE'
+				},
+				{
+					id => 13, 
+					title => 'LBOTE uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsYesOrNoCategoryType ',
+					rule =>'enums:LBOTE=N,U,X,Y'
+				},
+				{
+					id => 14, 
+					title => 'MostRecent_Parent1Sex is mandatory',
+					rule =>'notblank:MostRecent_Parent1Sex'
+				},
+				{
+					id => 15, 
+					title => 'MostRecent_Parent1Sex uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsSexCodeType ',
+					rule =>'enums:MostRecent_Parent1Sex=1,2,3,9'
+				},
+				{
+					id => 16, 
+					title => 'MostRecent_Parent2Sex is mandatory',
+					rule =>'notblank:MostRecent_Parent2Sex'
+				},
+				{
+					id => 17, 
+					title => 'MostRecent_Parent2Sex uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsSexCodeType ',
+					rule =>'enums:MostRecent_Parent2Sex=1,2,3,9'
+				},
+				{
+					id => 18, 
+					title => 'MostRecent_Parent1Relationship is mandatory',
+					rule =>'notblank:MostRecent_Parent1Relationship'
+				},
+				{
+					id => 19, 
+					title => 'MostRecent_Parent1Relationship uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsRelationshipToStudentType ',
+					rule =>'enums:MostRecent_Parent1Relationship=01,02,03,04,05,06,07,08,09,10,11,12,13,19'
+				},
+				{
+					id => 20, 
+					title => 'MostRecent_Parent2Relationship is mandatory',
+					rule =>'notblank:MostRecent_Parent2Relationship'
+				},
+				{
+					id => 21, 
+					title => 'MostRecent_Parent2Relationship uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsRelationshipToStudentType ',
+					rule =>'enums:MostRecent_Parent2Relationship=01,02,03,04,05,06,07,08,09,10,11,12,13,19'
+				},
+				{
+					id => 22, 
+					title => 'MostRecent_Parent1SchoolEducation is mandatory',
+					rule =>'notblank:MostRecent_Parent1SchoolEducation'
+				},
+				{
+					id => 23, 
+					title => 'MostRecent_Parent1SchoolEducation uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsSchoolEducationLevelTypeType ',
+					rule =>'enums:MostRecent_Parent1SchoolEducation=0,1,2,3,4'
+				},
+				{
+					id => 24, 
+					title => 'MostRecent_Parent2SchoolEducation is mandatory',
+					rule =>'notblank:MostRecent_Parent2SchoolEducation'
+				},
+				{
+					id => 25, 
+					title => 'MostRecent_Parent2SchoolEducation uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsSchoolEducationLevelTypeType ',
+					rule =>'enums:MostRecent_Parent2SchoolEducation=0,1,2,3,4'
+				},
+				{
+					id => 26, 
+					title => 'MostRecent_Parent1SchoolNonEducation is mandatory',
+					rule =>'notblank:MostRecent_Parent1NonSchoolEducation'
+				},
+				{
+					id => 27, 
+					title => 'MostRecent_Parent1NonSchoolEducation uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsNonSchoolEducationType ',
+					rule =>'enums:MostRecent_Parent1NonSchoolEducation=0,5,6,7,8'
+				},
+				{
+					id => 28, 
+					title => 'MostRecent_Parent2SchoolNonEducation is mandatory',
+					rule =>'notblank:MostRecent_Parent2NonSchoolEducation'
+				},
+				{
+					id => 29, 
+					title => 'MostRecent_Parent2NonSchoolEducation uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsNonSchoolEducationType ',
+					rule =>'enums:MostRecent_Parent2NonSchoolEducation=0,5,6,7,8'
+				},
+				{
+					id => 30, 
+					title => 'MostRecent_Parent1EmploymentType is mandatory',
+					rule =>'notblank:MostRecent_Parent1EmploymentType'
+				},
+				{
+					id => 31, 
+					title => 'MostRecent_Parent1EmploymentType uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsEmploymentTypeType ',
+					rule =>'enums:MostRecent_Parent1EmploymentType=1,2,3,4,8,9'
+				},
+				{
+					id => 32, 
+					title => 'MostRecent_Parent2EmploymentType is mandatory',
+					rule =>'notblank:MostRecent_Parent2EmploymentType'
+				},
+				{
+					id => 33, 
+					title => 'MostRecent_Parent2EmploymentType uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsEmploymentTypeType ',
+					rule =>'enums:MostRecent_Parent2EmploymentType=1,2,3,4,8,9'
+				},
+				{
+					id => 34, 
+					title => 'MostRecent_Parent1Language is mandatory',
+					rule =>'notblank:MostRecent_Parent1Language'
+				},
+				# not writing an enum validator for http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsAustralianStandardClassificationOfLanguagesASCLType . The only real validation is four-digit number, which the current ruls language cannot represent 
+				{
+					id => 35, 
+					title => 'MostRecent_Parent2Language is mandatory',
+					rule =>'notblank:MostRecent_Parent2Language'
+				},
+				{
+					id => 36, 
+					title => 'CountryOfBirth is mandatory',
+					rule =>'notblank:CountryOfBirth'
+				},
+				# not writing an enum validator for http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsStandardAustralianClassificationOfCountriesSACCType . The only real validation is four-digit number, which the current ruls language cannot represent 
+				{
+					id => 37, 
+					title => 'FFPOS is mandatory',
+					rule =>'enums:LBOTE=N,U,X,Y'
+				},
+				{
+					id => 38, 
+					title => 'FFPOS uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsFFPOSStatusCodeType '
+					rule =>'enums:FFPOS=1,2,9'
+				},
+				{
+					id => 39, 
+					title => 'ESL is mandatory',
+					rule =>'notblank:ESL'
+				},
+				{
+					id => 40, 
+					title => 'ESL uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsYesOrNoCategoryType ',
+					rule =>'enums:FFPOS=N,U,X,Y'
+				},
+				{
+					id => 39, 
+					title => 'ParentPermissionForMatching is mandatory',
+					rule =>'notblank:ParentPermissionForMatching'
+				},
+				{
+					id => 40, 
+					title => 'ParentPermissionForMatching uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsYesOrNoCategoryType ',
+					rule =>'enums:ParentPermissionForMatching=N,U,X,Y'
 				},
 			],
 			weight => 0.1,
