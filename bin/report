@@ -86,9 +86,11 @@ foreach my $test (@{$rules->{tests}}) {
 	# confirm that all the tables exist
 	my $tablesexist = 1;
 	foreach my $t (@{$test->{tables}}) {
-                my $tabletest = $dbh_sis->prepare("SHOW TABLES LIKE '$t'");
-                $tabletest->execute;
-                $tablesexist=0 unless ($tabletest->fetchrow_hashref);
+		my $query = sprintf "SHOW TABLES LIKE '%s';", $t;
+                my $tabletest = $dbh_sis->prepare($query);
+                $tabletest->execute();
+		my $row = $tabletest->fetchrow_hashref;
+                $tablesexist=0 unless ($row);
 	}
 	next unless $tablesexist;
 
