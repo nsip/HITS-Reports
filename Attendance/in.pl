@@ -56,7 +56,7 @@
 				{
 					id => 8, 
 					title => 'Day value uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsDayValueCodeType ', 
-					rule =>'enums:DayValue=AM,Full,N/A,Partial,PM'
+					rule =>'enum:DayValue=AM,Full,N/A,Partial,PM'
 				},
 				{
 					id => 9, 
@@ -65,8 +65,8 @@
 				},
 				{
 					id => 10, 
-					title => 'Attendance code uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsAttendanceCodeType ', 
-					rule =>'enums:AttendanceCode=0,100,101,111,112,113,114,116,117,118,119,200,201,202,203,204,205,206,207,208,209,210,211,300,400,401,500,600,601,602,603,604,605,606,607,608,609,610,611,612,700,701,702,800,801,802,803,804,805,900,901,902,903,904,999'
+					title => 'Attendance code uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsAttendanceCodeType ', 
+					rule =>'enum:AttendanceCode=0,100,101,111,112,113,114,116,117,118,119,200,201,202,203,204,205,206,207,208,209,210,211,300,400,401,500,600,601,602,603,604,605,606,607,608,609,610,611,612,700,701,702,800,801,802,803,804,805,900,901,902,903,904,999'
 				},
 				{
 					id => 11, 
@@ -75,8 +75,8 @@
 				},
 				{
 					id => 12, 
-					title => 'Attendance status uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsAttendanceStatusType',
-					rule =>'enums:AttendanceStatus=01,02,99,NA'
+					title => 'Attendance status uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsAttendanceStatusType',
+					rule =>'enum:AttendanceStatus=01,02,99,NA'
 				},
 			],
 			weight => 0.1,
@@ -174,13 +174,13 @@
 				},
 				{
 					id => 47, 
-					title => 'Attendance code uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsAttendanceCodeType ', 
-					rule =>'enums:AttendanceCode=0,100,101,111,112,113,114,116,117,118,119,200,201,202,203,204,205,206,207,208,209,210,211,300,400,401,500,600,601,602,603,604,605,606,607,608,609,610,611,612,700,701,702,800,801,802,803,804,805,900,901,902,903,904,999'
+					title => 'Attendance code uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsAttendanceCodeType ', 
+					rule =>'enum:AttendanceCode=0,100,101,111,112,113,114,116,117,118,119,200,201,202,203,204,205,206,207,208,209,210,211,300,400,401,500,600,601,602,603,604,605,606,607,608,609,610,611,612,700,701,702,800,801,802,803,804,805,900,901,902,903,904,999'
 				},
 				{
 					id => 48, 
-					title => 'Attendance status uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsAttendanceStatusType',
-					rule =>'enums:AttendanceStatus=01,02,99,NA'
+					title => 'Attendance status uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsAttendanceStatusType',
+					rule =>'enum:AttendanceStatus=01,02,99,NA'
 				},				
 			],
 			weight => 0.1,
@@ -314,8 +314,8 @@
 				},
 				{
 					id => 32, 
-					title => 'Attendance code uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsAttendanceCodeType ', 
-					rule =>'enums:AttendanceCode=0,100,101,111,112,113,114,116,117,118,119,200,201,202,203,204,205,206,207,208,209,210,211,300,400,401,500,600,601,602,603,604,605,606,607,608,609,610,611,612,700,701,702,800,801,802,803,804,805,900,901,902,903,904,999'
+					title => 'Attendance code uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsAttendanceCodeType ', 
+					rule =>'enum:AttendanceCode=0,100,101,111,112,113,114,116,117,118,119,200,201,202,203,204,205,206,207,208,209,210,211,300,400,401,500,600,601,602,603,604,605,606,607,608,609,610,611,612,700,701,702,800,801,802,803,804,805,900,901,902,903,904,999'
 				},
 				{
 					id => 33, 
@@ -324,8 +324,8 @@
 				},
 				{
 					id => 34, 
-					title => 'Attendance status uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsAttendanceStatusType',
-					rule =>'enums:AttendanceStatus=01,02,99,NA'
+					title => 'Attendance status uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsAttendanceStatusType',
+					rule =>'enum:AttendanceStatus=01,02,99,NA'
 				},
 			],
 			weight => 0.1,

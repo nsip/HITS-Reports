@@ -48,8 +48,8 @@
 				},
 				{
 					id => 7, 
-					title => 'Sex uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsSexCodeType ', 
-					rule =>'enums:Sex=1,2,3,9'
+					title => 'Sex uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsSexCodeType ', 
+					rule =>'enum:Sex=1,2,3,9'
 				},
 				{
 					id => 8, 
@@ -58,8 +58,8 @@
 				},
 				{
 					id => 9, 
-					title => 'YearLevel uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsYearLevelCodeType ',
-					rule =>'enums:YearLevel=1,2,3,4,5,6,7,8,9,10,11,12,13,CC,K,K3,K4,P,PS,UG'
+					title => 'YearLevel uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsYearLevelCodeType ',
+					rule =>'enum:YearLevel=1,2,3,4,5,6,7,8,9,10,11,12,13,CC,K,K3,K4,P,PS,UG'
 				},
 				{
 					id => 10, 
@@ -68,18 +68,18 @@
 				},
 				{
 					id => 11, 
-					title => 'IndigenousStatus uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsIndigenousStatusType ',
-					rule =>'enums:IndigenousStatus=1,2,3,4,9'
+					title => 'IndigenousStatus uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsIndigenousStatusType ',
+					rule =>'enum:IndigenousStatus=1,2,3,4,9'
 				},
 				{
 					id => 12, 
-					title => 'LBOTE is mandatory,
+					title => 'LBOTE is mandatory',
 					rule =>'notblank:LBOTE'
 				},
 				{
 					id => 13, 
-					title => 'LBOTE uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsYesOrNoCategoryType ',
-					rule =>'enums:LBOTE=N,U,X,Y'
+					title => 'LBOTE uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsYesOrNoCategoryType ',
+					rule =>'enum:LBOTE=N,U,X,Y'
 				},
 				{
 					id => 14, 
@@ -88,8 +88,8 @@
 				},
 				{
 					id => 15, 
-					title => 'MostRecent_Parent1Sex uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsSexCodeType ',
-					rule =>'enums:MostRecent_Parent1Sex=1,2,3,9'
+					title => 'MostRecent_Parent1Sex uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsSexCodeType ',
+					rule =>'enum:MostRecent_Parent1Sex=1,2,3,9'
 				},
 				{
 					id => 16, 
@@ -98,8 +98,8 @@
 				},
 				{
 					id => 17, 
-					title => 'MostRecent_Parent2Sex uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsSexCodeType ',
-					rule =>'enums:MostRecent_Parent2Sex=1,2,3,9'
+					title => 'MostRecent_Parent2Sex uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsSexCodeType ',
+					rule =>'enum:MostRecent_Parent2Sex=1,2,3,9'
 				},
 				{
 					id => 18, 
@@ -108,8 +108,8 @@
 				},
 				{
 					id => 19, 
-					title => 'MostRecent_Parent1Relationship uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsRelationshipToStudentType ',
-					rule =>'enums:MostRecent_Parent1Relationship=01,02,03,04,05,06,07,08,09,10,11,12,13,19'
+					title => 'MostRecent_Parent1Relationship uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsRelationshipToStudentType ',
+					rule =>'enum:MostRecent_Parent1Relationship=01,02,03,04,05,06,07,08,09,10,11,12,13,19'
 				},
 				{
 					id => 20, 
@@ -118,8 +118,8 @@
 				},
 				{
 					id => 21, 
-					title => 'MostRecent_Parent2Relationship uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsRelationshipToStudentType ',
-					rule =>'enums:MostRecent_Parent2Relationship=01,02,03,04,05,06,07,08,09,10,11,12,13,19'
+					title => 'MostRecent_Parent2Relationship uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsRelationshipToStudentType ',
+					rule =>'enum:MostRecent_Parent2Relationship=01,02,03,04,05,06,07,08,09,10,11,12,13,19'
 				},
 				{
 					id => 22, 
@@ -128,8 +128,8 @@
 				},
 				{
 					id => 23, 
-					title => 'MostRecent_Parent1SchoolEducation uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsSchoolEducationLevelTypeType ',
-					rule =>'enums:MostRecent_Parent1SchoolEducation=0,1,2,3,4'
+					title => 'MostRecent_Parent1SchoolEducation uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsSchoolEducationLevelTypeType ',
+					rule =>'enum:MostRecent_Parent1SchoolEducation=0,1,2,3,4'
 				},
 				{
 					id => 24, 
@@ -138,8 +138,8 @@
 				},
 				{
 					id => 25, 
-					title => 'MostRecent_Parent2SchoolEducation uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsSchoolEducationLevelTypeType ',
-					rule =>'enums:MostRecent_Parent2SchoolEducation=0,1,2,3,4'
+					title => 'MostRecent_Parent2SchoolEducation uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsSchoolEducationLevelTypeType ',
+					rule =>'enum:MostRecent_Parent2SchoolEducation=0,1,2,3,4'
 				},
 				{
 					id => 26, 
@@ -148,8 +148,8 @@
 				},
 				{
 					id => 27, 
-					title => 'MostRecent_Parent1NonSchoolEducation uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsNonSchoolEducationType ',
-					rule =>'enums:MostRecent_Parent1NonSchoolEducation=0,5,6,7,8'
+					title => 'MostRecent_Parent1NonSchoolEducation uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsNonSchoolEducationType ',
+					rule =>'enum:MostRecent_Parent1NonSchoolEducation=0,5,6,7,8'
 				},
 				{
 					id => 28, 
@@ -158,8 +158,8 @@
 				},
 				{
 					id => 29, 
-					title => 'MostRecent_Parent2NonSchoolEducation uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsNonSchoolEducationType ',
-					rule =>'enums:MostRecent_Parent2NonSchoolEducation=0,5,6,7,8'
+					title => 'MostRecent_Parent2NonSchoolEducation uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsNonSchoolEducationType ',
+					rule =>'enum:MostRecent_Parent2NonSchoolEducation=0,5,6,7,8'
 				},
 				{
 					id => 30, 
@@ -168,8 +168,8 @@
 				},
 				{
 					id => 31, 
-					title => 'MostRecent_Parent1EmploymentType uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsEmploymentTypeType ',
-					rule =>'enums:MostRecent_Parent1EmploymentType=1,2,3,4,8,9'
+					title => 'MostRecent_Parent1EmploymentType uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsEmploymentTypeType ',
+					rule =>'enum:MostRecent_Parent1EmploymentType=1,2,3,4,8,9'
 				},
 				{
 					id => 32, 
@@ -178,8 +178,8 @@
 				},
 				{
 					id => 33, 
-					title => 'MostRecent_Parent2EmploymentType uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsEmploymentTypeType ',
-					rule =>'enums:MostRecent_Parent2EmploymentType=1,2,3,4,8,9'
+					title => 'MostRecent_Parent2EmploymentType uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsEmploymentTypeType ',
+					rule =>'enum:MostRecent_Parent2EmploymentType=1,2,3,4,8,9'
 				},
 				{
 					id => 34, 
@@ -201,12 +201,12 @@
 				{
 					id => 37, 
 					title => 'FFPOS is mandatory',
-					rule =>'enums:LBOTE=N,U,X,Y'
+					rule =>'enum:LBOTE=N,U,X,Y'
 				},
 				{
 					id => 38, 
-					title => 'FFPOS uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsFFPOSStatusCodeType '
-					rule =>'enums:FFPOS=1,2,9'
+					title => 'FFPOS uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsFFPOSStatusCodeType ',
+					rule =>'enum:FFPOS=1,2,9'
 				},
 				{
 					id => 39, 
@@ -215,8 +215,8 @@
 				},
 				{
 					id => 40, 
-					title => 'ESL uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsYesOrNoCategoryType ',
-					rule =>'enums:FFPOS=N,U,X,Y'
+					title => 'ESL uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsYesOrNoCategoryType ',
+					rule =>'enum:FFPOS=N,U,X,Y'
 				},
 				{
 					id => 39, 
@@ -225,8 +225,8 @@
 				},
 				{
 					id => 40, 
-					title => 'ParentPermissionForMatching uses prescribed SIF enums: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsYesOrNoCategoryType ',
-					rule =>'enums:ParentPermissionForMatching=N,U,X,Y'
+					title => 'ParentPermissionForMatching uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsYesOrNoCategoryType ',
+					rule =>'enum:ParentPermissionForMatching=N,U,X,Y'
 				},
 			],
 			weight => 0.1,

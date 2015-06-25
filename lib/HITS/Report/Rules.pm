@@ -75,7 +75,7 @@ sub notblank {
 	return 1;
 }
 
-# enums:field=a,b,c
+# enum:field=a,b,c
 sub enum {
 	my ($self, $row, $rule) = @_;
 	my ($field, $enums) = split(/=/, $rule, 2);
