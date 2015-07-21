@@ -79,6 +79,7 @@ sub notblank {
 sub enum {
 	my ($self, $row, $rule) = @_;
 	my ($field, $enums) = split(/=/, $rule, 2);
+	return 1 unless defined  $row->{$field};
 	foreach my $e (split(/,/, $enums)) {
 		if ($e eq $row->{$field}) {
 			return 1;
