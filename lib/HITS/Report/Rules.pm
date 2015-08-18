@@ -49,9 +49,9 @@ sub _lookups {
 # All routines here have the name Rule_name
 # All routines have the parameters $row = database row processed by the rule, $rule = Rule_content
 
-# lookup:field=Table/field
-# ignores /field value. Used only to verify existence of RefIds
-# treats field as optional
+# lookup:field=Table/field2
+# ignores /field2 value. Used only to verify existence of RefIds
+# treats field2 as optional
 # i.e. this will confirm that, for field1=Table/field2, the RefId in field1 is a RefId of Table; it
 # will not confirm that the RefId is registered under field2 in Table (because it assumes one RefId per Table)
 sub lookup {
@@ -63,6 +63,23 @@ sub lookup {
 		return 1;
 	}
 	die "Lookup $field does not exist in $table\n";
+}
+
+# lookup_sifrefobject:field=SIFRefObject/field2
+# ignores /field2 value. Used only to verify existence of RefIds in table 
+# treats field2 as optional
+# i.e. this will confirm that, for field1=SIFRefObject/field2, the RefId in field1 is a RefId of the table named in
+# SIFRefObject; it
+# will not confirm that the RefId is registered under field2 in Table (because it assumes one RefId per Table)
+sub lookup_sifrefobject {
+	my ($self, $row, $rule) = @_;
+	my ($field, $table) = split(/=/, $rule, 2);
+	$table =~ s|/.+$||;
+	return 1 unless $row->{$field};
+	if ( $self->{lookup}{$row->{$table}}{$row->{$field}} ) {
+		return 1;
+	}
+	die "Lookup $field does not exist in $row->{$table}\n";
 }
 
 # notblank:field
