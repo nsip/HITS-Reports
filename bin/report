@@ -40,6 +40,11 @@ my $report = {
 # ----------------------------------------------------------------------
 # Common code - move to library
 # ----------------------------------------------------------------------
+my $sth1 = $dbh->prepare(q{
+select * from app_login});
+$sth1->execute();
+my $app1 = $sth1->fetchall_arrayref;
+
 my $sth = $dbh->prepare(q{
 	SELECT 
 		app.name app_name, app.title app_title,				-- Application

@@ -72,11 +72,6 @@
 					rule =>'enum:IndigenousStatus=1,2,3,4,9'
 				},
 				{
-					id => 12, 
-					title => 'LBOTE is mandatory',
-					rule =>'notblank:LBOTE'
-				},
-				{
 					id => 13, 
 					title => 'LBOTE uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsYesOrNoCategoryType ',
 					rule =>'enum:LBOTE=N,U,X,Y'
