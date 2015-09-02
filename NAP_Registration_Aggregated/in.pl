@@ -196,7 +196,7 @@
 				{
 					id => 37, 
 					title => 'FFPOS is mandatory',
-					rule =>'enum:LBOTE=N,U,X,Y'
+					rule =>'notblank:FFPOS'
 				},
 				{
 					id => 38, 
@@ -205,31 +205,31 @@
 				},
 				{
 					id => 39, 
-					title => 'ESL is mandatory',
-					rule =>'notblank:ESL'
+					title => 'Sensitive is mandatory',
+					rule =>'notblank:Sensitive'
 				},
 				{
 					id => 40, 
-					title => 'ESL uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsYesOrNoCategoryType ',
-					rule =>'enum:FFPOS=N,U,X,Y'
+					title => 'Sensitive uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsYesOrNoCategoryType ',
+					rule =>'enum:Sensitive=N,U,X,Y'
 				},
+                                {
+                                        id => 41,
+                                        title => 'TestLevel is mandatory',
+                                        rule =>'notblank:TestLevel',
+                                },
+                                {
+                                        id => 42,
+                                        title => 'TestLevel uses prescribed SIF enum: 3,5,7,9',
+                                        rule =>'enum:TesTLevel=3,5,7,9',
+                                },
 				{
-					id => 39, 
-					title => 'ParentPermissionForMatching is mandatory',
-					rule =>'notblank:ParentPermissionForMatching'
-				},
-				{
-					id => 40, 
-					title => 'ParentPermissionForMatching uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsYesOrNoCategoryType ',
-					rule =>'enum:ParentPermissionForMatching=N,U,X,Y'
-				},
-				{
-					id => 41, 
+					id => 43, 
 					title => 'MostRecent_SchoolACARAId is mandatory',
 					rule =>'notblank:MostRecent_SchoolACARAId'
 				},
 				{
-					id => 42, 
+					id => 44, 
 					title => 'MostRecent_SchoolLocalId is mandatory',
 					rule =>'notblank:MostRecent_SchoolLocalId'
 				},

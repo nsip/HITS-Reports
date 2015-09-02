@@ -298,7 +298,7 @@
 				FROM
 					StudentContactRelationship
 			},
-			tables => ['StudentContactPersonal'],
+			tables => ['StudentContactRelationship'],
 			rule => 'morethan:0', 
 			subtests => [
 				{
