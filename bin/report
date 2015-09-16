@@ -40,29 +40,40 @@ my $report = {
 # ----------------------------------------------------------------------
 # Common code - move to library
 # ----------------------------------------------------------------------
+
+# TODO - What is this for. Doesn't seem to be used
 my $sth1 = $dbh->prepare(q{
-select * from app_login});
+	select * from app_login});
 $sth1->execute();
 my $app1 = $sth1->fetchall_arrayref;
 
-my $sth = $dbh->prepare(q{
-	SELECT 
-		app.name app_name, app.title app_title,				-- Application
-		app.sis_id, sis.sis_type, sis.sis_ref,				-- SIS
-		vendor.id vendor_id, vendor.name vendor_name		-- Vendor
-	FROM 
-		app_login, app, vendor, sis
-	WHERE 
-		app_login.app_template_id = ?
-		AND app.id = app_login.app_id
-		AND vendor.id = app.vendor_id
-		AND sis.id = app.sis_id
-});
-$sth->execute($app_template_id);
-my $app = $sth->fetchrow_hashref;
+my $sth;
+my $app = {};
+my $db;
+if ($app_template_id !~ /^db\/(.+)$/) {
+	$sth = $dbh->prepare(q{
+		SELECT 
+			app.name app_name, app.title app_title,				-- Application
+			app.sis_id, sis.sis_type, sis.sis_ref,				-- SIS
+			vendor.id vendor_id, vendor.name vendor_name		-- Vendor
+		FROM 
+			app_login, app, vendor, sis
+		WHERE 
+			app_login.app_template_id = ?
+			AND app.id = app_login.app_id
+			AND vendor.id = app.vendor_id
+			AND sis.id = app.sis_id
+	});
+	$sth->execute($app_template_id);
+	$app = $sth->fetchrow_hashref;
+	if (!$app) {
+		die "No valid match for app_template_id - $app_template_id\n";
+	}
 
-if (!$app) {
-	die "No valid match for app_template_id - $app_template_id\n";
+	$db = $app->{sis_ref};
+}
+else {
+	$db = $1;
 }
 
 $report->{application} = $app;
@@ -71,7 +82,6 @@ $report->{application} = $app;
 # Student Information System DATABASE
 # ----------------------------------------------------------------------
 my $dsn = $config->{mysql_dsn_template};
-my $db = $app->{sis_ref};
 $dsn =~ s/TEMPLATE/$db/;
 my $dbh_sis = DBI->connect(
 		$dsn,
