@@ -309,22 +309,22 @@
 			   {
 						id => 82,
 						title => 'StudentPersonalRefId is mandatory',
-						rule => 'notblank:StudentPersonalRefId'
+						rule => 'notblank:StudentPersonal_RefId'
 				},
 				{
 						id => 83,
 						title => 'StudentPersonalRefId points to existing student',
-						rule => 'lookup:StudentPersonalRefId=StudentPersonal/RefId'
+						rule => 'lookup:StudentPersonal_RefId=StudentPersonal/RefId'
 				},
 				{
 						id => 84,
 						title => 'StudentContactPersonalRefId is mandatory',
-						rule => 'notblank:StudentContactPersonalRefId'
+						rule => 'notblank:StudentContactPersonal_RefId'
 				},
 				{
 						id => 85,
 						title => 'StudentContactPersonalRefId points to existing school',
-						rule => 'lookup:StudentContactPersonalRefId=StudentContactPersonal/RefId'
+						rule => 'lookup:StudentContactPersonal_RefId=StudentContactPersonal/RefId'
 				},
 				{
 					id => 86, 
