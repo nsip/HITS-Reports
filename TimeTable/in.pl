@@ -557,13 +557,13 @@
 				},
 				{
 					id => 'M18', 
-					title => 'DaysPersCycle is mandatory', 
-					rule =>'notblank:DaysPersCycle'
+					title => 'DaysPerCycle is mandatory', 
+					rule =>'notblank:DaysPerCycle'
 				},
 				{
 					id => 'M19', 
-					title => 'PeriodsPerDay is mandatory', 
-					rule =>'notblank:PeriodsPerDay'
+					title => 'PeriodsPerCycle is mandatory', 
+					rule =>'notblank:PeriodsPerCycle'
 				},
 			],
 			weight => 0.5,
