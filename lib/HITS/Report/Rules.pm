@@ -7,42 +7,26 @@ sub new {
 		dbh => $dbh,
 		lookup => {},
 	}, ref($class) || $class;
-	$self->_lookups;
+	# $self->_lookups;
 	return $self;
 }
 
 # Store RefIds of all objects in the database in a hash table
 sub _lookups {
-	my ($self) = @_;
-	foreach my $t (qw/
-		StaffPersonal 
-		TeachingGroup
-		SchoolInfo
-		TimeTableSubject
-		TimeTableCell
-		ScheduledActivity
-		StudentPersonal
-		RoomInfo
-		TimeTable
-		CalendarDate
-		SessionInfo
-		StaffAssignment
-		StudentAttendanceSummary
-		StudentDailyAttendance
-		StudentPeriodAttendance
-		StudentSchoolEnrollment
-	/) {
+	my ($self, $t) = @_;
+
+	if (! $self->{lookup}{$t}) {
 		$self->{lookup}->{$t} = {};
-		my $tabletest = $self->{dbh}->prepare("SHOW TABLES LIKE '$t'");
-		$tabletest->execute;
-		if($tabletest->fetchrow_hashref) {
+		#my $tabletest = $self->{dbh}->prepare("SHOW TABLES LIKE '$t'");
+		#$tabletest->execute;
+		#if($tabletest->fetchrow_hashref) {
 		my $lsth = $self->{dbh}->prepare("SELECT RefId FROM $t");
 		$lsth->execute;
 		while (my $ref = $lsth->fetchrow_hashref) {
 			$self->{lookup}->{$t}{$ref->{RefId}} = 1;
 		}
-		}
 	}
+	return $self->{lookup}{$t};
 }
 
 # All rules are of format Rule_name:Rule_content
@@ -59,6 +43,7 @@ sub lookup {
 	my ($field, $table) = split(/=/, $rule, 2);
 	$table =~ s|/.+$||;
 	return 1 unless $row->{$field};
+	$self->_lookups($table);
 	if ( $self->{lookup}{$table}{$row->{$field}} ) {
 		return 1;
 	}
