@@ -79,8 +79,8 @@
 				},
 				{
 					id => 13, 
-					title => 'ChargedLocationInfoRefId points to existing location', 
-					rule =>'lookup:ChargedLocationInfoRefId=ChargedLocationInfo/RefId'
+					title => 'LocationInfoRefId points to existing location', 
+					rule =>'lookup:LocationInfoRefId=LocationInfo/RefId'
 				},
 				{
 					id => 14, 

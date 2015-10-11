@@ -76,6 +76,7 @@
 					title => 'LBOTE uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsYesOrNoCategoryType ',
 					rule =>'enum:LBOTE=N,U,X,Y'
 				},
+=pod=
 				{
 					id => 14, 
 					title => 'MostRecent_Parent1Sex is mandatory',
@@ -116,6 +117,7 @@
 					title => 'MostRecent_Parent2Relationship uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsRelationshipToStudentType ',
 					rule =>'enum:MostRecent_Parent2Relationship=01,02,03,04,05,06,07,08,09,10,11,12,13,19'
 				},
+=cut=
 				{
 					id => 22, 
 					title => 'MostRecent_Parent1SchoolEducation is mandatory',
@@ -205,8 +207,8 @@
 				},
 				{
 					id => 39, 
-					title => 'Sensitive is mandatory',
-					rule =>'notblank:Sensitive'
+					title => 'OfflineDelivery uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsYesOrNoCategoryType ',
+					rule =>'enum:OfflineDelivery=N,U,X,Y'
 				},
 				{
 					id => 40, 
@@ -233,6 +235,11 @@
 					title => 'MostRecent_SchoolLocalId is mandatory',
 					rule =>'notblank:MostRecent_SchoolLocalId'
 				},
+				{
+                                        id => 45,
+                                        title => 'Must have a registered language',
+                                        rule => 'subquerycount:RefId=Language/Person_RefId'
+                                },
 			],
 			weight => 0.1,
 		},
@@ -275,11 +282,16 @@
 					title => 'Email is mandatory', 
 					rule => 'notblank:Email'
 				},
+				{
+					id => 56, 
+					title => 'MostRecent/SchoolACARAId is mandatory', 
+					rule => 'notblank:MostRecent_SchoolACARAId'
+				},
 
 			],
 			weight => 0.1,
 		},
-		
+=pod=		
 		{
 			id => '3',
 			title => 'SystemRole Filled',
@@ -339,7 +351,7 @@
 			],
 			weight => 0.1,
 		},
-
+=cut=
 	]
 };
 
