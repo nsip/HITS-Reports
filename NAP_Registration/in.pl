@@ -76,48 +76,8 @@
 					title => 'LBOTE uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsYesOrNoCategoryType ',
 					rule =>'enum:LBOTE=N,U,X,Y'
 				},
-=pod=
-				{
-					id => 14, 
-					title => 'MostRecent_Parent1Sex is mandatory',
-					rule =>'notblank:MostRecent_Parent1Sex'
-				},
-				{
-					id => 15, 
-					title => 'MostRecent_Parent1Sex uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsSexCodeType ',
-					rule =>'enum:MostRecent_Parent1Sex=1,2,3,9'
-				},
-				{
-					id => 16, 
-					title => 'MostRecent_Parent2Sex is mandatory',
-					rule =>'notblank:MostRecent_Parent2Sex'
-				},
-				{
-					id => 17, 
-					title => 'MostRecent_Parent2Sex uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsSexCodeType ',
-					rule =>'enum:MostRecent_Parent2Sex=1,2,3,9'
-				},
-				{
-					id => 18, 
-					title => 'MostRecent_Parent1Relationship is mandatory',
-					rule =>'notblank:MostRecent_Parent1Relationship'
-				},
-				{
-					id => 19, 
-					title => 'MostRecent_Parent1Relationship uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsRelationshipToStudentType ',
-					rule =>'enum:MostRecent_Parent1Relationship=01,02,03,04,05,06,07,08,09,10,11,12,13,19'
-				},
-				{
-					id => 20, 
-					title => 'MostRecent_Parent2Relationship is mandatory',
-					rule =>'notblank:MostRecent_Parent2Relationship'
-				},
-				{
-					id => 21, 
-					title => 'MostRecent_Parent2Relationship uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsRelationshipToStudentType ',
-					rule =>'enum:MostRecent_Parent2Relationship=01,02,03,04,05,06,07,08,09,10,11,12,13,19'
-				},
-=cut=
+
+
 				{
 					id => 22, 
 					title => 'MostRecent_Parent1SchoolEducation is mandatory',
@@ -241,4 +201,50 @@
 
 __END__
 
+=pod
+
+
+				{
+					id => 14, 
+					title => 'MostRecent_Parent1Sex is mandatory',
+					rule =>'notblank:MostRecent_Parent1Sex'
+				},
+				{
+					id => 15, 
+					title => 'MostRecent_Parent1Sex uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsSexCodeType ',
+					rule =>'enum:MostRecent_Parent1Sex=1,2,3,9'
+				},
+				{
+					id => 16, 
+					title => 'MostRecent_Parent2Sex is mandatory',
+					rule =>'notblank:MostRecent_Parent2Sex'
+				},
+				{
+					id => 17, 
+					title => 'MostRecent_Parent2Sex uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsSexCodeType ',
+					rule =>'enum:MostRecent_Parent2Sex=1,2,3,9'
+				},
+				{
+					id => 18, 
+					title => 'MostRecent_Parent1Relationship is mandatory',
+					rule =>'notblank:MostRecent_Parent1Relationship'
+				},
+				{
+					id => 19, 
+					title => 'MostRecent_Parent1Relationship uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsRelationshipToStudentType ',
+					rule =>'enum:MostRecent_Parent1Relationship=01,02,03,04,05,06,07,08,09,10,11,12,13,19'
+				},
+				{
+					id => 20, 
+					title => 'MostRecent_Parent2Relationship is mandatory',
+					rule =>'notblank:MostRecent_Parent2Relationship'
+				},
+				{
+					id => 21, 
+					title => 'MostRecent_Parent2Relationship uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsRelationshipToStudentType ',
+					rule =>'enum:MostRecent_Parent2Relationship=01,02,03,04,05,06,07,08,09,10,11,12,13,19'
+				},
+
+
+=
 COMMON

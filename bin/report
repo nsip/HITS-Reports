@@ -4,6 +4,7 @@ use YAML;
 use DBI;
 use Data::Dumper;
 use HITS::Report::Rules;
+use JSON;
 
 # ----------------------------------------------------------------------
 # What rules and template
@@ -196,5 +197,6 @@ $report->{score} = {
 };
 
 # XXX JSON output
-print Dumper($report);
+# print Dumper($report);
+print to_json($report, { utf8 => 1, pretty => 1 } );
 
