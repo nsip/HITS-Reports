@@ -156,57 +156,10 @@
 					title => 'Name is mandatory', 
 					rule => 'notblank:Name'
 				},
-				{
-					id => 32, 
-					title => 'FinancialClass_RefId is mandatory ', 
-					rule =>'notblank:FinancialClass_RefId'
-				},
-				{
-					id => 33, 
-					title => 'FinancialClass_RefId points to existing financial class', 
-					rule => 'lookup:FinancialClass_RefId=FinancialClass/RefId'
-				},				
 			],
 			weight => 0.1,
 		},
-		
-		{
-			id => 'R4',
-			title => 'FinancialClass Filled',
-			description => 'This test validates the financial class records submitted to the database',
-			query => q{
-				SELECT
-					*
-				FROM
-					FinancialClass
-			},
-			tables => ['FinancialClass'],
-			rule => 'morethan:0', 
-			subtests => [
-				{
-					id => 34, 
-					title => 'RefId is mandatory', 
-					rule => 'notblank:RefId'
-				},
-				{
-					id => 35, 
-					title => 'Name is mandatory', 
-					rule => 'notblank:Name'
-				},
-				{
-					id => 36, 
-					title => 'ClassType is mandatory', 
-					rule => 'notblank:ClassType'
-				},
-				{
-					id => 37, 
-					title => 'ClassType value uses prescribed enums : Asset Liability Revenue Expense ', 
-					rule =>'enum:ClassType=Asset,Liability,Revenue,Expense'
-				},
-			],
-			weight => 0.1,
-		},
-
+	
 		{
 			id => 'R5',
 			title => 'ChargedLocationInfo Filled',
