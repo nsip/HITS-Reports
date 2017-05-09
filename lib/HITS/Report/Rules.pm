@@ -61,6 +61,7 @@ sub lookup_sifrefobject {
 	my ($field, $table) = split(/=/, $rule, 2);
 	$table =~ s|/.+$||;
 	return 1 unless $row->{$field};
+	$self->_lookups($row->{$table});
 	if ( $self->{lookup}{$row->{$table}}{$row->{$field}} ) {
 		return 1;
 	}

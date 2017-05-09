@@ -112,7 +112,7 @@
 				{
 					id => 26, 
 					title => 'FinancialAccount_RefId is mandatory', 
-					rule => 'notblank:RefId'
+					rule => 'notblank:FinancialAccount_RefId'
 				},
 				{
 					id => 27, 
