@@ -1,6 +1,6 @@
 {
-	title => 'Classroom Assessment Report',
-	description => 'Test Classroom Assessment data has been created correctly',
+	title => 'Gradebook Report',
+	description => 'Test Gradebook data has been created correctly',
 
 	tests => [
 		{
