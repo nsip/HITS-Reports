@@ -133,7 +133,7 @@
 				{
 					id => 42, 
 					title => 'Check number of times', 
-					rule =>'subquerycount:RefId=StudentAttendanceTimeList_AttendanceTime/StudentAttendanceTimeListRefId'
+					rule =>'subquerycount:RefId=StudentAttendanceTimeList_AttendanceTime/StudentAttendanceTimeList_RefId'
 				},
 			],
 			weight => 0.1,
