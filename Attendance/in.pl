@@ -155,7 +155,7 @@
 				{
 					id => 43, 
 					title => 'AttendanceCode is mandatory', 
-					rule => 'notblank:AttendanceCode'
+					rule => 'notblank:Code'
 				},
 				{
 					id => 44, 
@@ -175,7 +175,7 @@
 				{
 					id => 47, 
 					title => 'Attendance code uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsAttendanceCodeType ', 
-					rule =>'enum:AttendanceCode=0,100,101,111,112,113,114,116,117,118,119,200,201,202,203,204,205,206,207,208,209,210,211,300,400,401,500,600,601,602,603,604,605,606,607,608,609,610,611,612,700,701,702,800,801,802,803,804,805,900,901,902,903,904,999'
+					rule =>'enum:Code=0,100,101,111,112,113,114,116,117,118,119,200,201,202,203,204,205,206,207,208,209,210,211,300,400,401,500,600,601,602,603,604,605,606,607,608,609,610,611,612,700,701,702,800,801,802,803,804,805,900,901,902,903,904,999'
 				},
 				{
 					id => 48, 
@@ -232,12 +232,12 @@
 				{
 					id => 19, 
 					title => 'StartDate is mandatory', 
-					rule => 'notblank:StartDate'
+					rule => 'notblank:StartDay'
 				},
 				{
 					id => 20, 
 					title => 'EndDate is mandatory', 
-					rule => 'notblank:EndDate'
+					rule => 'notblank:EndDay'
 				},
 				{
 					id => 21, 

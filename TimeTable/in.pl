@@ -114,7 +114,7 @@
 #				},
 #=cut=
 				{
-					id => M10,
+					id => 'M10',
 					title => 'Validate StudentPersonalRefId exists in local system',
 					rule => 'lookup:StudentPersonal_RefId=StudentPersonal/RefId'
 				},
@@ -163,7 +163,7 @@
 #					rule => 'subquerymatch:StaffPersonal_FamilyName=StaffPersonal/FamilyName;StaffPersonal_RefId=StaffPersonal/RefId'
 #				},
 				{
-					id => M11,
+					id => 'M11',
 					title => 'Validate StaffPersonalRefId exists in local system',
 					rule => 'lookup:StaffPersonal_RefId=StaffPersonal/RefId'
 				},
@@ -373,7 +373,7 @@
 					rule =>'notblank:RefId'
 				},
 				{
-					id => 'M11', 
+					id => 'M11b', 
 					title => 'SchoolInfo_RefId is mandatory', 
 					rule =>'notblank:SchoolInfo_RefId'
 				},

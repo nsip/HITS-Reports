@@ -192,18 +192,18 @@
 				{
 					id => 36, 
 					title => 'CountryOfBirth is mandatory',
-					rule =>'notblank:CountryOfBirth'
+					rule =>'notblank:CountryofBirth'
 				},
 				# not writing an enum validator for http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsStandardAustralianClassificationOfCountriesSACCType . The only real validation is four-digit number, which the current ruls language cannot represent 
 				{
 					id => 37, 
 					title => 'FFPOS is mandatory',
-					rule =>'notblank:FFPOS'
+					rule =>'notblank:MostRecent_FFPOS'
 				},
 				{
 					id => 38, 
 					title => 'FFPOS uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsFFPOSStatusCodeType ',
-					rule =>'enum:FFPOS=1,2,9'
+					rule =>'enum:MostRecent_FFPOS=1,2,9'
 				},
 				{
 					id => 39, 
@@ -213,17 +213,17 @@
 				{
 					id => 40, 
 					title => 'Sensitive uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsYesOrNoCategoryType ',
-					rule =>'enum:Sensitive=N,U,X,Y'
+					rule =>'enum:SensitiveData=N,U,X,Y'
 				},
                                 {
                                         id => 41,
                                         title => 'TestLevel is mandatory',
-                                        rule =>'notblank:TestLevel',
+                                        rule =>'notblank:MostRecent_TestLevel',
                                 },
                                 {
                                         id => 42,
                                         title => 'TestLevel uses prescribed SIF enum: 3,5,7,9',
-                                        rule =>'enum:TesTLevel=3,5,7,9',
+                                        rule =>'enum:MostRecent_TestLevel=3,5,7,9',
                                 },
 				{
 					id => 43, 
@@ -243,7 +243,7 @@
 			],
 			weight => 0.1,
 		},
-
+=pod
 		{
 			id => '2',
 			title => 'StaffPersonal Filled',
@@ -291,7 +291,6 @@
 			],
 			weight => 0.1,
 		},
-=pod=		
 		{
 			id => '3',
 			title => 'SystemRole Filled',

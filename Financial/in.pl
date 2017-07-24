@@ -80,12 +80,12 @@
 				{
 					id => 13, 
 					title => 'LocationInfoRefId points to existing location', 
-					rule =>'lookup:LocationInfoRefId=LocationInfo/RefId'
+					rule =>'lookup:LocationInfo_RefId=LocationInfo/RefId'
 				},
 				{
 					id => 14, 
 					title => 'RelatedPurchaseOrderRefId points to existing purchase order', 
-					rule =>'lookup:RelatedPurchaseOrderRefId=PurchaseOrder/RefId'
+					rule =>'lookup:Related_PurchaseOrder_RefId=PurchaseOrder/RefId'
 				},
 				{
 					id => 15, 
