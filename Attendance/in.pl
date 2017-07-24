@@ -123,7 +123,7 @@
 				{
 					id => 40, 
 					title => 'CalendarDate is mandatory', 
-					rule =>'notblank:CalendarDate'
+					rule =>'notblank:AttendanceTimeListDate'
 				},
 				{
 					id => 41, 
