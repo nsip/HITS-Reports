@@ -232,12 +232,12 @@
 				{
 					id => 19, 
 					title => 'StartDate is mandatory', 
-					rule => 'notblank:StartDay'
+					rule => 'notblank:StartDate'
 				},
 				{
 					id => 20, 
 					title => 'EndDate is mandatory', 
-					rule => 'notblank:EndDay'
+					rule => 'notblank:EndDate'
 				},
 				{
 					id => 21, 
