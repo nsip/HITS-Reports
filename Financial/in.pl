@@ -586,11 +586,11 @@
 					title => 'AddressRole value uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsAddressRoleType ', 
 					rule =>'enum:AddressRole=012A,012B,012C,013A,1073,1074,1075,2382,9999'
 				},
-				{
-					id => 90, 
-					title => 'Line1 is mandatory', 
-					rule => 'notblank:Line1'
-				},
+				#{
+				#id => 90, 
+				#title => 'Line1 is mandatory', 
+				#rule => 'notblank:Line1'
+				#},
 				{
 					id => 91, 
 					title => 'City is mandatory', 
