@@ -156,6 +156,27 @@
 					title => 'Name is mandatory', 
 					rule => 'notblank:Name'
 				},
+                                # not currently in database!
+				{
+					id => "31a", 
+					title => 'ClassType is mandatory', 
+					rule => 'notblank:ClassType'
+				},
+				{
+					id => "31d", 
+					title => 'ClassType value uses prescribed enums : Asset, Liability, Revenue, Expense',
+					rule =>'enum:ClassType=Asset,Liability,Revenue,Expense'
+				},
+				{
+					id => "31b", 
+					title => 'CreationDate is mandatory', 
+					rule => 'notblank:CreationDate'
+				},
+				{
+					id => "31c", 
+					title => 'CreationTime is mandatory', 
+					rule => 'notblank:CreationTime'
+				},
 			],
 			weight => 0.1,
 		},
@@ -199,11 +220,6 @@
 					rule => 'notblank:Name'
 				},
 				{
-					id => 43, 
-					title => 'LocalId is mandatory', 
-					rule =>'notblank:LocalId'
-				},
-				{
 					id => 44, 
 					title => 'Parent_LocationInfo_RefId points to existing chargeable location', 
 					rule => 'lookup:Parent_LocationInfo_RefId=LocationInfo/RefId'
@@ -244,6 +260,11 @@
 					id => 48, 
 					title => 'VendorInfo_RefId points to existing vendor', 
 					rule => 'lookup:VendorInfo_RefId=VendorInfo/RefId'
+				},
+				{
+					id => "48a", 
+					title => 'Invoice_RefId points to existing invoice', 
+					rule => 'lookup:Invoice_RefId=Invoice/RefId'
 				},
 				{
 					id => 49, 
@@ -356,7 +377,7 @@
 				},
 				{
 					id => 64, 
-					title => 'EmployeePersonal_RefId points to existing purchase order', 
+					title => 'EmployeePersonal_RefId points to existing staff member', 
 					rule => 'lookup:EmployeePersonal_RefId=StaffPersonal/RefId'
 				},
 				{
@@ -542,7 +563,7 @@
 				{
 					id => 84, 
 					title => 'BilledEntity_SIFRefObject value uses prescribed enums : StudentContactPersonal, VendorInfo ', 
-					rule =>'enum:BilledEntity_SIFRefObject=StudentContactPersonal,VendorInfo'
+					rule =>'enum:BilledEntity_SIFRefObject=StudentContactPersonal,VendorInfo,StaffPersonal,StudentPersonal'
 				},
 				{
 					id => 85, 
