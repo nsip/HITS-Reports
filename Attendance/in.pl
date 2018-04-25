@@ -66,7 +66,7 @@
 				{
 					id => 10, 
 					title => 'Attendance code uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsAttendanceCodeType ', 
-					rule =>'enum:AttendanceCode=0,100,101,111,112,113,114,116,117,118,119,200,201,202,203,204,205,206,207,208,209,210,211,300,400,401,500,600,601,602,603,604,605,606,607,608,609,610,611,612,700,701,702,800,801,802,803,804,805,900,901,902,903,904,999'
+					rule =>'enum:AttendanceCode=0,100,101,102,111,112,113,114,116,117,118,119,200,201,202,203,204,205,206,207,208,209,210,211,300,400,401,500,600,601,602,603,604,605,606,607,608,609,610,611,612,613,614,615,616,617,618,700,701,702,800,801,802,803,804,805,900,901,902,903,904,905,999'
 				},
 				{
 					id => 11, 
@@ -139,7 +139,7 @@
 			weight => 0.1,
 		},
 		
-				{
+		{
 			id => 'R5',
 			title => 'StudentAttendanceTimeList AttendanceTimes Filled',
 			description => 'This test validates the attendance times list in the student attendance time list records submitted to the database',
@@ -175,16 +175,143 @@
 				{
 					id => 47, 
 					title => 'Attendance code uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsAttendanceCodeType ', 
-					rule =>'enum:Code=0,100,101,111,112,113,114,116,117,118,119,200,201,202,203,204,205,206,207,208,209,210,211,300,400,401,500,600,601,602,603,604,605,606,607,608,609,610,611,612,700,701,702,800,801,802,803,804,805,900,901,902,903,904,999'
+					rule =>'enum:Code=0,100,101,102,111,112,113,114,116,117,118,119,200,201,202,203,204,205,206,207,208,209,210,211,300,400,401,500,600,601,602,603,604,605,606,607,608,609,610,611,612,613,614,615,616,617,618,700,701,702,800,801,802,803,804,805,900,901,902,903,904,905,999'
 				},
 				{
 					id => 48, 
 					title => 'Attendance status uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsAttendanceStatusType',
 					rule =>'enum:AttendanceStatus=01,02,99,NA'
 				},				
+                                {
+                                        id => 49,
+                                        title => 'TimeTableSubject_RefId points to existing timetable subject',
+                                        rule => 'lookup:TimeTableSubject_RefId=TimeTableSubject/RefId'
+                                },
 			],
 			weight => 0.1,
 		},
+
+                {
+                        id => 'R6',
+                        title => 'StudentAttendanceTimeList PeriodAttendance Filled',
+                        description => 'This test validates the period attendance list in the student attendance time list records submitted to the database',
+                        query => q{
+                                SELECT
+                                        *
+                                FROM
+                                        StudentAttendanceTimeList_PeriodAttendance
+                        },
+                        tables => ['StudentAttendanceTimeList_PeriodAttendance'],
+                        rule => 'morethan:0',
+                        subtests => [
+                                {
+                                        id => 50,
+                                        title => 'AttendanceCode is mandatory',
+                                        rule => 'notblank:attendanceCode'
+                                },
+                                {
+                                        id => 51,
+                                        title => 'AttendanceStatus is mandatory',
+                                        rule => 'notblank:attendanceStatus'
+                                },
+                                {
+                                        id => 52,
+                                        title => 'AttendanceDate is mandatory',
+                                        rule => 'notblank:attendanceDate'
+                                },
+                                {
+                                        id => 53,
+                                        title => 'Attendance code uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsAttendanceCodeType ',
+					rule =>'enum:attendanceCode=0,100,101,102,111,112,113,114,116,117,118,119,200,201,202,203,204,205,206,207,208,209,210,211,300,400,401,500,600,601,602,603,604,605,606,607,608,609,610,611,612,613,614,615,616,617,618,700,701,702,800,801,802,803,804,805,900,901,902,903,904,905,999'
+                                },
+                                {
+                                        id => 54,
+                                        title => 'Attendance status uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsAttendanceStatusType',
+                                        rule =>'enum:attendanceStatus=01,02,99,NA'
+                                },
+                                {
+                                        id => 55,
+                                        title => 'ScheduledActivity_RefId points to existing scheduled activity',
+                                        rule => 'lookup:scheduledActivity_RefId=ScheduledActivity/RefId'
+                                },
+                                {
+                                        id => 56,
+                                        title => 'timeTableSubject_RefId points to existing timetable subject',
+                                        rule => 'lookup:timeTableSubject_RefId=TimeTableSubject/RefId'
+                                },
+                                {
+                                        id => 57,
+                                        title => 'timeTableCell_RefId points to existing timetable subject',
+                                        rule => 'lookup:timeTableCell_RefId=TimeTableCell/RefId'
+                                },
+                        ],
+                        weight => 0.1,
+                },
+
+                {
+                        id => 'R7',
+                        title => 'StudentAttendanceTimeList PeriodAttendance RoomInfo Filled',
+                        description => 'This test validates the rooms for the period attendance list in the student attendance time list records submitted to the database',
+                        query => q{
+                                SELECT
+                                        *
+                                FROM
+                                        StudentAttendanceTimeList_PeriodAttendance_RoomInfo
+                        },
+                        tables => ['StudentAttendanceTimeList_PeriodAttendance_RoomInfo'],
+                        rule => 'morethan:0',
+                        subtests => [
+                                {
+                                        id => 58,
+                                        title => 'RoomInfo_RefId is mandatory',
+                                        rule => 'notblank:RoomInfo_RefId'
+                                },
+                                {
+                                        id => 59,
+                                        title => 'RoomInfo_RefId points to existing room',
+                                        rule => 'lookup:RoomInfo_RefId=RoomInfo/RefId'
+                                },
+                        ],
+                        weight => 0.1,
+                },
+
+                {       
+                        id => 'R8',
+                        title => 'StudentAttendanceTimeList PeriodAttendance TeacherCover Filled',
+                        description => 'This test validates the teacher coverage descriptions for the period attendance list in the student attendance time list records submitted to the database', 
+                        query => q{
+                                SELECT
+                                        *
+                                FROM
+                                        StudentAttendanceTimeList_PeriodAttendance_TeacherCover
+                        },
+                        tables => ['StudentAttendanceTimeList_PeriodAttendance_TeacherCover'],
+                        rule => 'morethan:0',
+                        subtests => [   
+                                {       
+                                        id => 60,
+                                        title => 'staffPersonal_RefId is mandatory',
+                                        rule => 'notblank:staffPersonal_RefId'
+                                },
+                                {
+                                        id => 61,
+                                        title => 'staffPersonal_RefId points to existing staff member',
+                                        rule => 'lookup:staffPersonal_RefId=StaffPersonal/RefId'
+                                },
+                                {
+                                        id => 62,
+                                        title => 'Credit uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsTeacherCoverCreditType',
+                                        rule =>'enum:credit=Casual,Extra,In-Lieu,Underload',
+                                },
+                                {
+                                        id => 63,
+                                        title => 'Supervision uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsTeacherCoverSupervisionType',
+                                        rule =>'enum:supervision=MergedClass,MinimalSupervision,Normal',
+                                },
+                        ],
+                        weight => 0.1,
+                },
+
 		
 		{
 			id => 'R2',
@@ -315,7 +442,7 @@
 				{
 					id => 32, 
 					title => 'Attendance code uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsAttendanceCodeType ', 
-					rule =>'enum:AttendanceCode=0,100,101,111,112,113,114,116,117,118,119,200,201,202,203,204,205,206,207,208,209,210,211,300,400,401,500,600,601,602,603,604,605,606,607,608,609,610,611,612,700,701,702,800,801,802,803,804,805,900,901,902,903,904,999'
+					rule =>'enum:AttendanceCode=0,100,101,102,111,112,113,114,116,117,118,119,200,201,202,203,204,205,206,207,208,209,210,211,300,400,401,500,600,601,602,603,604,605,606,607,608,609,610,611,612,613,614,615,616,617,618,700,701,702,800,801,802,803,804,805,900,901,902,903,904,905,999'
 				},
 				{
 					id => 33, 
