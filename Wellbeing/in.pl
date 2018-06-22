@@ -339,8 +339,8 @@
                                 },
                                 {       
                                         id => 41, 
-                                        title => 'WellbeingEventLocationDetails_Class value uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsWellbeingEventLocationType',
-                                        rule =>'enum:WellbeingEventLocationDetails_Class=C,Ex,In,L,O,Off,On,Ov,P'
+                                        title => 'WellbeingEventLocationDetails_EventLocation value uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsWellbeingEventLocationType',
+                                        rule =>'enum:WellbeingEventLocationDetails_EventLocation=C,Ex,In,L,O,Off,On,Ov,P'
                                 },
                                 {       
                                         id => 42, 
@@ -355,7 +355,7 @@
                                 {
                                         id => 44,
                                         title => 'ConfidentialFlag uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsYesOrNoCategoryType',
-                                        rule =>'enum:Status=N,U,X,Y'
+                                        rule =>'enum:ConfidentialFlag=N,U,X,Y'
                                 },
 
                         ],
