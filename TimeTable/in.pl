@@ -19,11 +19,11 @@
 			tables => ['TeachingGroup'],
 			rule => 'morethan:0', 
 			subtests => [
-				{
-					id => 17, 
-					title => 'Validate SchoolInfoRefId exists in local system (warning)', 
-					rule => 'lookup:SchoolInfo_RefId=SchoolInfo/RefId'
-				},
+                          #				{
+                          #		id => 17, 
+                          #		title => 'Validate SchoolInfoRefId exists in local system (warning)', 
+                          #		rule => 'lookup:SchoolInfo_RefId=SchoolInfo/RefId'
+                          #	},
 				{
 					id => 21, 
 					title => 'Check number of students', 
@@ -41,11 +41,11 @@
 #					rule => 'subquerymatch:SchoolInfo_LocalId=SchoolInfo/LocalId;SchoolInfo_RefId=SchoolInfo/RefId'
 #				},
 #=cut
-				{
-					id => 19,
-					title => 'Validate TimeTableSubjectRefId exists in local system (warning)', 
-					rule => 'lookup:TimeTableSubject_RefId=TimeTableSubject/RefId'
-				},
+                                #	{
+                                #	id => 19,
+                                #	title => 'Validate TimeTableSubjectRefId exists in local system (warning)', 
+                                ##	rule => 'lookup:TimeTableSubject_RefId=TimeTableSubject/RefId'
+                                #},
 #=pod=
 #				{
 #					id => 20,
@@ -113,11 +113,11 @@
 #					rule => 'subquerymatch:StudentPersonal_FamilyName=StudentPersonal/FamilyName;StudentPersonal_RefId=StudentPersonal/RefId'
 #				},
 #=cut=
-				{
-					id => 'M10',
-					title => 'Validate StudentPersonalRefId exists in local system',
-					rule => 'lookup:StudentPersonal_RefId=StudentPersonal/RefId'
-				},
+                          #{
+                          #		id => 'M10',
+                          #		title => 'Validate StudentPersonalRefId exists in local system',
+                          #		rule => 'lookup:StudentPersonal_RefId=StudentPersonal/RefId'
+                          #	},
 			],
 			weight => 0.5,
 		},
@@ -162,11 +162,11 @@
 #					title => 'Validate MiddleName exists in local system', 
 #					rule => 'subquerymatch:StaffPersonal_FamilyName=StaffPersonal/FamilyName;StaffPersonal_RefId=StaffPersonal/RefId'
 #				},
-				{
-					id => 'M11',
-					title => 'Validate StaffPersonalRefId exists in local system',
-					rule => 'lookup:StaffPersonal_RefId=StaffPersonal/RefId'
-				},
+                          #	{
+                          #		id => 'M11',
+                          #		title => 'Validate StaffPersonalRefId exists in local system',
+                          #		rule => 'lookup:StaffPersonal_RefId=StaffPersonal/RefId'
+                          #	},
 			],
 			weight => 0.5,
 		},
@@ -184,11 +184,11 @@
 			tables => ['TimeTableCell'],
 			rule => 'morethan:0',
 			subtests => [
-				{
-					id => '36b', 
-					title => 'Validate SchoolInfoRefId exists in local system', 
-					rule => 'lookup:SchoolInfo_RefId=SchoolInfo/RefId'
-				},
+                          #	{
+                          #		id => '36b', 
+                          #		title => 'Validate SchoolInfoRefId exists in local system', 
+                          #		rule => 'lookup:SchoolInfo_RefId=SchoolInfo/RefId'
+                          #	},
 #=pod=
 #				{
 #					id => '37', 
@@ -201,21 +201,21 @@
 					title => 'Validate TimeTableRefId exists in local system', 
 					rule => 'notblank:TimeTable_RefId'
 				},
-				{
-					id => '27b', 
-					title => 'Validate TimeTableRefId exists in local system', 
-					rule => 'lookup:TimeTable_RefId=TimeTable/RefId'
-				},
+                                #{
+                                #	id => '27b', 
+                                #	title => 'Validate TimeTableRefId exists in local system', 
+                                #	rule => 'lookup:TimeTable_RefId=TimeTable/RefId'
+                                #},
 				{
 					id => '28a', 
 					title => 'Validate TimeTableSubjectRefId exists in local system', 
 					rule => 'notblank:TimeTableSubject_RefId'
 				},
-				{
-					id => '28b', 
-					title => 'Validate TimeTableSubjectRefId exists in local system', 
-					rule => 'lookup:TimeTableSubject_RefId=TimeTableSubject/RefId'
-				},
+                                #{
+                                #	id => '28b', 
+                                #	title => 'Validate TimeTableSubjectRefId exists in local system', 
+                                #	rule => 'lookup:TimeTableSubject_RefId=TimeTableSubject/RefId'
+                                #},
 #=pod=
 #				{
 #					id => '29', 
@@ -228,11 +228,11 @@
 					title => 'Validate TeachingGroupRefId exists in local system', 
 					rule => 'notblank:TeachingGroup_RefId'
 				},
-				{
-					id => '30b', 
-					title => 'Validate TeachingGroupRefId exists in local system', 
-					rule => 'lookup:TeachingGroup_RefId=TeachingGroup/RefId'
-				},
+                                #{
+                                #	id => '30b', 
+                                #	title => 'Validate TeachingGroupRefId exists in local system', 
+                                #	rule => 'lookup:TeachingGroup_RefId=TeachingGroup/RefId'
+                                #},
 #=pod=
 #				{
 #					id => '31', 
@@ -245,11 +245,11 @@
 					title => 'Validate RoomInfoRefId exists in local system', 
 					rule => 'notblank:RoomInfo_RefId'
 				},
-				{
-					id => '32b', 
-					title => 'Validate RoomInfoRefId exists in local system', 
-					rule => 'lookup:RoomInfo_RefId=RoomInfo/RefId'
-				},
+                                #{
+                                #	id => '32b', 
+                                #	title => 'Validate RoomInfoRefId exists in local system', 
+                                #	rule => 'lookup:RoomInfo_RefId=RoomInfo/RefId'
+                                #},
 #=pod=
 #				{
 #					id => '33', 
@@ -262,11 +262,11 @@
 					title => 'Validate StaffPersonalRefId exists in local system (warning)', 
 					rule => 'notblank:StaffPersonal_RefId'
 				},
-				{
-					id => '34b', 
-					title => 'Validate StaffPersonalRefId exists in local system', 
-					rule => 'lookup:StaffPersonal_RefId=StaffPersonal/RefId'
-				},
+                                #{
+                                #	id => '34b', 
+                                #	title => 'Validate StaffPersonalRefId exists in local system', 
+                                #	rule => 'lookup:StaffPersonal_RefId=StaffPersonal/RefId'
+                                #},
 #=pod
 #				{
 #					id => '35', 
@@ -310,11 +310,11 @@
 			tables => ['ScheduledActivity'],
 			rule => 'morethan:0',
 			subtests => [
-				{
-					id => '38a', 
-					title => 'The provided ScheduleActivity objects are dated instances of TimeTableCell', 
-					rule => 'lookup:TimeTableCell_RefId=TimeTableCell/RefId'
-				},
+                          #				{
+                          #		id => '38a', 
+                          #		title => 'The provided ScheduleActivity objects are dated instances of TimeTableCell', 
+                          #		rule => 'lookup:TimeTableCell_RefId=TimeTableCell/RefId'
+                          #	},
 				{
 					id => '38b', 
 					title => 'The provided ScheduleActivity objects are dated instances of TimeTableCell', 
@@ -377,11 +377,11 @@
 					title => 'SchoolInfo_RefId is mandatory', 
 					rule =>'notblank:SchoolInfo_RefId'
 				},
-				{
-					id => 'M11a', 
-					title => 'SchoolInfo_RefId exists', 
-					rule =>'lookup:SchoolInfo_RefId=SchoolInfo/RefId'
-				},
+                                #				{
+                                #	id => 'M11a', 
+                                #	title => 'SchoolInfo_RefId exists', 
+                                #	rule =>'lookup:SchoolInfo_RefId=SchoolInfo/RefId'
+                                #},
 			],
 			weight => 0.5,
 		},
@@ -410,11 +410,11 @@
 					title => 'RoomInfoRefId is mandatory', 
 					rule =>'notblank:RoomInfo_RefId'
 				},
-				{
-					id => 'M9a', 
-					title => 'RoomInfoRefId exists', 
-					rule =>'lookup:RoomInfo_RefId=RoomInfo/RefId'
-				},
+                                #				{
+                                #	id => 'M9a', 
+                                #	title => 'RoomInfoRefId exists', 
+                                #	rule =>'lookup:RoomInfo_RefId=RoomInfo/RefId'
+                                #},
 			],
 			weight => 0.5,
 		},
@@ -443,11 +443,11 @@
 					title => 'TeachingGroupRefId is mandatory', 
 					rule =>'notblank:TeachingGroup_RefId'
 				},
-				{
-					id => 'M12a', 
-					title => 'TeachingGroupRefId exists', 
-					rule =>'lookup:TeachingGroup_RefId=TeachingGroup/RefId'
-				},
+                                #{
+                                #	id => 'M12a', 
+                                #	title => 'TeachingGroupRefId exists', 
+                                #	rule =>'lookup:TeachingGroup_RefId=TeachingGroup/RefId'
+                                #},
 			],
 			weight => 0.5,
 		},
@@ -476,11 +476,11 @@
 					title => 'StaffPersonalRefId is mandatory', 
 					rule =>'notblank:StaffPersonal_RefId'
 				},
-				{
-					id => 'M13a', 
-					title => 'StaffPersonalRefId exists', 
-					rule =>'lookup:StaffPersonal_RefId=StaffPersonal/RefId'
-				},
+                                #				{
+                                #	id => 'M13a', 
+                                #	title => 'StaffPersonalRefId exists', 
+                                #	rule =>'lookup:StaffPersonal_RefId=StaffPersonal/RefId'
+                                #},
 			],
 			weight => 0.5,
 		},
@@ -502,11 +502,11 @@
 					title => 'StudentPersonalRefId is mandatory', 
 					rule =>'notblank:StudentPersonal_RefId'
 				},
-				{
-					id => 'M14a', 
-					title => 'StudentPersonalRefId exists', 
-					rule =>'lookup:StudentPersonal_RefId=StudentPersonal/RefId'
-				},
+                                #{
+                                #	id => 'M14a', 
+                                #	title => 'StudentPersonalRefId exists', 
+                                #	rule =>'lookup:StudentPersonal_RefId=StudentPersonal/RefId'
+                                #},
 			],
 			weight => 0.5,
 		},
@@ -523,11 +523,11 @@
 			tables => ['TimeTable'],
 			rule => 'morethan:0',
 			subtests => [
-				{
-					id => 15, 
-					title => 'Validate SchoolInfoRefId exists in local system (warning)', 
-					rule => 'lookup:SchoolInfo_RefId=SchoolInfo/RefId'
-				},
+                          #{
+                          #		id => 15, 
+                          #		title => 'Validate SchoolInfoRefId exists in local system (warning)', 
+                          #		rule => 'lookup:SchoolInfo_RefId=SchoolInfo/RefId'
+                          #	},
 #=pod=
 #				{
 #					id => '16a', 

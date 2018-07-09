@@ -32,16 +32,16 @@
 					title => 'SchoolInfo_RefId is mandatory', 
 					rule => 'notblank:SchoolInfo_RefId'
 				},
-				{
-					id => 4, 
-					title => 'SchoolInfo_RefId points to existing school', 
-					rule => 'lookup:SchoolInfo_RefId=SchoolInfo/RefId'
-				},
-				{
-					id => 5, 
-					title => 'StudentPersonal_RefId points to existing student', 
-					rule => 'lookup:StudentPersonal_RefId=StudentPersonal/RefId'
-				},
+                                #				{
+                                #	id => 4, 
+                                #	title => 'SchoolInfo_RefId points to existing school', 
+                                #	rule => 'lookup:SchoolInfo_RefId=SchoolInfo/RefId'
+                                #},
+                                #{
+                                #	id => 5, 
+                                #	title => 'StudentPersonal_RefId points to existing student', 
+                                #	rule => 'lookup:StudentPersonal_RefId=StudentPersonal/RefId'
+                                #},
 				{
 					id => 6, 
 					title => 'PersonalisedPlanCategory is mandatory', 
@@ -52,11 +52,11 @@
 					title => 'PersonalisedPlanStartDate is mandatory', 
 					rule =>'notblank:PersonalisedPlanStartDate'
 				},
-				{
-					id => 8, 
-					title => 'PersonalisedPlanCategory value uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsPersonalisedPlanType ',
-					rule =>'enum:PersonalisedPlanCategory=Ac,At,B,L,M,O,S'
-				},
+                                #{
+                                #	id => 8, 
+                                #	title => 'PersonalisedPlanCategory value uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsPersonalisedPlanType ',
+                                #	rule =>'enum:PersonalisedPlanCategory=Ac,At,B,L,M,O,S'
+                                #},
 			],
 			weight => 0.1,
 		},
@@ -111,16 +111,16 @@
                                         title => 'SchoolInfo_RefId is mandatory',
                                         rule => 'notblank:SchoolInfo_RefId'
                                 },
-                                {
-                                        id => 13,
-                                        title => 'SchoolInfo_RefId points to existing school',
-                                        rule => 'lookup:SchoolInfo_RefId=SchoolInfo/RefId'
-                                },
-                                {
-                                        id => 14,
-                                        title => 'StudentPersonal_RefId points to existing student',
-                                        rule => 'lookup:StudentPersonal_RefId=StudentPersonal/RefId'
-                                },
+                                #        {
+                                #        id => 13,
+                                #        title => 'SchoolInfo_RefId points to existing school',
+                                #        rule => 'lookup:SchoolInfo_RefId=SchoolInfo/RefId'
+                                #},
+                                #{
+                                #        id => 14,
+                                #        title => 'StudentPersonal_RefId points to existing student',
+                                #        rule => 'lookup:StudentPersonal_RefId=StudentPersonal/RefId'
+                                #},
 				{
 					id => 15, 
 					title => 'Date is mandatory', 
@@ -131,41 +131,41 @@
 					title => 'WellbeingResponseStartDate is mandatory', 
 					rule => 'notblank:WellbeingResponseStartDate'
 				},
-                                {
-                                        id => 17,
-                                        title => 'SuspensionContainer_SuspensionCategory uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsSuspensionCategoryType',
-                                        rule =>'enum:SuspensionContainer_SuspensionCategory=E,I,O,P,R,S,W,WE'
-                                },
-                                {
-                                        id => 18,
-                                        title => 'SuspensionContainer_Status uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsWellbeingStatusType',
-                                        rule =>'enum:SuspensionContainer_Status=O,R,U'
-                                },
-                                {
-                                        id => 19,
-                                        title => 'DetentionContainer_DetentionCategory uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsDetentionCategoryType',
-                                        rule =>'enum:DetentionContainer_DetentionCategory=A,AR,B,L,MR,O,R'
-                                },
-                                {
-                                        id => 20,
-                                        title => 'DetentionContainer_Status uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsWellbeingStatusType',
-                                        rule =>'enum:DetentionContainer_Status=O,R,U'
-                                },
-                                {
-                                        id => 21,
-                                        title => 'PlanRequiredContainer_Status uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsWellbeingStatusType',
-                                        rule =>'enum:PlanRequiredContainer_Status=O,R,U'
-                                },
-                                {
-                                        id => 22,
-                                        title => 'AwardContainer_Status uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsWellbeingStatusType',
-                                        rule =>'enum:AwardContainer_Status=O,R,U'
-                                },
-                                {
-                                        id => 23,
-                                        title => 'OtherWellbeingResponseContainer_Status uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsWellbeingStatusType',
-                                        rule =>'enum:OtherWellbeingResponseContainer_Status=O,R,U'
-                                },
+                                #{
+                                #        id => 17,
+                                #        title => 'SuspensionContainer_SuspensionCategory uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsSuspensionCategoryType',
+                                #        rule =>'enum:SuspensionContainer_SuspensionCategory=E,I,O,P,R,S,W,WE'
+                                #},
+                                #{
+                                #        id => 18,
+                                #        title => 'SuspensionContainer_Status uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsWellbeingStatusType',
+                                #        rule =>'enum:SuspensionContainer_Status=O,R,U'
+                                #},
+                                #{
+                                #        id => 19,
+                                #        title => 'DetentionContainer_DetentionCategory uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsDetentionCategoryType',
+                                #        rule =>'enum:DetentionContainer_DetentionCategory=A,AR,B,L,MR,O,R'
+                                #},
+                                #{
+                                #        id => 20,
+                                #        title => 'DetentionContainer_Status uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsWellbeingStatusType',
+                                #        rule =>'enum:DetentionContainer_Status=O,R,U'
+                                #},
+                                #{
+                                #        id => 21,
+                                #        title => 'PlanRequiredContainer_Status uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsWellbeingStatusType',
+                                #        rule =>'enum:PlanRequiredContainer_Status=O,R,U'
+                                #},
+                                #{
+                                #        id => 22,
+                                #        title => 'AwardContainer_Status uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsWellbeingStatusType',
+                                #        rule =>'enum:AwardContainer_Status=O,R,U'
+                                #},
+                                #{
+                                #        id => 23,
+                                #        title => 'OtherWellbeingResponseContainer_Status uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsWellbeingStatusType',
+                                #        rule =>'enum:OtherWellbeingResponseContainer_Status=O,R,U'
+                                #},
 			],
 			weight => 0.1,
 		},
@@ -188,21 +188,21 @@
                                         title => 'WithdrawalDate is mandatory',
                                         rule => 'notblank:WithdrawalDate'
                                 },
-                                {
-                                        id => 25,
-                                        title => 'TimeTableSubject_RefId points to existing timetable subject',
-                                        rule => 'lookup:TimeTableSubject_RefId=TimeTableSubject/RefId'
-                                },
-                                {
-                                        id => 26,
-                                        title => 'ScheduledActivity_RefId points to existing scheduled activity',
-                                        rule => 'lookup:ScheduledActivity_RefId=ScheduledActivity/RefId'
-                                },
-                                {
-                                        id => 27,
-                                        title => 'TimeTableCell_RefId points to existing timetable cell',
-                                        rule => 'lookup:TimeTableCell_RefId=TimeTableCell/RefId'
-                                },
+                                #{
+                                #        id => 25,
+                                #        title => 'TimeTableSubject_RefId points to existing timetable subject',
+                                #        rule => 'lookup:TimeTableSubject_RefId=TimeTableSubject/RefId'
+                                #},
+                                #{
+                                #        id => 26,
+                                #        title => 'ScheduledActivity_RefId points to existing scheduled activity',
+                                #        rule => 'lookup:ScheduledActivity_RefId=ScheduledActivity/RefId'
+                                #},
+                                #{
+                                #        id => 27,
+                                #        title => 'TimeTableCell_RefId points to existing timetable cell',
+                                #        rule => 'lookup:TimeTableCell_RefId=TimeTableCell/RefId'
+                                #},
 
                         ],
                         weight => 0.1,
@@ -221,11 +221,11 @@
                         tables => ['WellbeingResponse_PlanRequiredContainer_PlanRequired'],
                         rule => 'morethan:0', 
                         subtests => [   
-                                {       
-                                        id => 28,
-                                        title => 'PersonalisedPlan_RefId points to existing personalised plan',
-                                        rule => 'lookup:PersonalisedPlan_RefId=PersonalisedPlan/RefId'
-                                },      
+                          #{       
+                          #              id => 28,
+                          #              title => 'PersonalisedPlan_RefId points to existing personalised plan',
+                          #              rule => 'lookup:PersonalisedPlan_RefId=PersonalisedPlan/RefId'
+                          #      },      
                         ],              
                         weight => 0.1,
                 },              
@@ -243,16 +243,16 @@
                         tables => ['WellbeingResponse_PersonInvolvement'],
                         rule => 'morethan:0',
                         subtests => [   
-                                {
-                                        id => 29,
-                                        title => 'PersonRefId_SIF_RefObject value uses prescribed enums : StudentPersonal, StaffPersonal, StudentContactPersonal',
-                                        rule =>'enum:PersonRefId_SIF_RefObject=StudentPersonal,StaffPersonal,StudentContactPersonal'
-                                },
-                                {
-                                        id => 30,
-                                        title => 'PersonRefId points to existing school',
-                                        rule => 'lookup_sifrefobject:PersonRefId=PersonRefId_SIF_RefObject/RefId'
-                                },
+                          #      {
+                          #              id => 29,
+                          #              title => 'PersonRefId_SIF_RefObject value uses prescribed enums : StudentPersonal, StaffPersonal, StudentContactPersonal',
+                          #              rule =>'enum:PersonRefId_SIF_RefObject=StudentPersonal,StaffPersonal,StudentContactPersonal'
+                          #      },
+                          #      {
+                          #              id => 30,
+                          #              title => 'PersonRefId points to existing school',
+                          #              rule => 'lookup_sifrefobject:PersonRefId=PersonRefId_SIF_RefObject/RefId'
+                          #      },
                         ],
                         weight => 0.1,
                 },
@@ -307,16 +307,16 @@
                                         title => 'SchoolInfo_RefId is mandatory',
                                         rule => 'notblank:SchoolInfo_RefId'
                                 },      
-                                {       
-                                        id => 35, 
-                                        title => 'SchoolInfo_RefId points to existing school',
-                                        rule => 'lookup:SchoolInfo_RefId=SchoolInfo/RefId'
-                                },      
-                                {       
-                                        id => 36, 
-                                        title => 'StudentPersonal_RefId points to existing student',
-                                        rule => 'lookup:StudentPersonal_RefId=StudentPersonal/RefId'
-                                },      
+                                #        {       
+                                #        id => 35, 
+                                #        title => 'SchoolInfo_RefId points to existing school',
+                                #        rule => 'lookup:SchoolInfo_RefId=SchoolInfo/RefId'
+                                #},      
+                                #{       
+                                #        id => 36, 
+                                #        title => 'StudentPersonal_RefId points to existing student',
+                                #        rule => 'lookup:StudentPersonal_RefId=StudentPersonal/RefId'
+                                #},      
                                 {       
                                         id => 37, 
                                         title => 'WellbeingEventCategoryClass is mandatory',
@@ -332,32 +332,32 @@
                                         title => 'WellbeingEventTimePeriod is mandatory',
                                         rule =>'notblank:WellbeingEventTimePeriod'
                                 },      
-                                {       
-                                        id => 40, 
-                                        title => 'WellbeingEventCategoryClass value uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsWellbeingEventCategoryClassType',
-                                        rule =>'enum:WellbeingEventCategoryClass=D,N,O,P'
-                                },
-                                {       
-                                        id => 41, 
-                                        title => 'WellbeingEventLocationDetails_EventLocation value uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsWellbeingEventLocationType',
-                                        rule =>'enum:WellbeingEventLocationDetails_EventLocation=C,Ex,In,L,O,Off,On,Ov,P'
-                                },
-                                {       
-                                        id => 42, 
-                                        title => 'WellbeingEventTimePeriod value uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsWellbeingEventTimePeriodType',
-                                        rule =>'enum:WellbeingEventTimePeriod=A,AM,B,Ex,O,PM,R,W'
-                                },
-                                {
-                                        id => 43,
-                                        title => 'Status uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsWellbeingStatusType',
-                                        rule =>'enum:Status=O,R,U'
-                                },
-                                {
-                                        id => 44,
-                                        title => 'ConfidentialFlag uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsYesOrNoCategoryType',
-                                        rule =>'enum:ConfidentialFlag=N,U,X,Y'
-                                },
-
+                                #                                {       
+                                #        id => 40, 
+                                #        title => 'WellbeingEventCategoryClass value uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsWellbeingEventCategoryClassType',
+                                #        rule =>'enum:WellbeingEventCategoryClass=D,N,O,P'
+                                #},
+                                #{       
+                                #        id => 41, 
+                                #        title => 'WellbeingEventLocationDetails_EventLocation value uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsWellbeingEventLocationType',
+                                #        rule =>'enum:WellbeingEventLocationDetails_EventLocation=C,Ex,In,L,O,Off,On,Ov,P'
+                                #},
+                                #{       
+                                #        id => 42, 
+                                #        title => 'WellbeingEventTimePeriod value uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsWellbeingEventTimePeriodType',
+                                #        rule =>'enum:WellbeingEventTimePeriod=A,AM,B,Ex,O,PM,R,W'
+                                #},
+                                #{
+                                #        id => 43,
+                                #        title => 'Status uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsWellbeingStatusType',
+                                #        rule =>'enum:Status=O,R,U'
+                                #},
+                                #{
+                                #        id => 44,
+                                #        title => 'ConfidentialFlag uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsYesOrNoCategoryType',
+                                #        rule =>'enum:ConfidentialFlag=N,U,X,Y'
+                                #},
+                                #
                         ],
                         weight => 0.1,
                 },
@@ -397,16 +397,16 @@
                         tables => ['WellbeingEvent_PersonInvolvement'],
                         rule => 'morethan:0',
                         subtests => [
-                                {
-                                        id => 46,
-                                        title => 'PersonRefId_SIF_RefObject value uses prescribed enums : StudentPersonal, StaffPersonal, StudentContactPersonal',
-                                        rule =>'enum:PersonRefId_SIF_RefObject=StudentPersonal,StaffPersonal,StudentContactPersonal'
-                                },
-                                {
-                                        id => 47,
-                                        title => 'PersonRefId points to existing school',
-                                        rule => 'lookup_sifrefobject:PersonRefId=PersonRefId_SIF_RefObject/RefId'
-                                },
+                          #        {
+                          #              id => 46,
+                          #              title => 'PersonRefId_SIF_RefObject value uses prescribed enums : StudentPersonal, StaffPersonal, StudentContactPersonal',
+                          #              rule =>'enum:PersonRefId_SIF_RefObject=StudentPersonal,StaffPersonal,StudentContactPersonal'
+                          #      },
+                          #      {
+                          #              id => 47,
+                          #              title => 'PersonRefId points to existing school',
+                          #              rule => 'lookup_sifrefobject:PersonRefId=PersonRefId_SIF_RefObject/RefId'
+                          #      },
                         ],
                         weight => 0.1,
                 },
@@ -424,11 +424,11 @@
                         tables => ['WellbeingEvent_FollowupAction'],
                         rule => 'morethan:0',
                         subtests => [
-                                {       
-                                        id => 48, 
-                                        title => 'WellbeingResponse_RefId points to existing wellbring response',
-                                        rule => 'lookup:WellbeingResponse_RefId=WellbeingResponse/RefId'
-                                },      
+                          #      {       
+                          #              id => 48, 
+                          #              title => 'WellbeingResponse_RefId points to existing wellbring response',
+                          #              rule => 'lookup:WellbeingResponse_RefId=WellbeingResponse/RefId'
+                          #      },      
                         ],
                         weight => 0.1,
                 },
@@ -456,31 +456,31 @@
                                         title => 'StudentPersonal_RefId is mandatory',
                                         rule => 'notblank:StudentPersonal_RefId'
                                 },
-                                {
-                                        id => 51,
-                                        title => 'SchoolInfo_RefId points to existing school',
-                                        rule => 'lookup:SchoolInfo_RefId=SchoolInfo/RefId'
-                                },
-                                {
-                                        id => 52,
-                                        title => 'StudentPersonal_RefId points to existing student',
-                                        rule => 'lookup:StudentPersonal_RefId=StudentPersonal/RefId'
-                                },
-                                {
-                                        id => 53,
-                                        title => 'WellbeingCharacteristicClassification value uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsWellbeingCharacteristicClassificationType',
-                                        rule =>'enum:WellbeingCharacteristicClassification=D,M,O,S'
-                                },
-                                {
-                                        id => 54,
-                                        title => 'WellbeingCharacteristicConfidentialFlag uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsYesOrNoCategoryType',
-                                        rule =>'enum:WellbeingCharacteristicConfidentialFlag=N,U,X,Y'
-                                },
-                                {
-                                        id => 55,
-                                        title => 'WellbeingCharacteristicAlert uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsYesOrNoCategoryType',
-                                        rule =>'enum:WellbeingCharacteristicAlert=N,U,X,Y'
-                                },
+                                #      {
+                                #        id => 51,
+                                #        title => 'SchoolInfo_RefId points to existing school',
+                                #        rule => 'lookup:SchoolInfo_RefId=SchoolInfo/RefId'
+                                #},
+                                #{
+                                #        id => 52,
+                                #        title => 'StudentPersonal_RefId points to existing student',
+                                #        rule => 'lookup:StudentPersonal_RefId=StudentPersonal/RefId'
+                                #},
+                                #{
+                                #        id => 53,
+                                #        title => 'WellbeingCharacteristicClassification value uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsWellbeingCharacteristicClassificationType',
+                                #        rule =>'enum:WellbeingCharacteristicClassification=D,M,O,S'
+                                #},
+                                #{
+                                #        id => 54,
+                                #        title => 'WellbeingCharacteristicConfidentialFlag uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsYesOrNoCategoryType',
+                                #        rule =>'enum:WellbeingCharacteristicConfidentialFlag=N,U,X,Y'
+                                #},
+                                #{
+                                #        id => 55,
+                                #        title => 'WellbeingCharacteristicAlert uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsYesOrNoCategoryType',
+                                #        rule =>'enum:WellbeingCharacteristicAlert=N,U,X,Y'
+                                #},
 
                         ],
                         weight => 0.1,
@@ -536,31 +536,31 @@
                                         title => 'SchoolInfo_RefId is mandatory',
                                         rule => 'notblank:SchoolInfo_RefId'
                                 },
-                                {
-                                        id => 60,
-                                        title => 'SchoolInfo_RefId points to existing school',
-                                        rule => 'lookup:SchoolInfo_RefId=SchoolInfo/RefId'
-                                },
-                                {
-                                        id => 61,
-                                        title => 'StudentPersonal_RefId points to existing student',
-                                        rule => 'lookup:StudentPersonal_RefId=StudentPersonal/RefId'
-                                },
+                                #                                {
+                                #        id => 60,
+                                #        title => 'SchoolInfo_RefId points to existing school',
+                                #        rule => 'lookup:SchoolInfo_RefId=SchoolInfo/RefId'
+                                #},
+                                #{
+                                #        id => 61,
+                                #        title => 'StudentPersonal_RefId points to existing student',
+                                #        rule => 'lookup:StudentPersonal_RefId=StudentPersonal/RefId'
+                                #},
                                 {
                                         id => 62,
                                         title => 'WellbeingResponse_RefId is mandatory',
                                         rule =>'notblank:WellbeingResponse_RefId'
                                 },
-                                {
-                                        id => 63,
-                                        title => 'WellbeingResponse_RefId points to existing wellbeing response',
-                                        rule => 'lookup:WellbeingResponse_RefId=WellbeingResponse/RefId'
-                                },
-                                {
-                                        id => 64,
-                                        title => 'AppealStatusCode value uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsWellbeingAppealStatusType',
-                                        rule =>'enum:AppealStatusCode=N,N/S,RE,SU'
-                                },
+                                #{
+                                #        id => 63,
+                                #        title => 'WellbeingResponse_RefId points to existing wellbeing response',
+                                #        rule => 'lookup:WellbeingResponse_RefId=WellbeingResponse/RefId'
+                                #},
+                                #{
+                                #        id => 64,
+                                #        title => 'AppealStatusCode value uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsWellbeingAppealStatusType',
+                                #        rule =>'enum:AppealStatusCode=N,N/S,RE,SU'
+                                #},
                         ],
                         weight => 0.1,
                 },
@@ -615,16 +615,16 @@
                                         title => 'SchoolInfo_RefId is mandatory',
                                         rule => 'notblank:SchoolInfo_RefId'
                                 },      
-                                {       
-                                        id => 69,
-                                        title => 'SchoolInfo_RefId points to existing school',
-                                        rule => 'lookup:SchoolInfo_RefId=SchoolInfo/RefId'
-                                },      
-                                {       
-                                        id => 70,
-                                        title => 'StudentPersonal_RefId points to existing student',
-                                        rule => 'lookup:StudentPersonal_RefId=StudentPersonal/RefId'
-                                },      
+                                #                                {       
+                                #        id => 69,
+                                #        title => 'SchoolInfo_RefId points to existing school',
+                                #        rule => 'lookup:SchoolInfo_RefId=SchoolInfo/RefId'
+                                #},      
+                                #{       
+                                #        id => 70,
+                                #        title => 'StudentPersonal_RefId points to existing student',
+                                #        rule => 'lookup:StudentPersonal_RefId=StudentPersonal/RefId'
+                                #},      
                                 {       
                                         id => 71,
                                         title => 'Date is mandatory',
@@ -635,16 +635,16 @@
                                         title => 'WellbeingAlertStartDate is mandatory',
                                         rule =>'notblank:WellbeingAlertStartDate'
                                 },      
-                                {       
-                                        id => 73,
-                                        title => 'WellbeingAlertCategory value uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsWellbeingAlertCategoryType',
-                                        rule =>'enum:WellbeingAlertCategory=D,E,L,M,O,P,S'
-                                },
-                                {
-                                        id => 74,
-                                        title => 'EnrolmentRestricted uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsYesOrNoCategoryType',
-                                        rule =>'enum:EnrolmentRestricted=N,U,X,Y'
-                                },
+                                #{       
+                                #        id => 73,
+                                #        title => 'WellbeingAlertCategory value uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsWellbeingAlertCategoryType',
+                                #        rule =>'enum:WellbeingAlertCategory=D,E,L,M,O,P,S'
+                                #},
+                                #{
+                                #        id => 74,
+                                #        title => 'EnrolmentRestricted uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/3.4.3/CodeSets.html#AUCodeSetsYesOrNoCategoryType',
+                                #        rule =>'enum:EnrolmentRestricted=N,U,X,Y'
+                                #},
 
                         ],
                         weight => 0.1,

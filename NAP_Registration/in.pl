@@ -46,36 +46,36 @@
 					title => 'Sex is mandatory', 
 					rule =>'notblank:Sex'
 				},
-				{
-					id => 7, 
-					title => 'Sex uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsSexCodeType ', 
-					rule =>'enum:Sex=1,2,3,9'
-				},
+                                #				{
+                                #	id => 7, 
+                                #	title => 'Sex uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsSexCodeType ', 
+                                #	rule =>'enum:Sex=1,2,3,9'
+                                #},
 				{
 					id => 8, 
 					title => 'YearLevel is mandatory',
 					rule =>'notblank:YearLevel'
 				},
-				{
-					id => 9, 
-					title => 'YearLevel uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsYearLevelCodeType ',
-					rule =>'enum:YearLevel=1,2,3,4,5,6,7,8,9,10,11,12,13,CC,K,K3,K4,P,PS,UG'
-				},
+                                #{
+                                #	id => 9, 
+                                #	title => 'YearLevel uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsYearLevelCodeType ',
+                                #	rule =>'enum:YearLevel=1,2,3,4,5,6,7,8,9,10,11,12,13,CC,K,K3,K4,P,PS,UG'
+                                #},
 				{
 					id => 10, 
 					title => 'IndigenousStatus is mandatory',
 					rule =>'notblank:IndigenousStatus'
 				},
-				{
-					id => 11, 
-					title => 'IndigenousStatus uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsIndigenousStatusType ',
-					rule =>'enum:IndigenousStatus=1,2,3,4,9'
-				},
-				{
-					id => 13, 
-					title => 'LBOTE uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsYesOrNoCategoryType ',
-					rule =>'enum:LBOTE=N,U,X,Y'
-				},
+                                #{
+                                #	id => 11, 
+                                #	title => 'IndigenousStatus uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsIndigenousStatusType ',
+                                #	rule =>'enum:IndigenousStatus=1,2,3,4,9'
+                                #},
+                                #{
+                                #	id => 13, 
+                                #	title => 'LBOTE uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsYesOrNoCategoryType ',
+                                #	rule =>'enum:LBOTE=N,U,X,Y'
+                                #},
 
 
 				{
@@ -83,61 +83,61 @@
 					title => 'MostRecent_Parent1SchoolEducation is mandatory',
 					rule =>'notblank:MostRecent_Parent1SchoolEducation'
 				},
-				{
-					id => 23, 
-					title => 'MostRecent_Parent1SchoolEducation uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsSchoolEducationLevelTypeType ',
-					rule =>'enum:MostRecent_Parent1SchoolEducation=0,1,2,3,4'
-				},
+                                #{
+                                #	id => 23, 
+                                #	title => 'MostRecent_Parent1SchoolEducation uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsSchoolEducationLevelTypeType ',
+                                #	rule =>'enum:MostRecent_Parent1SchoolEducation=0,1,2,3,4'
+                                #},
 				{
 					id => 24, 
 					title => 'MostRecent_Parent2SchoolEducation is mandatory',
 					rule =>'notblank:MostRecent_Parent2SchoolEducation'
 				},
-				{
-					id => 25, 
-					title => 'MostRecent_Parent2SchoolEducation uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsSchoolEducationLevelTypeType ',
-					rule =>'enum:MostRecent_Parent2SchoolEducation=0,1,2,3,4'
-				},
+                                #{
+                                #	id => 25, 
+                                #	title => 'MostRecent_Parent2SchoolEducation uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsSchoolEducationLevelTypeType ',
+                                #	rule =>'enum:MostRecent_Parent2SchoolEducation=0,1,2,3,4'
+                                #},
 				{
 					id => 26, 
 					title => 'MostRecent_Parent1SchoolNonEducation is mandatory',
 					rule =>'notblank:MostRecent_Parent1NonSchoolEducation'
 				},
-				{
-					id => 27, 
-					title => 'MostRecent_Parent1NonSchoolEducation uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsNonSchoolEducationType ',
-					rule =>'enum:MostRecent_Parent1NonSchoolEducation=0,5,6,7,8'
-				},
+                                #{
+                                #	id => 27, 
+                                #	title => 'MostRecent_Parent1NonSchoolEducation uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsNonSchoolEducationType ',
+                                #	rule =>'enum:MostRecent_Parent1NonSchoolEducation=0,5,6,7,8'
+                                #},
 				{
 					id => 28, 
 					title => 'MostRecent_Parent2SchoolNonEducation is mandatory',
 					rule =>'notblank:MostRecent_Parent2NonSchoolEducation'
 				},
-				{
-					id => 29, 
-					title => 'MostRecent_Parent2NonSchoolEducation uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsNonSchoolEducationType ',
-					rule =>'enum:MostRecent_Parent2NonSchoolEducation=0,5,6,7,8'
-				},
+                                #{
+                                #	id => 29, 
+                                #	title => 'MostRecent_Parent2NonSchoolEducation uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsNonSchoolEducationType ',
+                                #	rule =>'enum:MostRecent_Parent2NonSchoolEducation=0,5,6,7,8'
+                                #},
 				{
 					id => 30, 
 					title => 'MostRecent_Parent1EmploymentType is mandatory',
 					rule =>'notblank:MostRecent_Parent1EmploymentType'
 				},
-				{
-					id => 31, 
-					title => 'MostRecent_Parent1EmploymentType uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsEmploymentTypeType ',
-					rule =>'enum:MostRecent_Parent1EmploymentType=1,2,3,4,8,9'
-				},
+                                #{
+                                #	id => 31, 
+                                #	title => 'MostRecent_Parent1EmploymentType uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsEmploymentTypeType ',
+                                #	rule =>'enum:MostRecent_Parent1EmploymentType=1,2,3,4,8,9'
+                                #},
 				{
 					id => 32, 
 					title => 'MostRecent_Parent2EmploymentType is mandatory',
 					rule =>'notblank:MostRecent_Parent2EmploymentType'
 				},
-				{
-					id => 33, 
-					title => 'MostRecent_Parent2EmploymentType uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsEmploymentTypeType ',
-					rule =>'enum:MostRecent_Parent2EmploymentType=1,2,3,4,8,9'
-				},
+                                #{
+                                #	id => 33, 
+                                #	title => 'MostRecent_Parent2EmploymentType uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsEmploymentTypeType ',
+                                #	rule =>'enum:MostRecent_Parent2EmploymentType=1,2,3,4,8,9'
+                                #},
 				{
 					id => 34, 
 					title => 'MostRecent_Parent1Language is mandatory',
@@ -160,31 +160,31 @@
 					title => 'FFPOS is mandatory',
 					rule =>'notblank:MostRecent_FFPOS'
 				},
-				{
-					id => 38, 
-					title => 'FFPOS uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsFFPOSStatusCodeType ',
-					rule =>'enum:MostRecent_FFPOS=1,2,9'
-				},
-				{
-					id => 39, 
-					title => 'OfflineDelivery uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsYesOrNoCategoryType ',
-					rule =>'enum:OfflineDelivery=N,U,X,Y'
-				},
-				{
-					id => 40, 
-					title => 'Sensitive uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsYesOrNoCategoryType ',
-					rule =>'enum:SensitiveData=N,U,X,Y'
-				},
+                                #{
+                                #	id => 38, 
+                                #	title => 'FFPOS uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsFFPOSStatusCodeType ',
+                                #	rule =>'enum:MostRecent_FFPOS=1,2,9'
+                                #},
+                                #{
+                                #	id => 39, 
+                                #	title => 'OfflineDelivery uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsYesOrNoCategoryType ',
+                                #	rule =>'enum:OfflineDelivery=N,U,X,Y'
+                                #},
+                                #{
+                                #	id => 40, 
+                                #	title => 'Sensitive uses prescribed SIF enum: http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsYesOrNoCategoryType ',
+                                #	rule =>'enum:SensitiveData=N,U,X,Y'
+                                #},
 				{
 					id => 41, 
 					title => 'TestLevel is mandatory',
 					rule =>'notblank:MostRecent_TestLevel',
 				},
-				{
-					id => 42, 
-					title => 'TestLevel uses prescribed SIF enum: 3,5,7,9',
-					rule =>'enum:MostRecent_TestLevel=3,5,7,9',
-				},
+                                #{
+                                #	id => 42, 
+                                #	title => 'TestLevel uses prescribed SIF enum: 3,5,7,9',
+                                #	rule =>'enum:MostRecent_TestLevel=3,5,7,9',
+                                #},
 				{
                                         id => 43,
                                         title => 'Must have a registered language',

@@ -21,11 +21,11 @@
 					title => 'RefId is mandatory', 
 					rule => 'notblank:RefId'
 				},
-				{
-					id => 2, 
-					title => 'TeachingGroup_RefId points to existing school', 
-					rule => 'lookup:TeachingGroup_RefId=TeachingGroup/RefId'
-				},
+                                #				{
+                                #	id => 2, 
+                                #	title => 'TeachingGroup_RefId points to existing school', 
+                                #	rule => 'lookup:TeachingGroup_RefId=TeachingGroup/RefId'
+                                #},
 				{
 					id => 3, 
 					title => 'Description is mandatory', 
@@ -64,26 +64,26 @@
 						title => 'StudentPersonalRefId is mandatory',
 						rule => 'notblank:StudentPersonal_RefId'
 				},
-				{
-						id => 23,
-						title => 'StudentPersonalRefId points to existing student',
-						rule => 'lookup:StudentPersonal_RefId=StudentPersonal/RefId'
-				},
-				{
-						id => 25,
-						title => 'TeachingGroupRefId points to existing teaching group',
-						rule => 'lookup:TeachingGroup_RefId=TeachingGroup/RefId'
-				},
+                                #{
+                                #		id => 23,
+                                #		title => 'StudentPersonalRefId points to existing student',
+                                #		rule => 'lookup:StudentPersonal_RefId=StudentPersonal/RefId'
+                                #},
+                                #{
+                                #		id => 25,
+                                #		title => 'TeachingGroupRefId points to existing teaching group',
+                                #		rule => 'lookup:TeachingGroup_RefId=TeachingGroup/RefId'
+                                #},
 				{
 						id => 26,
 						title => 'GradingAssignmentRefId is mandatory',
 						rule => 'notblank:GradingAssignment_RefId'
 				},
-				{
-						id => 27,
-						title => 'GradingAssignmentRefId points to existing grading assignment',
-						rule => 'lookup:GradingAssignment_RefId=GradingAssignment/RefId'
-				},
+                                #{
+                                #		id => 27,
+                                #		title => 'GradingAssignmentRefId points to existing grading assignment',
+                                #		rule => 'lookup:GradingAssignment_RefId=GradingAssignment/RefId'
+                                #},
 			],
 			weight => 0.1,
 		},

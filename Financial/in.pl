@@ -32,16 +32,16 @@
 					title => 'InvoicedEntity_SIFRefObject is mandatory', 
 					rule => 'notblank:InvoicedEntity_SIFRefObject'
 				},
-				{
-					id => 10, 
-					title => 'InvoicedEntity_SIFRefObject value uses prescribed enums : Debtor, PurchaseOrder ', 
-					rule =>'enum:InvoicedEntity_SIFRefObject=Debtor,PurchaseOrder'
-				},
-				{
-					id => 4, 
-					title => 'InvoicedEntity points to existing school', 
-					rule => 'lookup_sifrefobject:InvoicedEntity=InvoicedEntity_SIFRefObject/RefId'
-				},
+                                #				{
+                                #	id => 10, 
+                                #	title => 'InvoicedEntity_SIFRefObject value uses prescribed enums : Debtor, PurchaseOrder ', 
+                                #	rule =>'enum:InvoicedEntity_SIFRefObject=Debtor,PurchaseOrder'
+                                #},
+                                #{
+                                #	id => 4, 
+                                #	title => 'InvoicedEntity points to existing school', 
+                                #	rule => 'lookup_sifrefobject:InvoicedEntity=InvoicedEntity_SIFRefObject/RefId'
+                                #},
 				{
 					id => 5, 
 					title => 'BillingDate is mandatory', 
@@ -62,36 +62,36 @@
 					title => 'BilledAmountType is mandatory', 
 					rule =>'notblank:BilledAmountType'
 				},
-				{
-					id => 9, 
-					title => 'BilledAmountType value uses prescribed enums : Debit, Credit ', 
-					rule =>'enum:BilledAmountType=Debit,Credit'
-				},
+                                #{
+                                #	id => 9, 
+                                #	title => 'BilledAmountType value uses prescribed enums : Debit, Credit ', 
+                                #	rule =>'enum:BilledAmountType=Debit,Credit'
+                                #},
 				{
 					id => 11, 
 					title => 'Ledger is mandatory', 
 					rule =>'notblank:Ledger'
 				},
-				{
-					id => 12, 
-					title => 'Ledger value uses prescribed enums : Creditor, Family, Sundry ', 
-					rule =>'enum:Ledger=Creditor,Family,Sundry'
-				},
-				{
-					id => 13, 
-					title => 'LocationInfoRefId points to existing location', 
-					rule =>'lookup:LocationInfo_RefId=LocationInfo/RefId'
-				},
-				{
-					id => 14, 
-					title => 'RelatedPurchaseOrderRefId points to existing purchase order', 
-					rule =>'lookup:Related_PurchaseOrder_RefId=PurchaseOrder/RefId'
-				},
-				{
-					id => 15, 
-					title => 'Voluntary value uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsYesOrNoCategoryType ', 
-					rule =>'enum:Voluntary=N,U,X,Y'
-				},
+                                #{
+                                #	id => 12, 
+                                #	title => 'Ledger value uses prescribed enums : Creditor, Family, Sundry ', 
+                                #	rule =>'enum:Ledger=Creditor,Family,Sundry'
+                                #},
+                                #{
+                                #	id => 13, 
+                                #	title => 'LocationInfoRefId points to existing location', 
+                                #	rule =>'lookup:LocationInfo_RefId=LocationInfo/RefId'
+                                #},
+                                #{
+                                #	id => 14, 
+                                #	title => 'RelatedPurchaseOrderRefId points to existing purchase order', 
+                                #	rule =>'lookup:Related_PurchaseOrder_RefId=PurchaseOrder/RefId'
+                                #},
+                                #{
+                                #	id => 15, 
+                                #	title => 'Voluntary value uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsYesOrNoCategoryType ', 
+                                #	rule =>'enum:Voluntary=N,U,X,Y'
+                                #},
 			],
 			weight => 0.1,
 		},
@@ -114,11 +114,11 @@
 					title => 'FinancialAccount_RefId is mandatory', 
 					rule => 'notblank:FinancialAccount_RefId'
 				},
-				{
-					id => 27, 
-					title => 'FinancialAccount_RefId points to existing financial account', 
-					rule => 'lookup:FinancialAccount_RefId=FinancialAccount/RefId'
-				},
+                                #{
+                                #	id => 27, 
+                                #	title => 'FinancialAccount_RefId points to existing financial account', 
+                                #	rule => 'lookup:FinancialAccount_RefId=FinancialAccount/RefId'
+                                #},
 			],
 			weight => 0.1,
 		},
@@ -141,11 +141,11 @@
 					title => 'RefId is mandatory', 
 					rule => 'notblank:RefId'
 				},
-				{
-					id => 29, 
-					title => 'LocationInfo_RefId points to existing financial account', 
-					rule => 'lookup:LocationInfo_RefId=LocationInfo/RefId'
-				},
+                                #	{
+                                #	id => 29, 
+                                #	title => 'LocationInfo_RefId points to existing financial account', 
+                                #	rule => 'lookup:LocationInfo_RefId=LocationInfo/RefId'
+                                #},
 				{
 					id => 30, 
 					title => 'AccountNumber is mandatory', 
@@ -162,11 +162,11 @@
 					title => 'ClassType is mandatory', 
 					rule => 'notblank:ClassType'
 				},
-				{
-					id => "31d", 
-					title => 'ClassType value uses prescribed enums : Asset, Liability, Revenue, Expense',
-					rule =>'enum:ClassType=Asset,Liability,Revenue,Expense'
-				},
+                                #{
+                                #	id => "31d", 
+                                #	title => 'ClassType value uses prescribed enums : Asset, Liability, Revenue, Expense',
+                                #	rule =>'enum:ClassType=Asset,Liability,Revenue,Expense'
+                                #},
 				{
 					id => "31b", 
 					title => 'CreationDate is mandatory', 
@@ -204,11 +204,11 @@
 					title => 'LocationType is mandatory', 
 					rule => 'notblank:LocationType'
 				},
-				{
-					id => 40, 
-					title => 'LocationType value uses prescribed enums : School NonSchool', 
-					rule => 'enum:LocationType=School,NonSchool'
-				},
+                                #{
+                                #	id => 40, 
+                                #	title => 'LocationType value uses prescribed enums : School NonSchool', 
+                                #	rule => 'enum:LocationType=School,NonSchool'
+                                #},
 				{
 					id => 41, 
 					title => 'SiteCategory is mandatory', 
@@ -219,11 +219,11 @@
 					title => 'Name is mandatory', 
 					rule => 'notblank:Name'
 				},
-				{
-					id => 44, 
-					title => 'Parent_LocationInfo_RefId points to existing chargeable location', 
-					rule => 'lookup:Parent_LocationInfo_RefId=LocationInfo/RefId'
-				},
+                                #{
+                                #	id => 44, 
+                                #	title => 'Parent_LocationInfo_RefId points to existing chargeable location', 
+                                #	rule => 'lookup:Parent_LocationInfo_RefId=LocationInfo/RefId'
+                                #},
 			],
 			weight => 0.1,
 		},
@@ -251,36 +251,36 @@
 					title => 'TransactionType is mandatory', 
 					rule => 'notblank:TransactionType'
 				},
-				{
-					id => 47, 
-					title => 'TransactionType value uses prescribed enums : GL receipt, GL payment, Creditor payment, Creditor receipt, Debtor receipt, Debtor payment', 
-					rule => 'enum:TransactionType=GL receipt,GL payment,Creditor payment,Creditor receipt,Debtor receipt,Debtor payment'
-				},
-				{
-					id => 48, 
-					title => 'VendorInfo_RefId points to existing vendor', 
-					rule => 'lookup:VendorInfo_RefId=VendorInfo/RefId'
-				},
-				{
-					id => "48a", 
-					title => 'Invoice_RefId points to existing invoice', 
-					rule => 'lookup:Invoice_RefId=Invoice/RefId'
-				},
-				{
-					id => 49, 
-					title => 'Debtor_RefId points to existing debtor', 
-					rule => 'lookup:Debtor_RefId=Debtor/RefId'
-				},
-				{
-					id => 50, 
-					title => 'PurchaseOrder_RefId points to existing purchase order', 
-					rule => 'lookup:PurchaseOrder_RefId=PurchaseOrder/RefId'
-				},
-				{
-					id => 51, 
-					title => 'LocationInfo_RefId points to existing chargeable location', 
-					rule => 'lookup:LocationInfo_RefId=LocationInfo/RefId'
-				},
+                                #{
+                                #	id => 47, 
+                                #	title => 'TransactionType value uses prescribed enums : GL receipt, GL payment, Creditor payment, Creditor receipt, Debtor receipt, Debtor payment', 
+                                #	rule => 'enum:TransactionType=GL receipt,GL payment,Creditor payment,Creditor receipt,Debtor receipt,Debtor payment'
+                                #},
+                                #{
+                                #	id => 48, 
+                                #	title => 'VendorInfo_RefId points to existing vendor', 
+                                #	rule => 'lookup:VendorInfo_RefId=VendorInfo/RefId'
+                                #},
+                                #{
+                                #	id => "48a", 
+                                #	title => 'Invoice_RefId points to existing invoice', 
+                                #	rule => 'lookup:Invoice_RefId=Invoice/RefId'
+                                #},
+                                #{
+                                #	id => 49, 
+                                #	title => 'Debtor_RefId points to existing debtor', 
+                                #	rule => 'lookup:Debtor_RefId=Debtor/RefId'
+                                #},
+                                #{
+                                #	id => 50, 
+                                #	title => 'PurchaseOrder_RefId points to existing purchase order', 
+                                #	rule => 'lookup:PurchaseOrder_RefId=PurchaseOrder/RefId'
+                                #},
+                                #{
+                                #	id => 51, 
+                                #	title => 'LocationInfo_RefId points to existing chargeable location', 
+                                #	rule => 'lookup:LocationInfo_RefId=LocationInfo/RefId'
+                                #},
 				{
 					id => 52, 
 					title => 'TransactionDate is mandatory', 
@@ -296,11 +296,11 @@
 					title => 'ReceivedAmountType is mandatory', 
 					rule => 'notblank:ReceivedAmountType'
 				},			
-				{
-					id => 55, 
-					title => 'ReceivedAmountType value uses prescribed enums : Debit Credit', 
-					rule => 'enum:ReceivedAmountType=Debit,Credit'
-				},
+                                #{
+                                #	id => 55, 
+                                #	title => 'ReceivedAmountType value uses prescribed enums : Debit Credit', 
+                                #	rule => 'enum:ReceivedAmountType=Debit,Credit'
+                                #},
 				{
 					id => 58, 
 					title => 'ReceivedTransactionId is mandatory', 
@@ -328,11 +328,11 @@
 					title => 'FinancialAccount_RefId is mandatory', 
 					rule => 'notblank:RefId'
 				},
-				{
-					id => 57, 
-					title => 'FinancialAccount_RefId points to existing financial account', 
-					rule => 'lookup:FinancialAccount_RefId=FinancialAccount/RefId'
-				},
+                                #{
+                                #	id => 57, 
+                                #	title => 'FinancialAccount_RefId points to existing financial account', 
+                                #	rule => 'lookup:FinancialAccount_RefId=FinancialAccount/RefId'
+                                #},
 			],
 			weight => 0.1,
 		},
@@ -365,21 +365,21 @@
 					title => 'VendorInfo_RefId is mandatory', 
 					rule => 'notblank:VendorInfo_RefId'
 				},
-				{
-					id => 62, 
-					title => 'VendorInfo_RefId points to existing vendor', 
-					rule => 'lookup:VendorInfo_RefId=VendorInfo/RefId'
-				},
-				{
-					id => 63, 
-					title => 'LocationInfo_RefId points to existing chargeable location', 
-					rule => 'lookup:LocationInfo_RefId=LocationInfo/RefId'
-				},
-				{
-					id => 64, 
-					title => 'EmployeePersonal_RefId points to existing staff member', 
-					rule => 'lookup:EmployeePersonal_RefId=StaffPersonal/RefId'
-				},
+                                #	{
+                                #	id => 62, 
+                                #	title => 'VendorInfo_RefId points to existing vendor', 
+                                #	rule => 'lookup:VendorInfo_RefId=VendorInfo/RefId'
+                                #},
+                                #{
+                                #	id => 63, 
+                                #	title => 'LocationInfo_RefId points to existing chargeable location', 
+                                #	rule => 'lookup:LocationInfo_RefId=LocationInfo/RefId'
+                                #},
+                                #{
+                                #	id => 64, 
+                                #	title => 'EmployeePersonal_RefId points to existing staff member', 
+                                #	rule => 'lookup:EmployeePersonal_RefId=StaffPersonal/RefId'
+                                #},
 				{
 					id => 65, 
 					title => 'Check number of purchasing items', 
@@ -434,11 +434,11 @@
 					title => 'Amount is mandatory', 
 					rule => 'notblank:Amount'
 				},
-				{
-					id => 69, 
-					title => 'FinancialAccount_RefId points to existing financial account', 
-					rule => 'lookup:FinancialAccount_RefId=FinancialAccount/RefId'
-				},
+                                #{
+                                #	id => 69, 
+                                #	title => 'FinancialAccount_RefId points to existing financial account', 
+                                #	rule => 'lookup:FinancialAccount_RefId=FinancialAccount/RefId'
+                                #},
 			],
 			weight => 0.1,
 		},
@@ -493,41 +493,41 @@
 					title => 'Debit_FinancialAccount_RefId is mandatory', 
 					rule => 'notblank:Debit_FinancialAccount_RefId'
 				},
-				{
-					id => 74, 
-					title => 'Debit_FinancialAccount_RefId points to existing financial account', 
-					rule => 'lookup:Debit_FinancialAccount_RefId=FinancialAccount/RefId'
-				},
+                                #	{
+                                #	id => 74, 
+                                #	title => 'Debit_FinancialAccount_RefId points to existing financial account', 
+                                #	rule => 'lookup:Debit_FinancialAccount_RefId=FinancialAccount/RefId'
+                                #},
 				{
 					id => 75, 
 					title => 'Credit_FinancialAccount_RefId is mandatory', 
 					rule => 'notblank:Credit_FinancialAccount_RefId'
 				},
-				{
-					id => 76, 
-					title => 'Credit_FinancialAccount_RefId points to existing financial account', 
-					rule => 'lookup:Credit_FinancialAccount_RefId=FinancialAccount/RefId'
-				},
-				{
-					id => 77, 
-					title => 'OriginatingTransaction_RefId_SIFRefObject value uses prescribed enums : Debtor, PurchaseOrder ', 
-					rule =>'enum:OriginatingTransaction_RefId_SIFRefObject=Invoice,PaymentReceipt,PurchaseOrder'
-				},
-				{
-					id => 78, 
-					title => 'OriginatingTransaction_RefId points to existing object', 
-					rule => 'lookup_sifrefobject:OriginatingTransaction_RefId=OriginatingTransaction_RefId_SIFRefObject/RefId'
-				},
+                                #{
+                                #	id => 76, 
+                                #	title => 'Credit_FinancialAccount_RefId points to existing financial account', 
+                                #	rule => 'lookup:Credit_FinancialAccount_RefId=FinancialAccount/RefId'
+                                #},
+                                #{
+                                #	id => 77, 
+                                #	title => 'OriginatingTransaction_RefId_SIFRefObject value uses prescribed enums : Debtor, PurchaseOrder ', 
+                                #	rule =>'enum:OriginatingTransaction_RefId_SIFRefObject=Invoice,PaymentReceipt,PurchaseOrder'
+                                #},
+                                #{
+                                #	id => 78, 
+                                #	title => 'OriginatingTransaction_RefId points to existing object', 
+                                ##	rule => 'lookup_sifrefobject:OriginatingTransaction_RefId=OriginatingTransaction_RefId_SIFRefObject/RefId'
+                                #},
 				{
 					id => 79, 
 					title => 'Amount is mandatory', 
 					rule => 'notblank:Amount'
 				},
-				{
-					id => 80, 
-					title => 'FinancialClass_RefId points to existing financial class', 
-					rule => 'lookup:FinancialClass_RefId=FinancialClass/RefId'
-				},
+                                #{
+                                #	id => 80, 
+                                #	title => 'FinancialClass_RefId points to existing financial class', 
+                                #	rule => 'lookup:FinancialClass_RefId=FinancialClass/RefId'
+                                #},
 			],
 			weight => 0.1,
 		},
@@ -560,16 +560,16 @@
 					title => 'BilledEntity_SIFRefObject is mandatory', 
 					rule => 'notblank:BilledEntity_SIFRefObject'
 				},
-				{
-					id => 84, 
-					title => 'BilledEntity_SIFRefObject value uses prescribed enums : StudentContactPersonal, VendorInfo ', 
-					rule =>'enum:BilledEntity_SIFRefObject=StudentContactPersonal,VendorInfo,StaffPersonal,StudentPersonal'
-				},
-				{
-					id => 85, 
-					title => 'BilledEntity points to existing object', 
-					rule => 'lookup_sifrefobject:BilledEntity=BilledEntity_SIFRefObject/RefId'
-				},
+                                #	{
+                                #	id => 84, 
+                                #	title => 'BilledEntity_SIFRefObject value uses prescribed enums : StudentContactPersonal, VendorInfo ', 
+                                #	rule =>'enum:BilledEntity_SIFRefObject=StudentContactPersonal,VendorInfo,StaffPersonal,StudentPersonal'
+                                #},
+                                #{
+                                #	id => 85, 
+                                #	title => 'BilledEntity points to existing object', 
+                                #	rule => 'lookup_sifrefobject:BilledEntity=BilledEntity_SIFRefObject/RefId'
+                                #},
 			],
 			weight => 0.1,
 		},
@@ -592,21 +592,21 @@
 					title => 'AddressType is mandatory', 
 					rule => 'notblank:AddressType'
 				},
-				{
-					id => 87, 
-					title => 'AddressType value uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsAddressTypeType ', 
-					rule =>'enum:AddressType=0123,0123A,0124,0124A,0125,0765,0765A,9999,9999A'
-				},
+                                #{
+                                #	id => 87, 
+                                #	title => 'AddressType value uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsAddressTypeType ', 
+                                #	rule =>'enum:AddressType=0123,0123A,0124,0124A,0125,0765,0765A,9999,9999A'
+                                #},
 				{
 					id => 88, 
 					title => 'AddressRole is mandatory', 
 					rule => 'notblank:AddressRole'
 				},
-				{
-					id => 89, 
-					title => 'AddressRole value uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsAddressRoleType ', 
-					rule =>'enum:AddressRole=012A,012B,012C,013A,1073,1074,1075,2382,9999'
-				},
+                                #{
+                                #	id => 89, 
+                                #	title => 'AddressRole value uses prescribed enums : http://specification.sifassociation.org/Implementation/AU/1.3/html/CodeSets.html#AUCodeSetsAddressRoleType ', 
+                                #	rule =>'enum:AddressRole=012A,012B,012C,013A,1073,1074,1075,2382,9999'
+                                #},
 				#{
 				#id => 90, 
 				#title => 'Line1 is mandatory', 
